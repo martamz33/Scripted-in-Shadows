@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb9de6e62bf3e2742a4107605430b6f4, type: 3}
+  m_Name: IronSkin
+  m_EditorClassIdentifier: 
+  powerUpName: 3
+  description: La vida aumenta un 50%, pero eres incapaz de curarte
+  icon: {fileID: 1727820408, guid: c0bf7fdcac6c65d4f8ff36a59282854b, type: 3}
+  damage: 0
+  duration: 0
+  healthIncreasePercentage: 0.5

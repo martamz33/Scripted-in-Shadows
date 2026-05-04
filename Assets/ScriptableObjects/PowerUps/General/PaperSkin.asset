@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca5f00c3dafaa2a408c143a627c294fe, type: 3}
+  m_Name: PaperSkin
+  m_EditorClassIdentifier: 
+  powerUpName: 4
+  description: "Tienes el 50% menos de la vida, pero cuando te curas, te restaura
+    un 15% m\xE1s de la vida"
+  icon: {fileID: 321542065, guid: c0bf7fdcac6c65d4f8ff36a59282854b, type: 3}
+  damage: 0
+  duration: 0
+  healthIncreasePercentage: -0.5
+  extraHealPercentage: 0.15

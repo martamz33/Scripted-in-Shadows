@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e709593cd5910d545b0cfaad6457a401, type: 3}
+  m_Name: SpiritOfBattle
+  m_EditorClassIdentifier: 
+  powerUpName: 1
+  description: "Despu\xE9s de lanzar una habilidad, cuando haces un ataque simple
+    lanzas una onda de energ\xEDa"
+  icon: {fileID: -512563887, guid: 8854e8eba459f814baa211399ba073f0, type: 3}
+  damage: 2
+  duration: 1
+  prefabEnergy: {fileID: 7622438982198756337, guid: ac9c222f206a9aa46959ab88bcdf825a, type: 3}

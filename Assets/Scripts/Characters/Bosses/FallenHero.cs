@@ -1,0 +1,267 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FallenHero : bossBase
+{
+    [Header("Prefabs (Projectiles and Magic)")]
+    public GameObject prefabWave;
+    public GameObject prefabSoulsDown;
+    public GameObject prefabSoulsUp;
+    public GameObject explosionFloor;
+
+    [Header("Poitnt of Spawn")]
+    public Transform pointFloor;
+    public Transform pointWall;
+
+    [Header("Procedural Animation")]
+    public float velocity = 3f;
+    public float heightFloat = 0.25f;
+    public float angleInclination = 20f;
+    public float velocityInclination = 10f;
+
+    [Header("Visual Effects")]
+    public float intensityShaking = 0.1f;
+    private bool isShacking = false;
+
+    private float posYOriginal;
+    private int variantActualWave = 0;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        animator = GetComponent<Animator>();
+        posYOriginal = transform.localPosition.y;
+
+        ConfigureStock(new int[] { 0, 1, 2, 3, 4 });
+
+        currentState = bossStates.Waiting;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        // --- PROCEDURAL ANIMATION ---
+        if(currentState != bossStates.Dead)
+        {
+            float velocityX = rb.velocity.x;
+            Quaternion objectiveRotation = Quaternion.identity;
+
+            // 1. Lean when movement
+            if(Mathf.Abs(velocityX) > 0.5f)
+            {
+                float movementDirection = Mathf.Sin(velocityX);
+                float eyeDirection = Mathf.Sign(transform.localScale.x);
+                float fineInclination = angleInclination * -movementDirection * eyeDirection;
+                objectiveRotation = Quaternion.Euler(0, 0, fineInclination);
+            }
+
+            // Apply the rotation swoly
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, objectiveRotation, Time.deltaTime * velocityInclination);
+
+            //2. Oscilation when not movement
+            if(isShacking)
+            {
+                Vector2 vibration = Random.insideUnitCircle * intensityShaking;
+
+                transform.localPosition = new Vector3(
+                    transform.localPosition.x + vibration.x,
+                    posYOriginal + vibration.y,
+                    transform.localPosition.z);
+            }
+            else if(Mathf.Abs(velocityX) <= 0.5f && !isAttacking && rb.velocity.y == 0)
+            {
+                float newY = Mathf.Sin(Time.time * velocity) * heightFloat;
+                transform.localPosition = new Vector3(transform.localPosition.x, posYOriginal + newY, transform.localPosition.z);
+            }
+            else
+            {
+                float actualY = Mathf.Lerp(transform.localPosition.y, posYOriginal, Time.deltaTime * 5f);
+                transform.localPosition = new Vector3(transform.localPosition.x, actualY, transform.localPosition.z);
+            }
+        }
+    }
+
+    public void StartCombat()
+    {
+        currentState = bossStates.Phase1;
+    }
+
+    protected override IEnumerator PatternsPhase1()
+    {
+        isAttacking = true;
+
+        int selectedAttack = ObtainNextAttack();
+        yield return StartCoroutine(ExecutePatternsPhase1(selectedAttack));
+
+        yield return new WaitForSeconds(1.2f);
+        isAttacking = false;
+    }
+
+    protected IEnumerator ExecutePatternsPhase1(int selectedAttack)
+    {
+        switch(selectedAttack)
+        {
+            case 0: yield return StartCoroutine(WaveThrust()); break;
+            case 1: yield return StartCoroutine(DoublePhaseThrust()); break;
+            case 2: yield return StartCoroutine(NailSwordAndSouls()); break;
+            case 3: yield return StartCoroutine(FallInChopped()); break;
+            case 4: yield return StartCoroutine(BrutalCharge()); break;
+        }
+    }
+
+    private IEnumerator WaveThrust()
+    {
+        SeeThePlayer();
+        variantActualWave = Random.Range(0, 2);
+
+        animator.SetInteger("waveVariant", variantActualWave);
+        animator.SetTrigger("waveAttack");
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    public void Event_LaunchWave()
+    {
+        if(variantActualWave == 0)
+        {
+            Instantiate(prefabWave, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(prefabWave, transform.position, Quaternion.identity);
+        }
+    }
+
+    private IEnumerator DoublePhaseThrust()
+    {
+        SeeThePlayer();
+        animator.SetTrigger("phase1Thrust");
+
+        float dirX = transform.localScale.x > 0 ? 1f : -1f;
+        rb.velocity = new Vector2(dirX * 8f, 0f);
+        yield return new WaitForSeconds(0.3f);
+        rb.velocity = Vector2.zero;
+
+        yield return new WaitForSeconds(0.2f);
+
+        SeeThePlayer();
+        animator.SetTrigger("phase2Thrust");
+        dirX = transform.localScale.x > 0 ? 1f : -1f;
+        rb.velocity = new Vector2(dirX * 12f, 0f); // Segunda fase más agresiva
+        yield return new WaitForSeconds(0.4f);
+        rb.velocity = Vector2.zero;
+
+        yield return new WaitForSeconds(0.8f);
+    }
+
+    private IEnumerator NailSwordAndSouls()
+    {
+        SeeThePlayer();
+        animator.SetTrigger("nailSword");
+        yield return new WaitForSeconds(3.5f);
+
+        isShacking = false;
+        yield return new WaitForSeconds(0.3f);
+
+        animator.SetTrigger("takeOutSword");
+        yield return new WaitForSeconds(0.3f); // Momento del tirón
+        Instantiate(explosionFloor, pointFloor.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    public void Event_LaunchSouls()
+    {
+        isShacking = true;
+
+        int typeOfSouls = Random.Range(0, 2);
+
+        if(typeOfSouls == 0)
+        {
+            float dirX = transform.localScale.x > 0 ? -1f : 1f;
+
+            GameObject wallSouls = Instantiate(prefabSoulsDown, pointWall.position, Quaternion.identity);
+
+            wallSouls.transform.localScale = new Vector3(-dirX, 1, 1);
+
+        }
+        else
+        {
+            int quantity = 7;
+            float angleOpening = 60f;
+            float initialAngle = -angleOpening / 2f;
+            float paseAngle = angleOpening / (quantity-1);
+
+            for(int i = 0; i < quantity; i++)
+            {
+                float actualAngle = initialAngle + (paseAngle * i);
+                Quaternion rotateSouls = Quaternion.Euler(0, 0, actualAngle);
+
+                GameObject soul = Instantiate(prefabSoulsUp, pointFloor.position, rotateSouls);
+
+                Rigidbody2D rbSoul = soul.GetComponent<Rigidbody2D>();
+                if(rbSoul != null)
+                {
+                    rbSoul.gravityScale = 0f;
+                    rbSoul.velocity = soul.transform.up * 8f;
+                }
+            }
+        }
+    }
+
+    private IEnumerator FallInChopped()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            animator.SetTrigger("goSky");
+
+            rb.gravityScale = 0f;
+            rb.velocity = new Vector2(0f, 25f);
+            yield return new WaitForSeconds(0.8f);
+
+            rb.velocity = Vector2.zero;
+
+            transform.position = new Vector2(player.position.x, player.position.y + 12f);
+            SeeThePlayer();
+
+            yield return new WaitForSeconds(0.5f);
+
+            animator.SetTrigger("fallInChopped");
+            rb.velocity = new Vector2(0f, -30f);
+
+            yield return new WaitUntil(() => Mathf.Abs(rb.velocity.y) < 0.1f);
+
+            animator.SetTrigger("impactFloor");
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        rb.gravityScale = 3f; 
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    private IEnumerator BrutalCharge()
+    {
+        SeeThePlayer();
+        animator.SetTrigger("prepareCharge");
+
+        yield return new WaitForSeconds(0.8f);
+
+        float dirX = transform.localScale.x > 0 ? 1f : -1f;
+
+        rb.velocity = new Vector2(dirX * 22f, 0f);
+
+        yield return new WaitForSeconds(0.4f);
+
+        rb.velocity = Vector2.zero;
+        animator.SetTrigger("thrustCharge");
+
+        rb.velocity = new Vector2(dirX * 5f, 0f);
+        yield return new WaitForSeconds(0.3f);
+        animator.SetTrigger("impactFloor");
+        rb.velocity = Vector2.zero;
+
+        yield return new WaitForSeconds(1f);
+    }
+}

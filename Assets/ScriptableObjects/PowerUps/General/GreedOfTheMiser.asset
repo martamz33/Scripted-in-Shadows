@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fd0d8d4015e8c429fd86b906d5e084, type: 3}
+  m_Name: GreedOfTheMiser
+  m_EditorClassIdentifier: 
+  powerUpName: 10
+  description: En las siguientes 3 salas te dan el doble de dinero, pero en las siguientes
+    3 la mitad. Y hasta que visites la tienda el precio es el doble.
+  icon: {fileID: 1929279334, guid: c0bf7fdcac6c65d4f8ff36a59282854b, type: 3}
+  damage: 0
+  duration: 0

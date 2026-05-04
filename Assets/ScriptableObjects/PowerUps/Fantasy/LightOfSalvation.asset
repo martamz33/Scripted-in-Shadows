@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c608daf1901102a4ba3a84d441f1c846, type: 3}
+  m_Name: LightOfSalvation
+  m_EditorClassIdentifier: 
+  powerUpName: 2
+  description: Cuando tienes menos del 15% de la vida, cada tanto aparece un escudo
+    que te protege durante 2 segundos.
+  icon: {fileID: 1641825218, guid: 8854e8eba459f814baa211399ba073f0, type: 3}
+  damage: 0
+  duration: 2
+  prefabShield: {fileID: 8728925400768199480, guid: 6e29e6feeff2360428e587c5c56b5fa9, type: 3}
+  minCooldown: 7
+  maxCooldown: 22
+  shieldDuration: 2

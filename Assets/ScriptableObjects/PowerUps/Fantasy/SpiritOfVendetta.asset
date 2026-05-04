@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81a1282fe7ca1d24ca321183e4711093, type: 3}
+  m_Name: SpiritOfVendetta
+  m_EditorClassIdentifier: 
+  powerUpName: 0
+  description: "Cuando matas a un enemigo aparecen espiritus que atacan al enemigo
+    m\xE1s cercano."
+  icon: {fileID: 1347367205, guid: 8854e8eba459f814baa211399ba073f0, type: 3}
+  damage: 5
+  duration: 0
+  prefabSprit: {fileID: 7286471785044556638, guid: 36e5f55495f0c1b4eb0199cf49022ed3, type: 3}

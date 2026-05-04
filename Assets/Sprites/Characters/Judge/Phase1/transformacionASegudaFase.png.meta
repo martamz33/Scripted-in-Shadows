@@ -1,0 +1,282 @@
+fileFormatVersion: 2
+guid: 0fd6b2ad1a0752d45a3208d84ccf20f9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: transformacionASegudaFase_8
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 148
+        width: 330
+        height: 573
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3117362c7ba59e54290e60550f36b417
+      internalID: -1666623526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: transformacionASegudaFase_10
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 148
+        width: 369
+        height: 541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edb6eff2bfe6b7e4fa6401f017be9b6e
+      internalID: 954469711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: transformacionASegudaFase_13
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 148
+        width: 389
+        height: 475
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f3eb0b9bceec9347a5462911261c418
+      internalID: -1947904614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: transformacionASegudaFase_16
+      rect:
+        serializedVersion: 2
+        x: 2939
+        y: 148
+        width: 346
+        height: 475
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 307ce39e6a04b4f4cb9cd97d0697bf0d
+      internalID: -1121501795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: transformacionASegudaFase_19
+      rect:
+        serializedVersion: 2
+        x: 3857
+        y: 147
+        width: 291
+        height: 475
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6c0cee0759750c49b7f26e67c669896
+      internalID: -446828583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: transformacionASegudaFase_22
+      rect:
+        serializedVersion: 2
+        x: 4750
+        y: 148
+        width: 294
+        height: 475
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a9e7908bb61a544192208e9edd3b0e5
+      internalID: -760269400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      transformacionASegudaFase_0: -793039921
+      transformacionASegudaFase_1: 1012955877
+      transformacionASegudaFase_10: 954469711
+      transformacionASegudaFase_11: 1905260004
+      transformacionASegudaFase_12: -605090110
+      transformacionASegudaFase_13: -1947904614
+      transformacionASegudaFase_14: 1401799487
+      transformacionASegudaFase_15: 1452648781
+      transformacionASegudaFase_16: -1121501795
+      transformacionASegudaFase_17: -134403328
+      transformacionASegudaFase_18: 1631839841
+      transformacionASegudaFase_19: -446828583
+      transformacionASegudaFase_2: -790395031
+      transformacionASegudaFase_20: -380863182
+      transformacionASegudaFase_21: 1336126334
+      transformacionASegudaFase_22: -760269400
+      transformacionASegudaFase_23: -814281351
+      transformacionASegudaFase_24: 1853161326
+      transformacionASegudaFase_25: 659408643
+      transformacionASegudaFase_26: -1258459984
+      transformacionASegudaFase_27: -1990486156
+      transformacionASegudaFase_28: -1753288760
+      transformacionASegudaFase_29: 1931369157
+      transformacionASegudaFase_3: -1886589562
+      transformacionASegudaFase_30: -1266206401
+      transformacionASegudaFase_31: 1289046839
+      transformacionASegudaFase_32: -986205074
+      transformacionASegudaFase_33: -1959312823
+      transformacionASegudaFase_34: 430243765
+      transformacionASegudaFase_35: -436054939
+      transformacionASegudaFase_36: 81343503
+      transformacionASegudaFase_37: -34099856
+      transformacionASegudaFase_38: -1546686765
+      transformacionASegudaFase_39: -1824210234
+      transformacionASegudaFase_4: 1604913284
+      transformacionASegudaFase_40: 1471821488
+      transformacionASegudaFase_41: -143881057
+      transformacionASegudaFase_5: 458097548
+      transformacionASegudaFase_6: -1654474138
+      transformacionASegudaFase_7: 2002777000
+      transformacionASegudaFase_8: -1666623526
+      transformacionASegudaFase_9: 612839649
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

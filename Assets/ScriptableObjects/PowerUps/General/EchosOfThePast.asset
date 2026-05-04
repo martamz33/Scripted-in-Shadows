@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009b2f55cc2d7a94f935c4acf0cc23d7, type: 3}
+  m_Name: EchosOfThePast
+  m_EditorClassIdentifier: 
+  powerUpName: 9
+  description: Existe la probabilidad del 15% de repetir la habilidad, una vez se
+    haya ejecutado.
+  icon: {fileID: -956515461, guid: c0bf7fdcac6c65d4f8ff36a59282854b, type: 3}
+  damage: 0
+  duration: 1
+  probability: 0.7
+  reducedProbability: 0.05
