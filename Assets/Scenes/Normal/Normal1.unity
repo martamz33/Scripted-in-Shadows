@@ -541052,6 +541052,10 @@ PrefabInstance:
       value: Managers (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2219105907123636813, guid: a567ad21dbfad2541aeca6ff3781b87d, type: 3}
+      propertyPath: initialDoor
+      value: 
+      objectReference: {fileID: 323906684}
+    - target: {fileID: 2219105907123636813, guid: a567ad21dbfad2541aeca6ff3781b87d, type: 3}
       propertyPath: spawnPoints.Array.size
       value: 41
       objectReference: {fileID: 0}
@@ -541140,6 +541144,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1238885828}
     - target: {fileID: 2219105907123636813, guid: a567ad21dbfad2541aeca6ff3781b87d, type: 3}
+      propertyPath: spawnPoints.Array.data[18].point
+      value: 
+      objectReference: {fileID: 578600853}
+    - target: {fileID: 2219105907123636813, guid: a567ad21dbfad2541aeca6ff3781b87d, type: 3}
       propertyPath: spawnPoints.Array.data[19].point
       value: 
       objectReference: {fileID: 534713590}
@@ -541167,6 +541175,10 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[23].point
       value: 
       objectReference: {fileID: 1617268302}
+    - target: {fileID: 2219105907123636813, guid: a567ad21dbfad2541aeca6ff3781b87d, type: 3}
+      propertyPath: spawnPoints.Array.data[24].point
+      value: 
+      objectReference: {fileID: 1488332930}
     - target: {fileID: 2219105907123636813, guid: a567ad21dbfad2541aeca6ff3781b87d, type: 3}
       propertyPath: spawnPoints.Array.data[25].point
       value: 
