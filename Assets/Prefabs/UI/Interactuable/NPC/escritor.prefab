@@ -75,12 +75,12 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1258064701
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1816559422, guid: 28ab250b2500d5f46b244a3a4a8e736c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -172,6 +172,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d79c143ac3403d4289599196b8a6776, type: 2}
   - {fileID: 11400000, guid: 6d2c3ca984810b94caca76493e471a90, type: 2}
   - {fileID: 11400000, guid: 3d014acdae15f67409c17971a2fd1a92, type: 2}
+  inkJSONAsset: {fileID: 4900000, guid: e43a111c31ef3374a8c5bc3166f3c6f1, type: 3}
 --- !u!114 &2269708736972536959
 MonoBehaviour:
   m_ObjectHideFlags: 0

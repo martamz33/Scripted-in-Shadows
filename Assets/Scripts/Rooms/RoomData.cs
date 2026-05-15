@@ -6,8 +6,7 @@ using UnityEngine;
 public class RoomData : ScriptableObject
 {
     public RoomType roomType;
-    public ObjectiveRoom objectiveChallenge;
-    public GameObject roomLayoutPrefab;
+    public string sceneName;
     //falta List<Enemy> que es la lista de enemigos posibles
     public float probability;
 }

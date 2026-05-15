@@ -11,7 +11,7 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager instance;
 
     [System.Serializable]
-    public struct Portrait // Guardará el nombre del icono y su imagen
+    public struct Portrait 
     {
         public string iconName;
         public Sprite iconSprite;
@@ -33,10 +33,11 @@ public class DialogueManager : MonoBehaviour
 
     //dictionary to know which dialogues are alredy been used
     private HashSet<string> completedDialogues = new HashSet<string>();
-
     private bool isWaitingForChoice;
-
     private System.Action onDialogueFinishedCallback;
+
+    // To know if the variable has to start 
+    private bool willStartRun = false;
 
     void Awake()
     {
@@ -88,6 +89,8 @@ public class DialogueManager : MonoBehaviour
 
         dialoguePanel.SetActive(true);
 
+        willStartRun = false;
+
         StartCoroutine(DisplayDialogue());
     }
 
@@ -128,7 +131,6 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
             }
 
-            yield return new WaitForEndOfFrame();
         }
 
         dialoguePanel.SetActive(false);
@@ -138,6 +140,12 @@ public class DialogueManager : MonoBehaviour
         }
 
         onDialogueFinishedCallback?.Invoke();
+
+        if(willStartRun)
+        {
+            willStartRun = false;
+            MapManager.Instance.StartFirstRandomRoom();
+        }
     }
 
     private void ParseTags(List<string> tags)
@@ -148,6 +156,12 @@ public class DialogueManager : MonoBehaviour
             {
                 Debug.Log("Tag de abrir UI encontrado correctamente");
                 isWaitingForChoice = true;
+                continue;
+            }
+
+            if(tag.Trim() == "START_RUN")
+            {
+                willStartRun = true;
                 continue;
             }
 

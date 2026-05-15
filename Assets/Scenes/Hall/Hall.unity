@@ -4765,6 +4765,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 995243861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1136641457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1136641458}
+  m_Layer: 0
+  m_Name: pointToAppear
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1136641458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136641457}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.77, y: 6.06, z: -11.957475}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1144472732
 GameObject:
   m_ObjectHideFlags: 0
@@ -6399,6 +6430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2219105907123636813, guid: 8b7b94530d1ad4349a144430ec6165d7, type: 3}
+      propertyPath: initialDoor
+      value: 
+      objectReference: {fileID: 1136641458}
     - target: {fileID: 4570547528518695292, guid: 8b7b94530d1ad4349a144430ec6165d7, type: 3}
       propertyPath: selectionPower
       value: 
@@ -6530,6 +6565,10 @@ PrefabInstance:
     - target: {fileID: 6583016306851540300, guid: 8b7b94530d1ad4349a144430ec6165d7, type: 3}
       propertyPath: inkText
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7939357761487898137, guid: 8b7b94530d1ad4349a144430ec6165d7, type: 3}
+      propertyPath: genrePublic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8186458074501095170, guid: 8b7b94530d1ad4349a144430ec6165d7, type: 3}
       propertyPath: menus.Array.data[0]
@@ -14181,3 +14220,4 @@ SceneRoots:
   - {fileID: 1582054257}
   - {fileID: 948252252}
   - {fileID: 981263969}
+  - {fileID: 1136641458}
