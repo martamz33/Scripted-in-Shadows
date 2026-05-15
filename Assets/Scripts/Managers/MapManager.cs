@@ -158,17 +158,17 @@ public class MapManager : MonoBehaviour
 
             switch (currentChallenge)
             {
-                case ObjectiveRoom.Time:
+                case ObjectiveRoom.time:
                     if (timeChallengeScenes.Count > 0)
                         sceneToLoad = timeChallengeScenes[Random.Range(0, timeChallengeScenes.Count)];
                     break;
 
-                case ObjectiveRoom.NoDamage:
+                case ObjectiveRoom.health:
                     if (noDamageChallengeScenes.Count > 0)
                         sceneToLoad = noDamageChallengeScenes[Random.Range(0, noDamageChallengeScenes.Count)];
                     break;
 
-                case ObjectiveRoom.KillEnemies:
+                case ObjectiveRoom.enemies:
                     if (killEnemiesChallengeScenes.Count > 0)
                         sceneToLoad = killEnemiesChallengeScenes[Random.Range(0, killEnemiesChallengeScenes.Count)];
                     break;
@@ -190,7 +190,7 @@ public class MapManager : MonoBehaviour
         }
         else 
         {
-            if (data.roomLayoutPrefab != null)
+            if (data.sceneName != null)
             {
                 lastLayoutUsed = data.sceneName;
                 SceneManager.LoadScene(data.sceneName); 

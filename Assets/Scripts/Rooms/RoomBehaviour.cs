@@ -21,26 +21,32 @@ public class RoomBehaviour : MonoBehaviour
 
     void Start()
     {
-        if(RoomManager.Instance.roomData.roomType == RoomType.Challenge) 
+        if (MapManager.Instance != null && MapManager.Instance.currentRoomData != null)
         {
-            challengeActive = true;
-
-            timeLimit = RoomManager.Instance.timeLimit;
-
-            if(RoomManager.Instance.roomData.objectiveChallenge == ObjectiveRoom.health)
+            if (MapManager.Instance.currentRoomData.roomType == RoomType.Challenge) 
             {
-                //subscribe to player health system
+                challengeActive = true;
+
+                timeLimit = RoomManager.Instance.timeLimit;
+
+                if (MapManager.Instance.currentChallenge == ObjectiveRoom.health)
+                {
+                    // subscribe to player health system
+                }
             }
         }
 
-        RoomManager.Instance.finalDoor.GetComponent<SpriteRenderer>().enabled = false;
+        if (RoomManager.Instance.finalDoor != null)
+        {
+            RoomManager.Instance.finalDoor.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     void Update()
     {
         if(!challengeActive || failed) return;
 
-        if(RoomManager.Instance.roomData.objectiveChallenge == ObjectiveRoom.health)
+        if(MapManager.Instance.currentChallenge == ObjectiveRoom.time)
         {
             ExecuteTimerBehaviour();
         }
@@ -57,7 +63,7 @@ public class RoomBehaviour : MonoBehaviour
 
     private void ExecuteHealthBehaviour()
     {
-        if(RoomManager.Instance.roomData.objectiveChallenge == ObjectiveRoom.health)
+        if(MapManager.Instance.currentChallenge == ObjectiveRoom.health)
         {
             FailChallenge();
         }
@@ -65,15 +71,22 @@ public class RoomBehaviour : MonoBehaviour
 
     private void ExecuteEnemiesBehaviour()
     {
-        if(RoomManager.Instance.roomData.objectiveChallenge == ObjectiveRoom.enemies)
+        if(MapManager.Instance.currentChallenge == ObjectiveRoom.enemies)
         {
-            WinChallenge();
+            currentKills++;
+            if (currentKills >= numberOfEnemies)
+            {
+                WinChallenge();
+            }
         }
     }
 
     private void FailChallenge()
     {
-        RoomManager.Instance.finalDoor.GetComponent<SpriteRenderer>().enabled = true;
+        if (RoomManager.Instance.finalDoor != null)
+        {
+            RoomManager.Instance.finalDoor.GetComponent<SpriteRenderer>().enabled = true;
+        }
         failed = true;
         RoomManager.Instance.playerToFinalDoor();
         Debug.Log("Reto fallido");
@@ -81,7 +94,10 @@ public class RoomBehaviour : MonoBehaviour
 
     private void WinChallenge()
     {
-        RoomManager.Instance.finalDoor.GetComponent<SpriteRenderer>().enabled = true;
+        if (RoomManager.Instance.finalDoor != null)
+        {
+            RoomManager.Instance.finalDoor.GetComponent<SpriteRenderer>().enabled = true;
+        }
         challengeActive = false;
         Debug.Log("Reto superado");
     }

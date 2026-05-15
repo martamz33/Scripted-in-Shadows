@@ -23,7 +23,7 @@ public class RoomDecorator : MonoBehaviour
 
             switch (actualType)
             {
-                case RoomType.Nomral:
+                case RoomType.Normal:
                     if(decorationNormal != null) decorationNormal.SetActive(true);
                     break;
                 case RoomType.Warehouse:
