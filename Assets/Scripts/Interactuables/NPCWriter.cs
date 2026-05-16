@@ -13,7 +13,7 @@ public class NPCWriter : Interactuable
     
     public override void Interact()
     {
-        UIManager.instance.myActualPowerSelection = misPowerUps;
+        UIManager.instance.writerPowerSelection = misPowerUps;
 
         DialogueManager.instance.TriggerDialogue("conversacion_principal");
     }

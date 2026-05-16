@@ -8,6 +8,7 @@ TagManager:
   - Crystal
   - Elevator
   - Enemy
+  - DestructibleObject
   layers:
   - Default
   - TransparentFX

@@ -68,5 +68,14 @@ public class AttackDamage : MonoBehaviour
                 enemy.TakeDamage(currentDamage);
             }
         }
+
+        if(other.gameObject.CompareTag("DestructibleObject"))
+        {
+            DestructibleObject objectDestructible = other.gameObject.GetComponent<DestructibleObject>();
+            if(objectDestructible != null)
+            {
+                objectDestructible.RecibeBlow();
+            }
+        }
     }
 }
