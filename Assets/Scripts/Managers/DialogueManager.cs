@@ -38,6 +38,7 @@ public class DialogueManager : MonoBehaviour
 
     // To know if the variable has to start 
     private bool willStartRun = false;
+    private string menuToOpen;
 
     void Awake()
     {
@@ -120,7 +121,14 @@ public class DialogueManager : MonoBehaviour
             if(isWaitingForChoice)
             {
                 dialoguePanel.SetActive(false);
-                UIManager.instance.OpenMenuOfPowerUps();
+                if (menuToOpen == "PowerUp")
+                {
+                    UIManager.instance.OpenMenuOfPowerUps();
+                }
+                else if (menuToOpen == "Ability")
+                {
+                    UIManager.instance.OpenMenuOfAbilities();
+                }
 
                 yield return new WaitUntil(() => !isWaitingForChoice);
 
@@ -154,7 +162,14 @@ public class DialogueManager : MonoBehaviour
         {
             if (tag.Trim() == "OPEN_UI")
             {
-                Debug.Log("Tag de abrir UI encontrado correctamente");
+                menuToOpen = "PowerUp";
+                isWaitingForChoice = true;
+                continue;
+            }
+
+            if (tag.Trim() == "OPEN_ABILITY")
+            {
+                menuToOpen = "Ability";
                 isWaitingForChoice = true;
                 continue;
             }
@@ -200,9 +215,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void ContinueAfterPowerUpChoice(string powerInkID)
+    public void ContinueAfterPowerUpChoice(string powerInkID = null)
     {
-        story.variablesState["poder_elegido"] = powerInkID;
+        if(powerInkID != null) story.variablesState["poder_elegido"] = powerInkID;
 
         isWaitingForChoice = false;
     }

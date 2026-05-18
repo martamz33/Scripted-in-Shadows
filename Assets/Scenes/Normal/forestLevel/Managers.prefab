@@ -141,6 +141,59 @@ MonoBehaviour:
   enemyHealthMultiplier: 1
   inkMultiplier: 1
   priceMultiplier: 1
+  hasIronSkin: 0
+  hasPaperSkin: 0
+--- !u!1 &490557615298754059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3037276696294815437}
+  - component: {fileID: 6339774154233974042}
+  m_Layer: 0
+  m_Name: RoomDecorator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3037276696294815437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490557615298754059}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1722342642165381468}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6339774154233974042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490557615298754059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c264828fb5ddf84d891e70590d7810f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decorationNormal: {fileID: 0}
+  decorationWarehouse: {fileID: 0}
+  decorationEquipment: {fileID: 0}
+  decorationLife: {fileID: 0}
+  decorationWriter: {fileID: 0}
+  decorationBook: {fileID: 0}
+  decorationPersecution: {fileID: 0}
 --- !u!1 &498772388830260152
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +243,28 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  myActualPowerSelection: []
+  writerPowerSelection:
+  - {fileID: 11400000, guid: 3d014acdae15f67409c17971a2fd1a92, type: 2}
+  - {fileID: 11400000, guid: 6d2c3ca984810b94caca76493e471a90, type: 2}
+  - {fileID: 11400000, guid: 0d79c143ac3403d4289599196b8a6776, type: 2}
+  generalPowerUpsPool:
+  - {fileID: 11400000, guid: f905ab62a92c7b845a20531b9d898cc1, type: 2}
+  - {fileID: 11400000, guid: ce063c7f3e20f574886877ad0f8d9d1d, type: 2}
+  - {fileID: 11400000, guid: 3b425776e79d6964780972c93b603474, type: 2}
+  - {fileID: 11400000, guid: 765d981b948ad4e4b83799453dd70aa3, type: 2}
+  - {fileID: 11400000, guid: 26bfc5b894e011a4b8244a53209e35bb, type: 2}
+  - {fileID: 11400000, guid: cddc5cae695d9b440a79c38023dbfa77, type: 2}
+  - {fileID: 11400000, guid: b9223efbd5d8cce42a61ed11758589cd, type: 2}
+  - {fileID: 11400000, guid: 44b69cb579f52214fbba4873e34ccf4c, type: 2}
+  - {fileID: 11400000, guid: c3432934c38807648ac3b86f00e727af, type: 2}
+  - {fileID: 11400000, guid: a4e57a4a4462ac54282d2b078e04586d, type: 2}
+  - {fileID: 11400000, guid: 8346856051969d94d92bbe5955fcf2a3, type: 2}
+  selectionAbility: {fileID: 0}
+  initialAbilities: []
+  abilityButtons: []
+  tooltipPanel: {fileID: 0}
+  tooltipTitle: {fileID: 0}
+  tooltipDescription: {fileID: 0}
 --- !u!1 &1549865446850389800
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +366,371 @@ MonoBehaviour:
   initialDoor: {fileID: 0}
   finalDoor: {fileID: 0}
   exitConnectionPoint: {fileID: 0}
-  spawnPoints: []
+  spawnPoints:
+  - active: 1
+    spawnOnlyOnce: 1
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs:
+    - {fileID: 2847183578199552113, guid: 9725673444eba0944abb8c097275a56a, type: 3}
+    - {fileID: 3259531503723975431, guid: 6c5f4bb1ae7e2c44c879e462abed4441, type: 3}
+    - {fileID: 3848270186367729546, guid: af3104012c330b04c90c07518a6ae5f0, type: 3}
+    - {fileID: 5918196635276463685, guid: c56b0e54f2dc6674cab31a5702be3faa, type: 3}
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
+  - active: 0
+    spawnOnlyOnce: 0
+    point: {fileID: 0}
+    delay: 0
+    isSpecific: 0
+    specificPrefab: {fileID: 0}
+    randomPrefabs: []
+    patrolPointA: {fileID: 0}
+    patrolPointB: {fileID: 0}
   timeLimit: 0
   isTheFirstRoom: 0
 --- !u!1 &1801241072605162115
@@ -331,9 +769,88 @@ Transform:
   - {fileID: 4837031706807437487}
   - {fileID: 3153704883411609569}
   - {fileID: 651070425322762077}
-  - {fileID: 4818281110874853010}
+  - {fileID: 4669349024968955393}
+  - {fileID: 3037276696294815437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2117039648180438350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4669349024968955393}
+  - component: {fileID: 8719052856478776059}
+  m_Layer: 0
+  m_Name: MapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4669349024968955393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117039648180438350}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1722342642165381468}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8719052856478776059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117039648180438350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9989f7a67b92f294cb8f7ce9cc627dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allPosibleRooms:
+  - {fileID: 11400000, guid: 9e1ce0af87e8b1d44aebad9b83feb2bd, type: 2}
+  - {fileID: 11400000, guid: 603beda3563725741bc796846f2440cf, type: 2}
+  - {fileID: 11400000, guid: 85991d9abaa8a8f4cb8a211c6cdfc2b6, type: 2}
+  - {fileID: 11400000, guid: 6185d4c447beb1b4aa0ab146249d54c7, type: 2}
+  - {fileID: 11400000, guid: 8ccf8c57c8e1a2e499fdd93f175f6a11, type: 2}
+  - {fileID: 11400000, guid: 83c5ed681a832c449a9eb537de9ffcb4, type: 2}
+  - {fileID: 11400000, guid: 940ded97efe68d0498944dd94fa4ef7c, type: 2}
+  - {fileID: 11400000, guid: 4c95be9bd27181d48ae2b9a27c684cd6, type: 2}
+  shopRoom: {fileID: 11400000, guid: baf5acbf07946b744b13717fc700bdd8, type: 2}
+  bossRooms:
+  - {fileID: 11400000, guid: cbe44350eb115a743b46fc2e7df7ce7b, type: 2}
+  - {fileID: 11400000, guid: e20610c10f82f784ea7ed2692cb1d5c4, type: 2}
+  helpRoom: {fileID: 11400000, guid: 32c1453e91708b04b8977d14e41c5429, type: 2}
+  roomsCleared: 0
+  roomsBeforeBoss: 10
+  currentBossIndex: 0
+  normalRoomScenes:
+  - Normal1
+  - IslandLevel
+  - forestLevel
+  - ConqueredKingdom
+  - candleLevel
+  timeChallengeScenes:
+  - RetoTiempo1
+  - RetoTiempo2
+  noDamageChallengeScenes:
+  - RetoNoDamage1
+  - RetoNoDamage2
+  killEnemiesChallengeScenes:
+  - RetoEnemies1
+  - RetoEnemies2
+  currentRoomData: {fileID: 0}
+  currentChallenge: 0
 --- !u!1 &2776604438123515273
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,54 +926,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!1 &5155868565439638806
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4818281110874853010}
-  - component: {fileID: 8400025778992674857}
-  m_Layer: 0
-  m_Name: NotifyPopUp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4818281110874853010
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5155868565439638806}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1722342642165381468}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8400025778992674857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5155868565439638806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 958a8990c71912642b3ef6427318c351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
-  notificationText: {fileID: 0}
-  displayTime: 2
-  fadeTime: 0.5
 --- !u!1 &8957921376796727717
 GameObject:
   m_ObjectHideFlags: 0

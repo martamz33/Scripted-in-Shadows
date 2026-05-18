@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 // Aparition Zone
 [System.Serializable]
@@ -34,7 +35,14 @@ public class ArenaManager : MonoBehaviour
     public ArenaZone[] spawnZones;   
     public GameObject doors; 
 
-    public Wave[] waves;             
+    public Wave[] waves;        
+
+    [Header("Arena Events")]    
+    [Tooltip("Se ejecuta justo cuando empieza la arena (ej: cerrar puertas)")]
+    public UnityEvent onArenaStart;
+    
+    [Tooltip("Se ejecuta cuando se elimina la última oleada (ej: abrir puertas, dar recompensa)")]
+    public UnityEvent onArenaFinish;
 
     private int currentWaveIndex = 0;
     private bool arenaStarted = false;
@@ -60,6 +68,8 @@ public class ArenaManager : MonoBehaviour
         if (arenaStarted) return;
         arenaStarted = true;
         currentWaveIndex = 0;
+
+        onArenaStart?.Invoke();
         
         StartNextWave();
     }
@@ -176,6 +186,8 @@ public class ArenaManager : MonoBehaviour
     private void FinishArena()
     {
         arenaStarted = false;
+
+        onArenaFinish?.Invoke();
         Debug.Log("Arena completada.");
     }
 }

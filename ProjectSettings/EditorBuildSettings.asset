@@ -14,4 +14,43 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InitialMenu.unity
     guid: 3336e57931b14c9458d848cbf3d47d12
+  - enabled: 1
+    path: Assets/Scenes/Bosses/bossFantasy.unity
+    guid: 575941fdc1cc7414e8ae5739fce04f2f
+  - enabled: 1
+    path: Assets/Scenes/Bosses/bossJudge.unity
+    guid: 1db669b39ba02ff4483d29129e37268f
+  - enabled: 1
+    path: Assets/Scenes/Normal/candleLevel.unity
+    guid: 6b5cfc623bb998f4281f50e746474958
+  - enabled: 1
+    path: Assets/Scenes/Normal/ConqueredKingdom.unity
+    guid: d19507f77057e3242ab48e9db9a20794
+  - enabled: 1
+    path: Assets/Scenes/Normal/forestLevel.unity
+    guid: d86693d093c665c43855604fa1b9ca63
+  - enabled: 1
+    path: Assets/Scenes/Normal/IslandLevel.unity
+    guid: fd68a625e3e418d4a84259849c979ade
+  - enabled: 1
+    path: Assets/Scenes/Normal/Normal1.unity
+    guid: 098e9da76e78c6044b42f87a4dd447ee
+  - enabled: 1
+    path: Assets/Scenes/Retos/RetoEnemies1.unity
+    guid: 05606e3255f87734d9cbbf7ca75c1c0c
+  - enabled: 1
+    path: Assets/Scenes/Retos/RetoEnemies2.unity
+    guid: 813322d91455e1d489928b4bf444da9e
+  - enabled: 1
+    path: Assets/Scenes/Retos/RetoNoDamage1.unity
+    guid: 23da5159b5ccfac4c8db0f70c858232a
+  - enabled: 1
+    path: Assets/Scenes/Retos/RetoNoDamage2.unity
+    guid: 036c568b6706aad49bdd1b6d9b8e9b59
+  - enabled: 1
+    path: Assets/Scenes/Retos/RetoTiempo1.unity
+    guid: d3ea1d57826799443aa5b494a0eec012
+  - enabled: 1
+    path: Assets/Scenes/Retos/RetoTiempo2.unity
+    guid: bce75646b81291e40b63168504861b1b
   m_configObjects: {}

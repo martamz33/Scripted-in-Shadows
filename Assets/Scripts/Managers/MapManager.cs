@@ -12,12 +12,13 @@ public class MapManager : MonoBehaviour
     [Header("Room Types")]
     public List<RoomData> allPosibleRooms;
     public RoomData shopRoom;
-    public RoomData bossRoom;
+    public List<RoomData> bossRooms;
     public RoomData helpRoom;
 
     [Header("Room Progression")]
     public int roomsCleared = 0;
     public int roomsBeforeBoss = 10;
+    public int currentBossIndex = 0;
 
     [Header("Normal Room Layouts")]
     public List<string> normalRoomScenes;
@@ -45,6 +46,7 @@ public class MapManager : MonoBehaviour
     public void StartFirstRandomRoom()
     {
         roomsCleared = 0;
+        currentBossIndex = 0;
         if(GameManager.Instance != null) GameManager.Instance.lastRoomWasBoss = false;
 
         string sceneToLoad = GetRandomNormalLayout();
@@ -78,7 +80,9 @@ public class MapManager : MonoBehaviour
         //Is boss turn?
         if(roomsCleared == roomsBeforeBoss)
         {
-            selectedRooms.Add(bossRoom);
+            int bossToca = Mathf.Min(currentBossIndex, bossRooms.Count - 1);
+            
+            selectedRooms.Add(bossRooms[bossToca]);
             return selectedRooms;
         }
 
@@ -148,6 +152,19 @@ public class MapManager : MonoBehaviour
 
         currentRoomData = data;
         currentChallenge = ObjectiveRoom.None;
+
+        if(data.roomType == RoomType.SeflHelp)
+        {
+            roomsCleared = 0;
+            currentBossIndex ++;
+
+            if(GameManager.Instance != null) 
+                GameManager.Instance.lastRoomWasBoss = false;
+        }
+        else
+        {
+            roomsCleared++;
+        }
 
         if(data.roomType == RoomType.Challenge)
         {

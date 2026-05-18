@@ -40,12 +40,21 @@ public class GhostHealth : MonoBehaviour, IDamagable
         animator.SetBool("isAlive", true);
         actualHealth = totalHealth;
 
-        healthSlider.maxValue = totalHealth;
-        healthSlider.value = totalHealth;
+        if(healthSlider != null)
+        {
+            healthSlider.maxValue = totalHealth;
+            healthSlider.value = totalHealth;
+        }
 
-        healthText.text = actualHealth.ToString() + "/" + totalHealth.ToString();
-
-        fillImage.color = healthGradient.Evaluate(1f);
+        if(healthText != null)
+        {
+            healthText.text = actualHealth.ToString() + "/" + totalHealth.ToString();
+        }
+        
+        if(fillImage != null)
+        {
+            fillImage.color = healthGradient.Evaluate(1f);
+        }
     }
 
     public void Heal(int amount)

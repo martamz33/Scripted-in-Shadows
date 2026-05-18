@@ -24,7 +24,10 @@ public class InkManager : MonoBehaviour
 
     void Start()
     {
-        UpdateUI();
+        if(inkText != null)
+        {
+            UpdateUI();
+        }
     }
 
     public void AddInk(int amount)

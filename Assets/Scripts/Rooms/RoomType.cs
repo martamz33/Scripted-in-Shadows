@@ -8,5 +8,6 @@ public enum RoomType{
     Writer,
     Shop,
     Book,
-    SeflHelp
+    SeflHelp, 
+    Boss
 }

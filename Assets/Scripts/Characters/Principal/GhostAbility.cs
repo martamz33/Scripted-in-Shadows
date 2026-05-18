@@ -25,8 +25,11 @@ public class GhostAbility : MonoBehaviour
     {
         actualChargeAbility = totalChargeAbility;
 
-        abilitySlider.maxValue = totalChargeAbility;
-        abilitySlider.value = totalChargeAbility;
+        if(abilitySlider != null)
+        {
+            abilitySlider.maxValue = totalChargeAbility;
+            abilitySlider.value = totalChargeAbility;
+        }
 
         GetComponent<MachasAbility>().enabled = false;
         GetComponent<PlumaAbility>().enabled = false;

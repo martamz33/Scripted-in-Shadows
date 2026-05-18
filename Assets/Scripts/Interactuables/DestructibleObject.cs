@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(SpriteRenderer))]
 public class DestructibleObject : MonoBehaviour
 {
     public enum TypeOfTreasure { Ink, Life}
@@ -13,6 +12,7 @@ public class DestructibleObject : MonoBehaviour
     public float forceJumpY = 5f;
     [Tooltip("Little lateral random force to not fall straight")]
     public float lateralRandomForce = 1f;
+    public GameObject vfxSpawn;
 
     [Header("Break Settings")]
     public int maxBlows = 3;
@@ -20,24 +20,31 @@ public class DestructibleObject : MonoBehaviour
     public GameObject vfxBreak;
 
     [Header("Sprites")]
-    public Sprite intact;
+    public SpriteRenderer crackOverlay;
     public Sprite withOneBlow;
     public Sprite withTowBlows;
+    public Sprite withThreeBlows;
 
     [Header("Treasure")]
     public TypeOfTreasure typeOfTreasure;
-    public int quantity = 1;
+    [Tooltip("Prefab del objeto físico de TINTA que caerá al suelo")]
+    public GameObject inkPickupPrefab; 
+    [Tooltip("Prefab del objeto físico de VIDA que caerá al suelo")]
+    public GameObject lifePickupPrefab;
 
     private Rigidbody2D rb;
-    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
         actualBlows = maxBlows;
-        if(intact != null) spriteRenderer.sprite = intact;
+        if (crackOverlay != null) crackOverlay.sprite = null;
+
+        if (vfxSpawn != null)
+        {
+            GameObject spawnEffect = Instantiate(vfxSpawn, transform.position, Quaternion.identity);
+            Destroy(spawnEffect, 2f); 
+        }
 
         float empujeX = Random.Range(-lateralRandomForce, lateralRandomForce);
         Vector2 initialForce = new Vector2(empujeX, forceJumpY);
@@ -61,13 +68,21 @@ public class DestructibleObject : MonoBehaviour
 
     private void ActualiseAspect()
     {
-        if(actualBlows == 2 && withOneBlow != null)
+        if (crackOverlay != null)
         {
-            spriteRenderer.sprite = withOneBlow;
-        }
-        if(actualBlows == 1 && withTowBlows != null)
-        {
-            spriteRenderer.sprite = withTowBlows;
+            if (actualBlows == 3 && withOneBlow != null)
+            {
+                crackOverlay.sprite = withOneBlow;
+            }
+            else if (actualBlows == 2 && withTowBlows != null)
+            {
+                crackOverlay.sprite = withTowBlows;
+            }
+
+            else if (actualBlows == 1 && withTowBlows != null)
+            {
+                crackOverlay.sprite = withThreeBlows;
+            }
         }
     }
 
@@ -75,27 +90,31 @@ public class DestructibleObject : MonoBehaviour
     {
         DeliverTreasure();
 
-        GameObject vfx = Instantiate(vfxBreak, transform.position, Quaternion.identity);
-        Destroy(vfx);
+        if (vfxBreak != null)
+        {
+            GameObject breakEffect = Instantiate(vfxBreak, transform.position, Quaternion.identity);
+            Destroy(breakEffect, 2f); 
+        }
 
         Destroy(gameObject);
     }
 
     private void DeliverTreasure()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null) return;
+        GameObject prefabToSpawn = null;
 
         if(typeOfTreasure == TypeOfTreasure.Ink)
         {
-            if(InkManager.instance !=null) InkManager.instance.AddInk(quantity);
-            Debug.Log("tinta");
+            prefabToSpawn = inkPickupPrefab;
         }
         if(typeOfTreasure == TypeOfTreasure.Life)
         {
-            GhostHealth healthPlayer = player.GetComponent<GhostHealth>();
-            if(healthPlayer != null) healthPlayer.Heal(quantity);
-            Debug.Log("vida");
+            prefabToSpawn = lifePickupPrefab;
+        }
+
+        if (prefabToSpawn != null)
+        {
+            Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
         }
     }
 }

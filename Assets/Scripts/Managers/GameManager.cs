@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     public float inkMultiplier = 1f;
     public float priceMultiplier = 1f;
 
+    // Variables to know if exclusive power up are active
+    [HideInInspector] public bool hasIronSkin;
+    [HideInInspector] public bool hasPaperSkin;
+
     // --- Variable para la  Codicia del Avaro (Power UP) ---
     private bool greedActive = false;
     private int roomSinceActivateGreed =0;

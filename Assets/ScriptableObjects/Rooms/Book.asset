@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b5d8e920c68cc4ba96d81ba775dfd6, type: 3}
   m_Name: Book
   m_EditorClassIdentifier: 
-  roomType: 7
-  objectiveChallenge: 0
-  roomLayoutPrefab: {fileID: 0}
+  roomType: 8
+  sceneName: 
   probability: 5
