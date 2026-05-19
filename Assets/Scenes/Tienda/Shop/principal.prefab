@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 4994509417156587007}
   - component: {fileID: 4929566369614021907}
   - component: {fileID: 3542040818086070040}
+  - component: {fileID: 7224437235257724927}
   - component: {fileID: 977941274722944340}
   - component: {fileID: 574214345340097015}
   - component: {fileID: 3836976538947187066}
@@ -354,6 +355,7 @@ MonoBehaviour:
     startAttackPoint: {fileID: 5646357950826986713}
     finalAttackPoint: {fileID: 5646357950826986713}
     baseDamage: 10
+  maxQueueSize: 3
 --- !u!114 &4929566369614021907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +428,21 @@ MonoBehaviour:
   totalTime: 50
   abilitySlider: {fileID: 0}
   fillImage: {fileID: 0}
+--- !u!114 &7224437235257724927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2952822396962716118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3173a3d0b57bcd49890f7ade119c9ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptAbility1: {fileID: 977941274722944340}
+  scriptAbility2: {fileID: 3836976538947187066}
+  scriptAbility3: {fileID: 574214345340097015}
 --- !u!114 &977941274722944340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,12 +497,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2952822396962716118}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6913562ec595624b9fdd35c96d0e53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poderAProbar: {fileID: 11400000, guid: c3432934c38807648ac3b86f00e727af, type: 2}
+  poderAProbar: {fileID: 11400000, guid: 3b425776e79d6964780972c93b603474, type: 2}
 --- !u!1 &3034690080724541241
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,7 +752,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.007591486, y: 0.08350277}

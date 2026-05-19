@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
+using System.Numerics;
 
 public class GhostHealth : MonoBehaviour, IDamagable
 {
@@ -29,16 +30,33 @@ public class GhostHealth : MonoBehaviour, IDamagable
     public Sprite ghostImage50;
     public Sprite ghostImage25;
 
+    [Header("Impact Feedback")]
+    //public GameObject hitParticlesPrefab;
+    public float knockbackForceX = 3f;
+    public float knockbackForceY = 3f;
+    public float knockbackDuration = 0.2f;
+
     private Animator animator;
     private SpriteRenderer sprite;
+    private Rigidbody2D rg;
 
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        rg = GetComponent<Rigidbody2D>();
 
         animator = GetComponent<Animator>();
         animator.SetBool("isAlive", true);
         actualHealth = totalHealth;
+        if (SceneManager.GetActiveScene().name == "Hall") 
+        {
+            actualHealth = totalHealth;
+            GameManager.Instance.playerCurrentHealth = actualHealth;
+        }
+        else 
+        {
+            actualHealth = GameManager.Instance.playerCurrentHealth;
+        }
 
         if(healthSlider != null)
         {
@@ -65,6 +83,12 @@ public class GhostHealth : MonoBehaviour, IDamagable
 
         actualHealth += finalHealth;
         actualHealth = Mathf.Clamp(actualHealth, 0, totalHealth);
+        
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.playerCurrentHealth = actualHealth;
+        }
+        
         UpdateUI();
     }
 
@@ -74,12 +98,37 @@ public class GhostHealth : MonoBehaviour, IDamagable
 
         actualHealth -= damage;
         actualHealth = Mathf.Clamp(actualHealth, 0, totalHealth);
+        
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.playerCurrentHealth = actualHealth;
+        }
+        
         UpdateUI();
 
         if(actualHealth <= 0)
         {
             Death();
         }
+        else
+        {
+            StartCoroutine(ApplyKnockback());
+        }
+    }
+
+    private IEnumerator ApplyKnockback()
+    {
+        // 1. Turn off the player movement
+        if(GameManager.Instance != null) GameManager.Instance.FreezeThePlayer(true);
+
+        // 2. Push up and on the opposite direction where it look
+        float pushDirection = transform.localScale.x * -1f;
+        rg.velocity = Vector2.zero;
+        rg.AddForce(new Vector2(pushDirection * knockbackForceX, knockbackForceY));
+
+        yield return new WaitForSeconds(knockbackDuration);
+
+        if(GameManager.Instance != null) GameManager.Instance.FreezeThePlayer(false);
     }
 
     private void UpdateMaxHealthUI()
@@ -123,11 +172,18 @@ public class GhostHealth : MonoBehaviour, IDamagable
         {
             InkManager.instance.ResetInk();
         }
+
+        if(GameManager.Instance != null)
+        {
+            GameManager.Instance.RecordPlayerDeath();
+        }
+
+        GoToHall();
     }
 
     private void GoToHall()
     {
-        //SceneManager.LoadScene("Hall");
+        SceneManager.LoadScene("Hall");
     }
 
     //functions for rooms or power ups
@@ -146,6 +202,11 @@ public class GhostHealth : MonoBehaviour, IDamagable
         {
             actualHealth = totalHealth - damageTaken;
 
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.playerCurrentHealth = actualHealth;
+            }
+
             actualHealth = Mathf.Clamp(actualHealth, 0, totalHealth);
         }
 
@@ -157,6 +218,10 @@ public class GhostHealth : MonoBehaviour, IDamagable
     {
         totalHealth +=amount;
         actualHealth +=amount;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.playerCurrentHealth = actualHealth;
+        }
         UpdateMaxHealthUI();
         UpdateUI();
     }

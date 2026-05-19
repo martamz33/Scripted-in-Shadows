@@ -3950,49 +3950,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 598221430482488675, guid: 05cdeadf312138c49998d320269f2891, type: 3}
-      propertyPath: poderAProbar
-      value: 
-      objectReference: {fileID: 11400000, guid: 3b425776e79d6964780972c93b603474, type: 2}
     - target: {fileID: 2952822396962716118, guid: 05cdeadf312138c49998d320269f2891, type: 3}
       propertyPath: m_Name
       value: principal
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952822396962716118, guid: 05cdeadf312138c49998d320269f2891, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 3542040818086070040, guid: 05cdeadf312138c49998d320269f2891, type: 3}
-      propertyPath: fillImage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3542040818086070040, guid: 05cdeadf312138c49998d320269f2891, type: 3}
-      propertyPath: abilitySlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4929566369614021907, guid: 05cdeadf312138c49998d320269f2891, type: 3}
-      propertyPath: fillImage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4929566369614021907, guid: 05cdeadf312138c49998d320269f2891, type: 3}
-      propertyPath: healthText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4929566369614021907, guid: 05cdeadf312138c49998d320269f2891, type: 3}
-      propertyPath: healthSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4929566369614021907, guid: 05cdeadf312138c49998d320269f2891, type: 3}
-      propertyPath: healthPortrait
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520474840850077363, guid: 05cdeadf312138c49998d320269f2891, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5631757106638336625, guid: 05cdeadf312138c49998d320269f2891, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7446237683595524376, guid: 05cdeadf312138c49998d320269f2891, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6634,7 +6594,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1165951751}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4751632805523710687, guid: 8b7b94530d1ad4349a144430ec6165d7, type: 3}
+    - {fileID: 480504522407638257, guid: 8b7b94530d1ad4349a144430ec6165d7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b7b94530d1ad4349a144430ec6165d7, type: 3}

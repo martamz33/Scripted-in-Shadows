@@ -726,7 +726,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CREDITOS
+  m_text: STATS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 115a232c937667348b95dd7df0984c87, type: 2}
   m_sharedMaterial: {fileID: 4550743188680312514, guid: 115a232c937667348b95dd7df0984c87, type: 2}
@@ -2736,6 +2736,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722759288}
   m_CullTransparentMesh: 1
+--- !u!1001 &1791762857
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1722342642165381468, guid: e1cdef0004bd67d4ea787272a2878b11, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 459.12552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722342642165381468, guid: e1cdef0004bd67d4ea787272a2878b11, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 279.3088
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722342642165381468, guid: e1cdef0004bd67d4ea787272a2878b11, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.0678964
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722342642165381468, guid: e1cdef0004bd67d4ea787272a2878b11, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722342642165381468, guid: e1cdef0004bd67d4ea787272a2878b11, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722342642165381468, guid: e1cdef0004bd67d4ea787272a2878b11, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722342642165381468, guid: e1cdef0004bd67d4ea787272a2878b11, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722342642165381468, guid: e1cdef0004bd67d4ea787272a2878b11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722342642165381468, guid: e1cdef0004bd67d4ea787272a2878b11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722342642165381468, guid: e1cdef0004bd67d4ea787272a2878b11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801241072605162115, guid: e1cdef0004bd67d4ea787272a2878b11, type: 3}
+      propertyPath: m_Name
+      value: Managers
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1cdef0004bd67d4ea787272a2878b11, type: 3}
 --- !u!1 &1862598657
 GameObject:
   m_ObjectHideFlags: 0
@@ -2825,7 +2882,7 @@ GameObject:
   - component: {fileID: 1870930923}
   - component: {fileID: 1870930926}
   m_Layer: 5
-  m_Name: Credits
+  m_Name: Stats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3249,3 +3306,4 @@ SceneRoots:
   - {fileID: 38596206}
   - {fileID: 1375669117}
   - {fileID: 369580434}
+  - {fileID: 1791762857}

@@ -1,0 +1,288 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &159670434078818119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5756645992836378357}
+  - component: {fileID: 8404860402000450965}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5756645992836378357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159670434078818119}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -226.68372, y: -260.4219, z: 7.696371}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8881176774019085411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8404860402000450965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159670434078818119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41a53245a1ae1f42ae1525d13b78eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionPower: {fileID: 0}
+  buttonsFantasy:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  writerPowerSelection: []
+  generalPowerUpsPool: []
+  selectionAbility: {fileID: 0}
+  initialAbilities: []
+  abilityButtons: []
+  tooltipPanel: {fileID: 0}
+  tooltipTitle: {fileID: 0}
+  tooltipDescription: {fileID: 0}
+--- !u!1 &558043165710678894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 473666214939866983}
+  - component: {fileID: 4638686313461198926}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &473666214939866983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558043165710678894}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -226.68372, y: -260.4219, z: 7.696371}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8881176774019085411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4638686313461198926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558043165710678894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c1875059b5bf149afed60f4c2990ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONAsset: {fileID: 0}
+  levelCanvases:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  dialogueText: {fileID: 0}
+  nameText: {fileID: 0}
+  dialoguePanel: {fileID: 0}
+  portraitImage: {fileID: 0}
+  availablePortraits:
+  - iconName: tolkien_normal
+    iconSprite: {fileID: -1892268878, guid: acd2fc1ddce6bd94698b1203155e1192, type: 3}
+  - iconName: tolkien_misterioso
+    iconSprite: {fileID: -1791998806, guid: e35e53e9a39360244b5eee75baaed4e5, type: 3}
+  - iconName: tolkien_risa
+    iconSprite: {fileID: -1061520201, guid: ad6f6c70452a8464d9b57f417276e138, type: 3}
+  - iconName: tolkien_nostalgia
+    iconSprite: {fileID: -433904203, guid: 5160f5b31d78210478cfa9d0330dcbf0, type: 3}
+  - iconName: fantasma_normal
+    iconSprite: {fileID: 1688263485, guid: e1b794ca3811a454291c5cf65fc9c4c3, type: 3}
+  - iconName: fantasma_normal2
+    iconSprite: {fileID: 313644894, guid: 26cfb0bfb04438d4a82d2435168e51b6, type: 3}
+  - iconName: fantasma_feliz
+    iconSprite: {fileID: -525423653, guid: 4cb52c3fea1136846b96f0d9c221b2c1, type: 3}
+  - iconName: fantasma_cansado
+    iconSprite: {fileID: 1813235813, guid: 6b37877f5cdd0344ca3b8c9d12c96b80, type: 3}
+  - iconName: fantasma_confundido
+    iconSprite: {fileID: -266150627, guid: b87fa908c7a2cc54490523b0001cd207, type: 3}
+  - iconName: fantasma_enojado
+    iconSprite: {fileID: -1805484431, guid: f114f940a2f9df24298b48795cf9bd5b, type: 3}
+  - iconName: fantasma_timido
+    iconSprite: {fileID: -1763354760, guid: 0a2009d616ed22343a74506f67f1c88a, type: 3}
+  - iconName: fantasma_mindBlowing
+    iconSprite: {fileID: -1093335278, guid: 9f684034a269b374d8ac7d6ff0d08805, type: 3}
+  - iconName: fantasma_pensativo
+    iconSprite: {fileID: 1880498125, guid: d60515318b7c8e14aa5f9a645bb2ca26, type: 3}
+  - iconName: librarian_normal
+    iconSprite: {fileID: -1662110209, guid: a622e6fd0a32a8a4aa39412c9ce0d1ae, type: 3}
+  - iconName: librarian_normal
+    iconSprite: {fileID: -1662110209, guid: a622e6fd0a32a8a4aa39412c9ce0d1ae, type: 3}
+  - iconName: librarian_bromista
+    iconSprite: {fileID: -1843802197, guid: 43fab8dbd51deaf4d92d5c79a8e5d067, type: 3}
+  - iconName: librarian_ironica
+    iconSprite: {fileID: 550702933, guid: a0ddab384deb92244b846ee6dfe69fd2, type: 3}
+  - iconName: librarian_pesada
+    iconSprite: {fileID: 1863054836, guid: 7ca5dd7be91dd89429446ef6e3e45779, type: 3}
+--- !u!1 &831488822497598458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4768663500408794746}
+  - component: {fileID: 8122267021864591796}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4768663500408794746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831488822497598458}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -226.68372, y: -260.4219, z: 7.696371}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8881176774019085411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8122267021864591796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831488822497598458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306250cb5b702f64a8559715557d9630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menus:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!1 &1047222794318338880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8122201338623791862}
+  - component: {fileID: 4847566907754120216}
+  m_Layer: 0
+  m_Name: RoomManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8122201338623791862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047222794318338880}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -226.68372, y: -260.4219, z: 7.696371}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8881176774019085411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4847566907754120216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047222794318338880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116e12c0ebf0df04f8cc7e28f595f1ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomData: {fileID: 0}
+  rewardZones: []
+  rewardZoneSpawned: 0
+  initialDoor: {fileID: 0}
+  finalDoor: {fileID: 0}
+  exitConnectionPoint: {fileID: 0}
+  spawnPoints: []
+  timeLimit: 0
+  isTheFirstRoom: 0
+--- !u!1 &8694243155440619489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8881176774019085411}
+  m_Layer: 0
+  m_Name: ManagerInRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8881176774019085411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694243155440619489}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 679.6865, y: 544.2807, z: -5.6284747}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4768663500408794746}
+  - {fileID: 8122201338623791862}
+  - {fileID: 473666214939866983}
+  - {fileID: 5756645992836378357}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

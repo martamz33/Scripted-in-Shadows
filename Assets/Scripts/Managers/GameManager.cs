@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public AbilityType abilitySelected;
     public static Genre genre;
 
+    [Header("Player Global Stats")]
+    public int playerCurrentHealth;
+
     [Header("Room Settings")]
     public bool lastRoomWasBoss = false;
 
@@ -20,6 +23,16 @@ public class GameManager : MonoBehaviour
     [Header("Economic Multiplier")]
     public float inkMultiplier = 1f;
     public float priceMultiplier = 1f;
+
+    [Header("--- Dead Stats (Guardado Persistente) ---")]
+    public int totalDeaths;
+    public int deathsBeforeBoss;
+    public int deathsAgainstBossFantasy;
+    public int deathsAgainstBossFinal;
+
+    [Header("--- Victory Stats (Guardado Persistente) ---")]
+    public int victoriesAgainstBossFantasy;
+    public int victoriesAgainstBossFinal;
 
     // Variables to know if exclusive power up are active
     [HideInInspector] public bool hasIronSkin;
@@ -36,6 +49,8 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            LoadGameStats();
         } 
         else 
         {
@@ -52,11 +67,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         genre = genrePublic;
-    }
-
-    public void OptionsOfDEstiny()
-    {
-        
     }
 
     // ---Logic Of the Greed
@@ -151,5 +161,105 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    // Logic Register Victories and Deaths
+    // Update number of Deaths
+    public void RecordPlayerDeath()
+    {
+        // 1. Sum and save all the TotalDeaths
+        totalDeaths++;
+        PlayerPrefs.SetInt("TotalDeaths", totalDeaths);
+
+        // 2. Check where it die, thanks to the MapManager
+        if (MapManager.Instance != null && MapManager.Instance.currentRoomData != null)
+        {
+            // Boss Room?
+            if (MapManager.Instance.currentRoomData.roomType == RoomType.Boss)
+            {
+                // Check the boss (0 = Fantasía, 1 = Final)
+                int bossIndex = MapManager.Instance.currentBossIndex;
+
+                if (bossIndex == 0)
+                {
+                    deathsAgainstBossFantasy++;
+                    PlayerPrefs.SetInt("Deaths_Boss_Fantasy", deathsAgainstBossFantasy);
+                    Debug.Log("El jugador ha muerto contra el Boss de la Fantasía.");
+                }
+                else if (bossIndex == 1)
+                {
+                    deathsAgainstBossFinal++;
+                    PlayerPrefs.SetInt("Deaths_Boss_Final", deathsAgainstBossFinal);
+                    Debug.Log("El jugador ha muerto contra el Boss Final.");
+                }
+            }
+            else
+            {
+                // If not boss room, it died before it 
+                deathsBeforeBoss++;
+                PlayerPrefs.SetInt("DeathsBeforeBoss", deathsBeforeBoss);
+                Debug.Log("El jugador ha muerto antes de llegar al boss.");
+            }
+        }
+        else
+        {
+            deathsBeforeBoss++;
+            PlayerPrefs.SetInt("DeathsBeforeBoss", deathsBeforeBoss);
+        }
+
+        // Force Unity to sav ethe data
+        PlayerPrefs.Save(); 
+    }
+
+
+    // Update tha name of victories
+    public void RecordBossVictories()
+    {
+        if (MapManager.Instance != null)
+        {
+            int bossIndex = MapManager.Instance.currentBossIndex;
+
+            if (bossIndex == 0)
+            {
+                victoriesAgainstBossFantasy++;
+                PlayerPrefs.SetInt("Victories_Boss_Fantasy", victoriesAgainstBossFantasy);
+                Debug.Log("¡Victoria registrada contra el Boss de la Fantasía!");
+            }
+            else if (bossIndex == 1)
+            {
+                victoriesAgainstBossFinal++;
+                PlayerPrefs.SetInt("Victories_Boss_Final", victoriesAgainstBossFinal);
+                Debug.Log("¡Victoria registrada contra el Boss Final! ¡Te has pasado el juego!");
+            }
+
+            PlayerPrefs.Save();
+        }
+    }
+
+    // Charge all the data
+    private void LoadGameStats()
+    {
+        // Carga de muertes
+        totalDeaths = PlayerPrefs.GetInt("TotalDeaths", 0);
+        deathsBeforeBoss = PlayerPrefs.GetInt("DeathsBeforeBoss", 0);
+        deathsAgainstBossFantasy = PlayerPrefs.GetInt("Deaths_Boss_Fantasy", 0);
+        deathsAgainstBossFinal = PlayerPrefs.GetInt("Deaths_Boss_Final", 0);
+
+        // Carga de victorias (NUEVO)
+        victoriesAgainstBossFantasy = PlayerPrefs.GetInt("Victories_Boss_Fantasy", 0);
+        victoriesAgainstBossFinal = PlayerPrefs.GetInt("Victories_Boss_Final", 0);
+    }
+
+    public void ResetAllGameStats()
+    {
+        PlayerPrefs.DeleteKey("TotalDeaths");
+        PlayerPrefs.DeleteKey("DeathsBeforeBoss");
+        PlayerPrefs.DeleteKey("Deaths_Boss_Fantasy");
+        PlayerPrefs.DeleteKey("Deaths_Boss_Final");
+        
+        PlayerPrefs.DeleteKey("Victories_Boss_Fantasy"); 
+        PlayerPrefs.DeleteKey("Victories_Boss_Final");  
+        
+        LoadGameStats(); 
     }
 }

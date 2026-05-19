@@ -11,10 +11,14 @@ public class GhostMovement : MonoBehaviour
     public float floatAmplitude = 0.2f; //height oscilation
     public float floatFrequency = 2f; //frequency of the oscilation
     public float minimunHeight = 1f;
+    public float acceleration = 20f;
+    public float deceleration = 20f;
 
     [Header("Jump Settings")]
     public float jumpForce = 5f;
     public float jumpGravity = 9.8f;
+    public float fallMultiplier = 1.5f;
+    public float jumpCutMultiplier = 0.5f;
     public List<LayerMask> groundLayer;
 
     [Header("Float Settings")]
@@ -82,10 +86,18 @@ public class GhostMovement : MonoBehaviour
     {
         //Movement 
         float moveInput = Input.GetAxisRaw("Horizontal");
-        rg.velocity = new Vector2((moveInput * movementSpeed) + externalVelocity.x, rg.velocity.y);
+
+        float targetVelocityX = moveInput * movementSpeed;
+
+        float accelRate = (Mathf.Abs(moveInput) > 0.01f) ? acceleration : deceleration;
+
+        float currentVelocityX = rg.velocity.x - externalVelocity.x;
+        currentVelocityX = Mathf.MoveTowards(currentVelocityX, targetVelocityX, accelRate * Time.deltaTime);
+
+        rg.velocity = new Vector2(currentVelocityX + externalVelocity.x, rg.velocity.y);
 
         //Absolute value to initiate or not the float aniamtion
-        animator.SetFloat("Speed", Mathf.Abs(moveInput));
+        animator.SetFloat("Speed", Mathf.Abs(currentVelocityX));
 
         //Flip
         if(moveInput > 0)
@@ -132,13 +144,24 @@ public class GhostMovement : MonoBehaviour
 
             if(OnJumpExecuted != null) OnJumpExecuted.Invoke();
         }
+
+        if (Input.GetKeyUp(KeyCode.Space) && verticalVelocity > 0f)
+        {
+            verticalVelocity *= jumpCutMultiplier; 
+        }
     }
 
     private void HandleVerticalMovement()
     {
         if(jumpCount!= 0 || isFalling)
         {
-            verticalVelocity -= jumpGravity * Time.deltaTime;
+            float currentGravity = jumpGravity;
+            if(verticalVelocity < 0)
+            {
+                currentGravity *= fallMultiplier;
+            }
+
+            verticalVelocity -= currentGravity * Time.deltaTime;
             rg.velocity = new Vector2(rg.velocity.x, verticalVelocity + externalVelocity.y);
 
             if(isGrounded && verticalVelocity <=0f)
