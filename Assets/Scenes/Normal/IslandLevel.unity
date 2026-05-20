@@ -63638,6 +63638,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1129950422}
     - target: {fileID: 2219105907123636813, guid: 6b751428017f7f846a57e9e6471e556d, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 2219105907123636813, guid: 6b751428017f7f846a57e9e6471e556d, type: 3}
       propertyPath: spawnPoints.Array.data[0].point
       value: 
       objectReference: {fileID: 1169012181}

@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea05dee917019e4796b48a4872f0131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 50
+  baseHealth: 30
   actualHealth: 0
   distanceDetection: 15
   healhMax: 30
@@ -195,6 +195,7 @@ MonoBehaviour:
   quantityOfInk: 2
   forceOfExplosion: 5
   currentState: 0
+  isFlying: 1
   amplitude: 0.5
   velocity: 2
   prefabMagic: {fileID: 7679343401965871653, guid: 4daff8f8b7525cc40ab831864e66e592, type: 3}

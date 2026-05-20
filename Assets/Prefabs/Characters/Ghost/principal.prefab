@@ -296,8 +296,12 @@ MonoBehaviour:
   floatAmplitude: 0.2
   floatFrequency: 2
   minimunHeight: 0.75
-  jumpForce: 12
+  acceleration: 5
+  deceleration: 5
+  jumpForce: 15
   jumpGravity: 35
+  fallMultiplier: 1.5
+  jumpCutMultiplier: 0.5
   groundLayer:
   - serializedVersion: 2
     m_Bits: 64
@@ -354,6 +358,7 @@ MonoBehaviour:
     startAttackPoint: {fileID: 5646357950826986713}
     finalAttackPoint: {fileID: 5646357950826986713}
     baseDamage: 10
+  maxQueueSize: 3
 --- !u!114 &4929566369614021907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +414,9 @@ MonoBehaviour:
   ghostImage75: {fileID: 1581626508, guid: cb5d35f1f17902e4d84b2b7c381adc3a, type: 3}
   ghostImage50: {fileID: 1575944633, guid: 00f7c13efc08c65419664339cbc20e86, type: 3}
   ghostImage25: {fileID: 360479397, guid: 74fa9b8ffb627e747ac6192ed110b8a2, type: 3}
+  knockbackForceX: 3
+  knockbackForceY: 3
+  knockbackDuration: 0.2
 --- !u!114 &3542040818086070040
 MonoBehaviour:
   m_ObjectHideFlags: 0

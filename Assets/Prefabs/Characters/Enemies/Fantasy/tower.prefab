@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ed3f82bf9936a4a9bf5e0544a230c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 100
+  baseHealth: 50
   actualHealth: 0
   distanceDetection: 20
   healhMax: 50

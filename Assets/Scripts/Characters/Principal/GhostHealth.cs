@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
-using System.Numerics;
 
 public class GhostHealth : MonoBehaviour, IDamagable
 {
@@ -118,17 +117,17 @@ public class GhostHealth : MonoBehaviour, IDamagable
 
     private IEnumerator ApplyKnockback()
     {
-        // 1. Turn off the player movement
-        if(GameManager.Instance != null) GameManager.Instance.FreezeThePlayer(true);
+        isInvulnerable = true;
 
-        // 2. Push up and on the opposite direction where it look
-        float pushDirection = transform.localScale.x * -1f;
-        rg.velocity = Vector2.zero;
-        rg.AddForce(new Vector2(pushDirection * knockbackForceX, knockbackForceY));
+        for (int i = 0; i < 3; i++) 
+        {
+            sprite.color = new Color(1f, 0.5f, 0.5f, 0.7f); // Rojo semitransparente
+            yield return new WaitForSeconds(0.1f);
+            sprite.color = Color.white; // Vuelve a la normalidad
+            yield return new WaitForSeconds(0.1f);
+        }
 
-        yield return new WaitForSeconds(knockbackDuration);
-
-        if(GameManager.Instance != null) GameManager.Instance.FreezeThePlayer(false);
+        isInvulnerable = false;
     }
 
     private void UpdateMaxHealthUI()

@@ -75,7 +75,7 @@ public class ExitDoor : MonoBehaviour
         }
     }
 
-    private void OnDoorSelected(RoomData selectedRoom)
+    public void OnDoorSelected(RoomData selectedRoom)
     {
         roomSelectionCanvas.SetActive(false);
 

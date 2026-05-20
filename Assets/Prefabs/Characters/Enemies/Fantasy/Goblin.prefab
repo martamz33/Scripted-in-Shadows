@@ -194,10 +194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf7bf9aadd87084bb7acca4622ace27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 100
+  baseHealth: 50
   actualHealth: 0
   distanceDetection: 5
-  healhMax: 100
+  healhMax: 50
   damage: 4
   damageBase: 4
   PrefabParticules: {fileID: 2740249871536076009, guid: bcda8e53be7d18948bcd38acee643a87, type: 3}
@@ -205,6 +205,7 @@ MonoBehaviour:
   quantityOfInk: 2
   forceOfExplosion: 5
   currentState: 1
+  isFlying: 0
   initialPosition: {fileID: 0}
   finalPosition: {fileID: 0}
   speedWalk: 3.5

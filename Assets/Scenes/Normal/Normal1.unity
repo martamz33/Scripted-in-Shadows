@@ -229856,6 +229856,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 323906684}
     - target: {fileID: 2219105907123636813, guid: a567ad21dbfad2541aeca6ff3781b87d, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 2219105907123636813, guid: a567ad21dbfad2541aeca6ff3781b87d, type: 3}
       propertyPath: spawnPoints.Array.data[0].point
       value: 
       objectReference: {fileID: 107152902}

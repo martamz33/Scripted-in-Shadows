@@ -27,6 +27,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     [Header("State")]
     public EnemyState currentState;
+    public bool isFlying;
 
     [Header("References")]
     protected Animator animator;

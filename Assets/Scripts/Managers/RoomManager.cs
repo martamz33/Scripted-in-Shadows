@@ -29,6 +29,10 @@ public class RoomManager : MonoBehaviour
     public float timeLimit;
     public bool isTheFirstRoom;
 
+    [Header("Spawn Fall Settings")]
+    public LayerMask groundLayer;
+    public float enemyFallSpeed = 8f;
+
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -93,7 +97,7 @@ public class RoomManager : MonoBehaviour
             {
                 GameObject spawnedElement = Instantiate(prefabToSpawn, sp.point.position, Quaternion.identity);
 
-                TryAssignPatrol(spawnedElement, sp);
+                StartCoroutine(MakeEnemyFall(spawnedElement, sp));
             }
 
             if(sp.spawnOnlyOnce)
@@ -103,6 +107,94 @@ public class RoomManager : MonoBehaviour
             }
 
             yield return new WaitForSeconds(sp.delay);
+        }
+    }
+
+    private IEnumerator MakeEnemyFall(GameObject enemy, SpawnPoints sp)
+    {
+        if (enemy == null) yield break;
+
+        EnemyBase enemyScript = enemy.GetComponent<EnemyBase>();
+        Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
+
+        // 1. SI ES VOLADOR
+        if (enemyScript != null && enemyScript.isFlying)
+        {
+            TryAssignPatrol(enemy, sp);
+            yield break; 
+        }
+
+        // 2. Apagamos la IA
+        if (enemyScript != null) enemyScript.enabled = false;
+
+        // 3. Buscar el colisionador REAL (ignorando los que son "Trigger" como áreas de visión)
+        Collider2D enemyCollider = null;
+        Collider2D[] colliders = enemy.GetComponentsInChildren<Collider2D>();
+        foreach(Collider2D col in colliders)
+        {
+            if(!col.isTrigger) 
+            {
+                enemyCollider = col;
+                break; // Encontramos el cuerpo sólido, dejamos de buscar
+            }
+        }
+
+        float dynamicDistance = 0.5f; 
+        bool isGrounded = false;
+        
+        // TIMEOUT DE SEGURIDAD: Evita bucles infinitos si algo sale mal
+        float maxFallTime = 5f;
+        float fallTimer = 0f;
+
+        // Bucle hasta que toque el suelo (o pasen 5 segundos)
+        while (enemy != null && !isGrounded && fallTimer < maxFallTime)
+        {
+            fallTimer += Time.deltaTime;
+            Vector2 rayOrigin = enemy.transform.position;
+
+            if (enemyCollider != null)
+            {
+                rayOrigin = enemyCollider.bounds.center;
+                dynamicDistance = enemyCollider.bounds.extents.y + 0.05f; 
+            }
+
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, dynamicDistance, groundLayer);
+
+            if (hit.collider != null)
+            {
+                // ¡Tocó el suelo!
+                isGrounded = true;
+            }
+            else
+            {
+                // Si es Kinematic O si es Dynamic pero su Gravity Scale es 0
+                if (rb != null)
+                {
+                    if (rb.bodyType == RigidbodyType2D.Kinematic || (rb.bodyType == RigidbodyType2D.Dynamic && rb.gravityScale == 0))
+                    {
+                        enemy.transform.position += Vector3.down * enemyFallSpeed * Time.deltaTime;
+                    }
+                }
+                else 
+                {
+                    // Backup por si algún enemigo no tiene Rigidbody2D
+                    enemy.transform.position += Vector3.down * enemyFallSpeed * Time.deltaTime;
+                }
+            }
+
+            yield return null;
+        }
+
+        // 4. Una vez en el suelo (o si el tiempo expiró), lo activamos todo
+        if (enemy != null)
+        {
+            if (rb != null && rb.bodyType == RigidbodyType2D.Dynamic)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0f); // Frenar inercia
+            }
+
+            if (enemyScript != null) enemyScript.enabled = true;
+            TryAssignPatrol(enemy, sp);
         }
     }
 

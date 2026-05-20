@@ -57,6 +57,13 @@ public class MapManager : MonoBehaviour
         currentBossIndex = 0;
         if(GameManager.Instance != null) GameManager.Instance.lastRoomWasBoss = false;
 
+        List<RoomData> possibleNormalRooms = allPosibleRooms.FindAll(r => r.roomType == RoomType.Normal);
+
+        if(possibleNormalRooms.Count > 0)
+        {
+            currentRoomData = possibleNormalRooms[Random.Range(0, possibleNormalRooms.Count)];
+        }
+
         string sceneToLoad = GetRandomNormalLayout();
         lastLayoutUsed = sceneToLoad;
 
@@ -155,7 +162,7 @@ public class MapManager : MonoBehaviour
 
     //transport to the ext room
     public void LoadSelectedRoom(RoomData data)
-    {   roomsCleared ++;
+    {   
         Debug.Log("The next room is " + data.roomType.ToString());
 
         currentRoomData = data;

@@ -5092,10 +5092,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101faf34113599b4fa8a5074a255c2d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 100
+  baseHealth: 50
   actualHealth: 0
   distanceDetection: 15
-  healhMax: 100
+  healhMax: 50
   damage: 5
   damageBase: 5
   PrefabParticules: {fileID: 6029351833508787664, guid: 19833617f96f3cd4a996e1ff3f2ce989, type: 3}
@@ -5107,4 +5107,4 @@ MonoBehaviour:
   dashDuration: 0.75
   waitBetweenDashes: 0.3
   coolDownAfterAttack: 2
-  dustParticles: {fileID: 0}
+  dustParticles: {fileID: 6811160976941988916, guid: 5c2000029a7d5c0459a73e7964ca6a63, type: 3}
