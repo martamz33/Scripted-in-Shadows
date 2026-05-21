@@ -17,6 +17,7 @@ public class GhostAttack : MonoBehaviour
     [Header("Attack Settings")]
     public float attackDuration = 0.4f;
     public float downVelocity = 20f;
+    public float upVelocity = 10f;
     public float damageMultiplier = 1f;
     public List<ConfigAttack> listOfAttacks = new List<ConfigAttack>();
 
@@ -54,11 +55,11 @@ public class GhostAttack : MonoBehaviour
             attackToQueue = TypeAttack.AtaqueA;
         }
 
-        /*Up Attack
+        //Up Attack
         if(Input.GetMouseButtonDown(0) && Input.GetAxisRaw("Vertical") > 0)
         {
             attackToQueue = TypeAttack.AtaqueUp;
-        }*/
+        }
 
         //Main Attack
         else if(Input.GetMouseButtonDown(0))
@@ -120,13 +121,12 @@ public class GhostAttack : MonoBehaviour
             gm.UpdateValueY();
             yield return new WaitForSeconds(0.1f);
             gm.movementSpeed = originalSpeed;
-        }/*
+        }
         else if (attack == TypeAttack.AtaqueUp) 
         {
-            // Aquí puedes añadir física extra si el ataque hacia arriba empuja al fantasma
-            // o detener su caída por un instante para dar impacto.
+            rg.velocity = new Vector2(rg.velocity.x, upVelocity);
             yield return new WaitForSeconds(attackDuration);
-        }*/
+        }
         else
         {
             yield return new WaitForSeconds(attackDuration);
@@ -179,6 +179,6 @@ public class GhostAttack : MonoBehaviour
         animator.ResetTrigger("AtaqueP");
         animator.ResetTrigger("AtaqueS");
         animator.ResetTrigger("AtaqueA");
-        //animator.ResetTrigger("AtaqueUp");
+        animator.ResetTrigger("AtaqueUp");
     }
 }
