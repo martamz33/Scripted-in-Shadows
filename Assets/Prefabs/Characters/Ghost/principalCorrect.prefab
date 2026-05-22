@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6334430608584201481}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: startAttackPointMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5509033031545929024}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: finalAttackPointMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 223411928050459017}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: upAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 918835023423101341}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: attackDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 357716007158765684}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: startAttackPointSecundary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 8059410398119450949}
   - component: {fileID: 3876986933549220357}
   - component: {fileID: 306543966595892257}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: principalCorrect
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -572,7 +572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7489546953081932998}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: secundaryAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -605,7 +605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6307367809014517735}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: finalAttackPointSecundary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -637,7 +637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3767434273699629798}
   - component: {fileID: 2275398786548814138}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: areaToCreateInkAbility
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +713,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4732823534010133236}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: attackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -744,7 +744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7712368275025432139}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: runicCreate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +775,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6444003078972680638}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mainAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

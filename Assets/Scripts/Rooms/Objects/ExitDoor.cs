@@ -28,6 +28,17 @@ public class ExitDoor : MonoBehaviour
     {
         if(col.CompareTag("Player"))
         {
+            // 1. Teletransportar al centro de la puerta
+            col.transform.position = transform.position;
+
+            // 2. Parar físicas y poner en Idle
+            Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
+            if(rb != null) rb.velocity = Vector2.zero;
+            
+            Animator anim = col.GetComponent<Animator>();
+            if(anim != null) anim.Play("Idle"); // Asegúrate de que tu estado se llama "Idle"
+
+            // 3. Congelar movimiento
             if (GameManager.Instance != null)
             {
                 GameManager.Instance.FreezePlayer(true);
@@ -35,13 +46,12 @@ public class ExitDoor : MonoBehaviour
             else
             {
                 col.GetComponent<GhostMovement>().enabled = false;
-                col.GetComponent<GhostMovement>().isMovementActive = false;
             }
 
+            // 4. Mostrar UI
             if (MapManager.Instance != null)
             {
-                List<RoomData> nextRooms = MapManager.Instance.GetNextRoomOptions();
-                SetupUI(nextRooms);
+                SetupUI(MapManager.Instance.GetNextRoomOptions());
             }
         }
     }

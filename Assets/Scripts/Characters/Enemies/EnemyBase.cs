@@ -25,6 +25,10 @@ public abstract class EnemyBase : MonoBehaviour
     public int quantityOfInk;
     public float forceOfExplosion = 5f;
 
+    [Header("Life Drop")]
+    public GameObject healthPrefab;
+    [Range(0, 1)] public float healthDropChance = 0.2f;
+
     [Header("Hit Feedback")]
     public Color flashColor = Color.red;
     public float flashDuration = 0.15f;
@@ -166,6 +170,11 @@ public abstract class EnemyBase : MonoBehaviour
                     rbInk.AddForce(flyDirection * forceOfExplosion, ForceMode2D.Impulse);
                 }
             }
+        }
+
+        if(healthPrefab != null && Random.value <= healthDropChance)
+        {
+            Instantiate(healthPrefab, transform.position, Quaternion.identity);
         }
 
         return;

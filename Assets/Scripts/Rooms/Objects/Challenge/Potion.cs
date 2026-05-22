@@ -15,10 +15,12 @@ public class Potion : MonoBehaviour
 
     private bool isOnTheFloor;
     private Rigidbody2D rg;
+    private Collider2D mainCollider; // NUEVO: Para guardar el collider físico
 
     void Start()
     {
         rg = GetComponent<Rigidbody2D>();
+        mainCollider = GetComponent<Collider2D>(); // Buscamos el collider sólido de la poción
     }
 
     void Update()
@@ -36,19 +38,29 @@ public class Potion : MonoBehaviour
         {
             isOnTheFloor = true;
 
-            //1.Stop the physics movement
+            // 1. Detener físicas
             rg.velocity = Vector2.zero;
             rg.isKinematic = true;
+            transform.rotation = Quaternion.identity; 
 
-            //2.Enable false the element
-            if(sprite!=null) sprite.enabled = false;
+            // 2. Apagar la imagen y el collider físico
+            if(sprite != null) sprite.enabled = false;
+            if(mainCollider != null) mainCollider.enabled = false;
 
-            //3.Effect and damage
-            if(ps!=null) ps.Play();
-            if(damageArea!=null) damageArea.enabled =true;
+            // 3. Activar VFX y Daño
+            if(ps != null) ps.Play();
+            if(damageArea != null) damageArea.enabled = true;
 
-            //4.Cleaning,  destroy the element
-            Destroy(gameObject, 2f);
+            // 4. CAMBIO AQUÍ: Desactivamos el objeto en lugar de destruirlo de golpe
+            // O, si quieres destruir, espera a que la partícula termine:
+            ps.transform.parent = null;
+            ps.Play();
+            
+            // 2. Destruimos el objeto de la poción inmediatamente
+            Destroy(gameObject);
+            
+            // 3. Destruimos las partículas cuando terminen
+            Destroy(ps.gameObject, ps.main.duration);
         }
     }
 }

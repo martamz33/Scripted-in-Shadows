@@ -76,18 +76,18 @@ public class troll : EnemyBase
     private IEnumerator performDashAttack()
     {
         isAttaking = true;
-
         Vector3 dashDir = (player.position.x > transform.position.x) ? Vector3.right : Vector3.left;
 
         float timer = 0;
         while(timer < dashDuration)
         {
-            transform.position += dashDir * speedDash * Time.deltaTime;
+            // En lugar de modificar transform.position directamente:
+            Vector2 newPos = rg.position + (Vector2)dashDir * speedDash * Time.deltaTime;
+            rg.MovePosition(newPos); 
 
             timer += Time.deltaTime;
             yield return null;
         }
-
         animator.SetTrigger("attack");
     }
 

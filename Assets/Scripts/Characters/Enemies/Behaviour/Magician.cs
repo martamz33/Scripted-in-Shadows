@@ -144,12 +144,22 @@ public class Magician : EnemyBase
         col.enabled = false;
         sprite.enabled = false;
 
-        Vector2 spawnPoint = Random.insideUnitCircle * teleportRadius;
-        Vector3 potentialPos = anchorPoint + new Vector3(spawnPoint.x, spawnPoint.y, 0);
+        // 1. Calculamos una posición segura relativa al punto de anclaje
+        Vector2 randomOffset = Random.insideUnitCircle.normalized * teleportRadius;
+        Vector3 targetPos = anchorPoint + new Vector3(randomOffset.x, randomOffset.y, 0);
 
-        if(!Physics2D.OverlapCircle(potentialPos, 0.5f, LayerMask.GetMask("platforms")))
+        // 2. Comprobamos si hay suelo debajo para que no aparezca en el aire o dentro de un muro
+        RaycastHit2D hit = Physics2D.Raycast(targetPos + Vector3.up * 2, Vector2.down, 5f, LayerMask.GetMask("ground"));
+        
+        if (hit.collider != null)
         {
-            transform.position = spawnPoint;
+            // Aparece justo encima del suelo detectado
+            transform.position = hit.point + Vector2.up * 0.5f; 
+        }
+        else
+        {
+            // Si no hay suelo, intentamos al menos aparecer en el targetPos original
+            transform.position = targetPos;
         }
 
         animator.SetTrigger("teleportIn");

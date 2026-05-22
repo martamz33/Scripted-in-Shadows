@@ -61,20 +61,19 @@ public class laserOrb : MonoBehaviour
 
         lineRenderer.enabled = true;
         lineRenderer.positionCount = 2;
-
         lineRenderer.SetPosition(0, pointToCreateLaser.position);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection, maxDistance);
+        // USAR transform.right (o .up dependiendo de hacia dónde mire tu sprite)
+        // Esto disparará en la dirección real a la que apunta el orbe
+        RaycastHit2D hit = Physics2D.Raycast(pointToCreateLaser.position, transform.right, maxDistance, hitLayers);
 
         if(hit.collider != null)
         {
             lineRenderer.SetPosition(1, hit.point);
-
             if(hit.collider.CompareTag("Player"))
             {
-                hit.collider.GetComponent<GhostHealth>().TakeDamage(damage);
+                hit.collider.GetComponent<GhostHealth>()?.TakeDamage(damage);
             }
-            
             if(impactEffects != null)
             {
                 Instantiate(impactEffects, hit.point, Quaternion.identity);
@@ -82,7 +81,7 @@ public class laserOrb : MonoBehaviour
         }
         else
         {
-            lineRenderer.SetPosition(1, transform.position + (targetDirection * maxDistance));
+            lineRenderer.SetPosition(1, pointToCreateLaser.position + (transform.right * maxDistance));
         }
     }
 }

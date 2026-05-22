@@ -117,80 +117,44 @@ public class RoomManager : MonoBehaviour
         EnemyBase enemyScript = enemy.GetComponent<EnemyBase>();
         Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
 
-        // 1. SI ES VOLADOR
+        // 1. SI ES VOLADOR: No cae, se activa directamente
         if (enemyScript != null && enemyScript.isFlying)
         {
             TryAssignPatrol(enemy, sp);
             yield break; 
         }
 
-        // 2. Apagamos la IA
+        // 2. SI NO ES VOLADOR:
         if (enemyScript != null) enemyScript.enabled = false;
 
-        // 3. Buscar el colisionador REAL (ignorando los que son "Trigger" como áreas de visión)
-        Collider2D enemyCollider = null;
-        Collider2D[] colliders = enemy.GetComponentsInChildren<Collider2D>();
-        foreach(Collider2D col in colliders)
-        {
-            if(!col.isTrigger) 
-            {
-                enemyCollider = col;
-                break; // Encontramos el cuerpo sólido, dejamos de buscar
-            }
-        }
-
-        float dynamicDistance = 0.5f; 
         bool isGrounded = false;
-        
-        // TIMEOUT DE SEGURIDAD: Evita bucles infinitos si algo sale mal
-        float maxFallTime = 5f;
+        float maxFallTime = 3f;
         float fallTimer = 0f;
 
-        // Bucle hasta que toque el suelo (o pasen 5 segundos)
+        // Esperamos a que toque el suelo basándonos en física real (gravedad)
         while (enemy != null && !isGrounded && fallTimer < maxFallTime)
         {
             fallTimer += Time.deltaTime;
-            Vector2 rayOrigin = enemy.transform.position;
-
-            if (enemyCollider != null)
-            {
-                rayOrigin = enemyCollider.bounds.center;
-                dynamicDistance = enemyCollider.bounds.extents.y + 0.05f; 
-            }
-
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, dynamicDistance, groundLayer);
+            
+            // Raycast para detectar suelo
+            RaycastHit2D hit = Physics2D.Raycast(enemy.transform.position, Vector2.down, 0.5f, groundLayer);
 
             if (hit.collider != null)
             {
-                // ¡Tocó el suelo!
                 isGrounded = true;
             }
-            else
-            {
-                // Si es Kinematic O si es Dynamic pero su Gravity Scale es 0
-                if (rb != null)
-                {
-                    if (rb.bodyType == RigidbodyType2D.Kinematic || (rb.bodyType == RigidbodyType2D.Dynamic && rb.gravityScale == 0))
-                    {
-                        enemy.transform.position += Vector3.down * enemyFallSpeed * Time.deltaTime;
-                    }
-                }
-                else 
-                {
-                    // Backup por si algún enemigo no tiene Rigidbody2D
-                    enemy.transform.position += Vector3.down * enemyFallSpeed * Time.deltaTime;
-                }
-            }
-
             yield return null;
         }
 
-        // 4. Una vez en el suelo (o si el tiempo expiró), lo activamos todo
+        // 3. Ya aterrizó: lo activamos y lo dejamos fijo
         if (enemy != null)
         {
-            if (rb != null && rb.bodyType == RigidbodyType2D.Dynamic)
+            if (rb != null)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0f); // Frenar inercia
+                rb.velocity = Vector2.zero;
+                // Importante: al ser Kinematic, el enemigo no se moverá por físicas 
+                // pero podrá ser movido por tus scripts de patrulla.
+                rb.bodyType = RigidbodyType2D.Kinematic; 
             }
 
             if (enemyScript != null) enemyScript.enabled = true;
