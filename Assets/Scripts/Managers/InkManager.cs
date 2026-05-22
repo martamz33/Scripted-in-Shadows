@@ -30,6 +30,12 @@ public class InkManager : MonoBehaviour
         }
     }
 
+    public void RegisterUI(TextMeshProUGUI newTextComponent)
+    {
+        inkText = newTextComponent;
+        UpdateUI();
+    }
+
     public void AddInk(int amount)
     {
         float multiplier = GameManager.Instance.inkMultiplier;
@@ -58,6 +64,9 @@ public class InkManager : MonoBehaviour
 
     private void UpdateUI()
     {
-        inkText.text = totalInk.ToString();
+        if(inkText != null)
+        {
+            inkText.text = totalInk.ToString();
+        }
     }
 }

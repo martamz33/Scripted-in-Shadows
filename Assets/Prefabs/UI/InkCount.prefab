@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8106513406804512261}
   - component: {fileID: 4921975829467804039}
   - component: {fileID: 2052274841917372148}
+  - component: {fileID: 4632874083526107917}
   m_Layer: 5
   m_Name: InkCounter
   m_TagString: Untagged
@@ -137,6 +138,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4632874083526107917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248127730161743251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ba8f8343c1fc140822aa79517b9451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &924824299402971969
 GameObject:
   m_ObjectHideFlags: 0

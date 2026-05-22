@@ -25,6 +25,10 @@ public abstract class EnemyBase : MonoBehaviour
     public int quantityOfInk;
     public float forceOfExplosion = 5f;
 
+    [Header("Hit Feedback")]
+    public Color flashColor = Color.red;
+    public float flashDuration = 0.15f;
+
     [Header("State")]
     public EnemyState currentState;
     public bool isFlying;
@@ -33,6 +37,11 @@ public abstract class EnemyBase : MonoBehaviour
     protected Animator animator;
     protected Transform player;
     protected Rigidbody2D rg;    
+    
+    // Variables internas para el parpadeo
+    protected SpriteRenderer[] spriteRenderers;
+    protected Color[] originalColors;
+    private Coroutine flashCoroutine;
 
     protected virtual void Start()
     {
@@ -44,6 +53,14 @@ public abstract class EnemyBase : MonoBehaviour
         actualHealth = healhMax;
         animator = GetComponent<Animator>();
         rg = GetComponent<Rigidbody2D>();
+
+        // Cachear los SpriteRenderers y sus colores originales
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        originalColors = new Color[spriteRenderers.Length];
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            originalColors[i] = spriteRenderers[i].color;
+        }
 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if(playerObj!=null) player = playerObj.transform;
@@ -81,9 +98,33 @@ public abstract class EnemyBase : MonoBehaviour
 
         OnEnemyDamaged?.Invoke();
 
+        // Iniciar el efecto de parpadeo
+        if (flashCoroutine != null) StopCoroutine(flashCoroutine);
+        flashCoroutine = StartCoroutine(FlashRoutine());
+
         if(actualHealth <= 0)
         {
             Death();
+        }
+    }
+
+    private IEnumerator FlashRoutine()
+    {
+        // 1. Cambiar al color de destello
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            if (spriteRenderers[i] != null)
+                spriteRenderers[i].color = flashColor;
+        }
+
+        // 2. Esperar el tiempo indicado
+        yield return new WaitForSeconds(flashDuration);
+
+        // 3. Volver al color original
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            if (spriteRenderers[i] != null)
+                spriteRenderers[i].color = originalColors[i];
         }
     }
 

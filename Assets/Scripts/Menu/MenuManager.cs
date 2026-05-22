@@ -8,11 +8,17 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject[] menus;
 
+    [Header("Extra Panels")]
+    public GameObject optionsPanel; 
+    public string initialMenuSceneName = "InitialMenu";
+
     private bool isActivated;
 
     void Start()
     {
         isActivated = false;
+
+        if(optionsPanel != null) optionsPanel.SetActive(false);
     }
 
     void Update()
@@ -25,7 +31,14 @@ public class MenuManager : MonoBehaviour
             }
             else
             {
-                closeMenu();
+                if (optionsPanel != null && optionsPanel.activeSelf)
+                {
+                    CloseOptions();
+                }
+                else // Si estamos en la pausa normal, quitamos la pausa
+                {
+                    closeMenu();
+                }
             }
         }
     }
@@ -54,14 +67,39 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    void closeMenu()
+    public void closeMenu()
     {
         foreach (GameObject menu in menus)
         {
             menu.SetActive(false);
         }
+
+        if (optionsPanel != null) optionsPanel.SetActive(false);
         isActivated = false;
 
         Time.timeScale = 1f;
+    }
+
+    public void OpenOptions()
+    {
+        if(optionsPanel != null)
+        {
+            optionsPanel.SetActive(true);
+        }
+    }
+
+    public void CloseOptions()
+    {
+        if(optionsPanel != null)
+        {
+            optionsPanel.SetActive(false);
+        }
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f; 
+        
+        SceneManager.LoadScene(initialMenuSceneName);
     }
 }

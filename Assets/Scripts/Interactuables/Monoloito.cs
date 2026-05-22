@@ -39,6 +39,9 @@ public class Monoloito : Interactuable
             case RoomType.Equipment:
                 GiveEquipment();
                 break;
+            case RoomType.SeflHelp:
+                SpawnBreakable(breakableHealthPrefab);
+                break;
             default:
                 break;
         }

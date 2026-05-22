@@ -194,10 +194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbf4c9c139f1824ca24b6d4f3546123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 100
+  baseHealth: 50
   actualHealth: 0
   distanceDetection: 12
-  healhMax: 100
+  healhMax: 50
   damage: 4
   damageBase: 4
   PrefabParticules: {fileID: 548394600777202271, guid: 43009169394bc804fbbc808a0689268f, type: 3}
@@ -205,6 +205,7 @@ MonoBehaviour:
   quantityOfInk: 2
   forceOfExplosion: 5
   currentState: 0
+  isFlying: 0
   orbPrefabExplosion: {fileID: 8773433076595909540, guid: 2901a73f2e4b84f45b2abab86834b8c0, type: 3}
   orbPrefabLaser: {fileID: 4336402804140843159, guid: 6bf27e6d388e835459987ed779fa9952, type: 3}
   pointToCreateOrb: {fileID: 5516730289588952776}

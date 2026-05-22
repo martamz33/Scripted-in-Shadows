@@ -48,26 +48,26 @@ public class GhostAttack : MonoBehaviour
     private void HandleInput()
     {
         TypeAttack? attackToQueue = null;
+        bool esAtaquePrioritario = false;
 
-        //Attack Down
-        if(!gm.IsGrounded && Input.GetMouseButtonDown(1) && Input.GetAxisRaw("Vertical")< 0)
+        // 1. Attack Down (Prioridad máxima)
+        if(!gm.IsGrounded && Input.GetMouseButtonDown(1) && Input.GetAxisRaw("Vertical") < -0.1f)
         {
             attackToQueue = TypeAttack.AtaqueA;
+            esAtaquePrioritario = true;
         }
-
-        //Up Attack
-        if(Input.GetMouseButtonDown(0) && Input.GetAxisRaw("Vertical") > 0)
+        // 2. Up Attack (Prioridad alta)
+        else if(Input.GetMouseButtonDown(0) && (Input.GetAxisRaw("Vertical") > 0.1f || Input.GetKey(KeyCode.Space)))
         {
             attackToQueue = TypeAttack.AtaqueUp;
+            esAtaquePrioritario = true;
         }
-
-        //Main Attack
+        // 3. Main Attack
         else if(Input.GetMouseButtonDown(0))
         {
             attackToQueue = TypeAttack.AtaqueP;
         }
-
-        //Secundary Attack
+        // 4. Secundary Attack
         else if(Input.GetMouseButtonDown(1))
         {
             attackToQueue = TypeAttack.AtaqueS;
@@ -75,6 +75,12 @@ public class GhostAttack : MonoBehaviour
 
         if(attackToQueue.HasValue)
         {
+            // Si es un ataque hacia arriba o abajo, limpiamos la basura de la cola para que responda al instante
+            if (esAtaquePrioritario)
+            {
+                attackQueue.Clear();
+            }
+
             if(attackQueue.Count < maxQueueSize)
             {
                 attackQueue.Enqueue(attackToQueue.Value);
@@ -148,9 +154,10 @@ public class GhostAttack : MonoBehaviour
             attack.transform.SetParent(this.transform);
 
             //Ajust the scale to face the ghost
+            /*
             Vector3 scale = attack.transform.localScale;
             scale.x = transform.localScale.x;
-            attack.transform.localScale = scale;
+            attack.transform.localScale = scale;*/
 
             int finalDamage = Mathf.RoundToInt(configFound.baseDamage * damageMultiplier);
 

@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ba209a6a8c3ca45bc89e226517edca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 100
+  baseHealth: 60
   actualHealth: 0
   distanceDetection: 6
   healhMax: 60
@@ -205,6 +205,7 @@ MonoBehaviour:
   quantityOfInk: 3
   forceOfExplosion: 5
   currentState: 0
+  isFlying: 0
   initialPosition: {fileID: 0}
   finalPosition: {fileID: 0}
   speedWalk: 3.5

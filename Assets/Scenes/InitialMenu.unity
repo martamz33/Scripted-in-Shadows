@@ -2111,10 +2111,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InkCount
       objectReference: {fileID: 0}
-    - target: {fileID: 924824299402971969, guid: 523f894599a90cd448fddc391017e54c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
