@@ -100,6 +100,11 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1f; 
         
-        SceneManager.LoadScene(initialMenuSceneName);
+        if (SceneLoader.Instance != null) {
+            SceneLoader.Instance.LoadSceneWithFade(initialMenuSceneName);
+        } else {
+            // Fallback por si el loader no está en la escena
+            SceneManager.LoadScene(initialMenuSceneName);
+        }
     }
 }

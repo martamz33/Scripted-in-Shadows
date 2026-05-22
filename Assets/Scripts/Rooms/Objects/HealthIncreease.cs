@@ -19,8 +19,17 @@ public class HealthIncreease : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            // Convertimos a Trigger para que el jugador lo pueda atravesar y recoger
+            // 1. Convertimos a Trigger
             col.isTrigger = true;
+
+            // 2. Apagamos la gravedad y el movimiento para que no flote ni se mueva
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.velocity = Vector2.zero;
+                rb.gravityScale = 0; // Esto evita que siga calculando fuerzas
+                rb.bodyType = RigidbodyType2D.Kinematic; // Lo congelamos en el sitio
+            }
         }
     }
 

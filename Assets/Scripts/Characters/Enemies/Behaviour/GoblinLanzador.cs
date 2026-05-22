@@ -57,7 +57,7 @@ public class GoblinLanzador : EnemyBase
     {
         if(distance > distanceDetection)
         {
-            currentShots = 0;
+            currentState = EnemyState.Attack;
             currentState = EnemyState.Walk;
             Flip();
             return;
@@ -67,19 +67,12 @@ public class GoblinLanzador : EnemyBase
         {
             LookAtThePlayer();
 
-            float waitTime = (currentShots >= shotBurst) ? timeBetweenShots : cooldownAttack;
+            float waitTime = (currentShots >= shotBurst) ? cooldownAttack : timeBetweenShots;
 
             if(cronoAttack >= waitTime)
             {
-                if(currentShots >= shotBurst)
-                {
-                    currentShots = 0;
-                }
+                if(currentShots >= shotBurst) currentShots = 0;
                 StartAttack();
-            }
-            else
-            {
-                cronoAttack += Time.deltaTime;
             }
         }
     }
@@ -108,6 +101,9 @@ public class GoblinLanzador : EnemyBase
         if(prefabDagger!=null)
         {
             GameObject Dagger = Instantiate(prefabDagger, pointToCreateDagger.position, Quaternion.identity);
+
+            Vector3 playerPos = player.position;
+            playerPos.y += Random.Range(-0.5f, 0.5f);
 
             DaggerGoblin daggerScript = Dagger.GetComponent<DaggerGoblin>();
             if(daggerScript != null)

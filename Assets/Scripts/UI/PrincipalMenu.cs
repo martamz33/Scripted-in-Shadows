@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class PrincipalMenu : MonoBehaviour
 {
+    public string sceneToLoad;
     // Function to New Game
     public void NewGame()
     {
-        SceneManager.LoadScene("Hall");
+       if (SceneLoader.Instance != null) {
+            SceneLoader.Instance.LoadSceneWithFade(sceneToLoad);
+        } else {
+            // Fallback por si el loader no está en la escena
+            SceneManager.LoadScene(sceneToLoad);
+        }
     }
 
     // Function to button Close

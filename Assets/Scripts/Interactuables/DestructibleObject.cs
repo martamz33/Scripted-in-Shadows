@@ -18,6 +18,7 @@ public class DestructibleObject : MonoBehaviour
     public int maxBlows = 3;
     private int actualBlows;
     public GameObject vfxBreak;
+    [SerializeField] private bool isGrounded = false;
 
     [Header("Sprites")]
     public SpriteRenderer crackOverlay;
@@ -52,11 +53,23 @@ public class DestructibleObject : MonoBehaviour
         rb.AddForce(initialForce, ForceMode2D.Impulse);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+    }
+
     public void RecibeBlow()
     {
         actualBlows --;
         ActualiseAspect();
 
+        rb.bodyType = RigidbodyType2D.Dynamic;
         rb.velocity = Vector2.zero;
         rb.AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
 

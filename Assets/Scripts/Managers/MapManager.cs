@@ -67,7 +67,12 @@ public class MapManager : MonoBehaviour
         string sceneToLoad = GetRandomNormalLayout();
         lastLayoutUsed = sceneToLoad;
 
-        SceneManager.LoadScene(sceneToLoad);
+        if (SceneLoader.Instance != null) {
+            SceneLoader.Instance.LoadSceneWithFade(sceneToLoad);
+        } else {
+            // Fallback por si el loader no está en la escena
+            SceneManager.LoadScene(sceneToLoad);
+        }
     }
 
     private string GetRandomNormalLayout()
@@ -209,7 +214,12 @@ public class MapManager : MonoBehaviour
             if(!string.IsNullOrEmpty(sceneToLoad))
             {
                 lastLayoutUsed = sceneToLoad;
-                SceneManager.LoadScene(sceneToLoad);
+                if (SceneLoader.Instance != null) {
+                    SceneLoader.Instance.LoadSceneWithFade(sceneToLoad);
+                } else {
+                    // Fallback por si el loader no está en la escena
+                    SceneManager.LoadScene(sceneToLoad);
+                }
             }
         }
 
@@ -218,14 +228,24 @@ public class MapManager : MonoBehaviour
         {
             string sceneToLoad = GetRandomNormalLayout();
             lastLayoutUsed = sceneToLoad;
-            SceneManager.LoadScene(sceneToLoad);
+            if (SceneLoader.Instance != null) {
+                SceneLoader.Instance.LoadSceneWithFade(sceneToLoad);
+            } else {
+                // Fallback por si el loader no está en la escena
+                SceneManager.LoadScene(sceneToLoad);
+}
         }
         else 
         {
             if (data.sceneName != null)
             {
                 lastLayoutUsed = data.sceneName;
-                SceneManager.LoadScene(data.sceneName); 
+                if (SceneLoader.Instance != null) {
+                    SceneLoader.Instance.LoadSceneWithFade(data.sceneName);
+                } else {
+                    // Fallback por si el loader no está en la escena
+                    SceneManager.LoadScene(data.sceneName);
+                }
             }
             else
             {

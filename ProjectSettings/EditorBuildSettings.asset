@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Normal/Normal1.unity
     guid: 098e9da76e78c6044b42f87a4dd447ee
   - enabled: 1
+    path: Assets/Scenes/SelfHelp/selfHelp.unity
+    guid: 954bb6f0c8c946145b6b641e32061e11
+  - enabled: 1
     path: Assets/Scenes/Retos/RetoEnemies1.unity
     guid: 05606e3255f87734d9cbbf7ca75c1c0c
   - enabled: 1
@@ -47,6 +50,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Retos/RetoNoDamage2.unity
     guid: 036c568b6706aad49bdd1b6d9b8e9b59
+  - enabled: 1
+    path: Assets/Scenes/Tienda/Shop.unity
+    guid: 1179335053d9fdc4eb6fb866cb62f4af
   - enabled: 1
     path: Assets/Scenes/Retos/RetoTiempo1.unity
     guid: d3ea1d57826799443aa5b494a0eec012

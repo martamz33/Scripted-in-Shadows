@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 [System.Serializable]
 public struct RewardZoneMapping
@@ -33,6 +35,14 @@ public class RoomManager : MonoBehaviour
     public LayerMask groundLayer;
     public float enemyFallSpeed = 8f;
 
+    [Header("Shop UI References")]
+    public GameObject shopCanvasRef;
+    public Button[] buttonsRef;
+    public TextMeshProUGUI[] pricesRef;
+    public Image[] iconsRef;
+    public Image[] inksRef;
+    public GameObject[] postersRef;
+
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -50,6 +60,27 @@ public class RoomManager : MonoBehaviour
         PositionPlayer();
 
         GenerateRewardZone();
+
+        if (MapManager.Instance != null && MapManager.Instance.currentRoomData != null)
+        {
+            RoomType type = MapManager.Instance.currentRoomData.roomType;
+            
+            if (type == RoomType.Shop && ShopManager.Instance != null)
+            {
+                // Conectamos la UI al ShopManager persistente
+                ShopManager.Instance.SetUpShopUI(
+                    shopCanvasRef, 
+                    buttonsRef, 
+                    pricesRef, 
+                    iconsRef, 
+                    inksRef, 
+                    postersRef
+                );
+                
+                // Generamos la tienda
+                ShopManager.Instance.GenerateShopItems();
+            }
+        }
     }
 
     //position player
@@ -256,6 +287,15 @@ public class RoomManager : MonoBehaviour
     public void StopAllTraps()
     {
         StopAllCoroutines();
+    }
+
+    private void OnDestroy() 
+    {
+        if (roomData != null && roomData.roomType == RoomType.Shop && ShopManager.Instance != null)
+        {
+            
+            ShopManager.Instance.CloseShop(); 
+        }
     }
     
 }

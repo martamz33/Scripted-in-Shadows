@@ -76,6 +76,7 @@ public class troll : EnemyBase
     private IEnumerator performDashAttack()
     {
         isAttaking = true;
+        OpenWeaponCollider();
         Vector3 dashDir = (player.position.x > transform.position.x) ? Vector3.right : Vector3.left;
 
         float timer = 0;

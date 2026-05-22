@@ -18,6 +18,7 @@ public class Monoloito : Interactuable
 
     public override void Interact()
     {
+        Debug.Log("Ha entrado en Interact");
         if(hasInteractuated) return;
 
         if(MapManager.Instance == null || MapManager.Instance.currentRoomData == null) return;
@@ -49,7 +50,7 @@ public class Monoloito : Interactuable
 
     private void SpawnBreakable(GameObject prefab)
     {
-        if(prefab != null || spawnPoint != null)
+        if(prefab != null && spawnPoint != null)
         {
             Instantiate(prefab, spawnPoint.position, Quaternion.identity);
         }

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 1875325957516948335}
   - component: {fileID: 5049998409027233615}
   - component: {fileID: 3426270468437067459}
+  - component: {fileID: -1014346486285621168}
   m_Layer: 0
   m_Name: LifeDestructibleObject
   m_TagString: DestructibleObject
@@ -244,3 +245,38 @@ MonoBehaviour:
   typeOfTreasure: 1
   inkPickupPrefab: {fileID: 5984518434707500455, guid: 1590c720a4ab0564cb3e39eae0948bc6, type: 3}
   lifePickupPrefab: {fileID: 2435541122438421622, guid: 45b0670992a7b9e498080ca245acecab, type: 3}
+--- !u!70 &-1014346486285621168
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916102182079748734}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.75, y: 2.68}
+  m_Direction: 0

@@ -43,6 +43,8 @@ public class TutorialManager : MonoBehaviour
         {
             GameManager.Instance.FreezePlayer(true);
         }
+
+        Time.timeScale = 0f;
     }
 
     private void CloseTutorial()
@@ -54,6 +56,8 @@ public class TutorialManager : MonoBehaviour
         {
             GameManager.Instance.FreezePlayer(false);
         }
+
+        Time.timeScale = 1f;
 
         gameObject.SetActive(false);
     }

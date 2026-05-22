@@ -130,8 +130,26 @@ public class GhostAttack : MonoBehaviour
         }
         else if (attack == TypeAttack.AtaqueUp) 
         {
-            rg.velocity = new Vector2(rg.velocity.x, upVelocity);
-            yield return new WaitForSeconds(attackDuration);
+            // 1. Guardamos el estado original
+            float originalGravity = rg.gravityScale;
+            Vector2 originalVelocity = rg.velocity;
+
+            // 2. Quitamos gravedad y lanzamos el impulso
+            rg.gravityScale = 0; 
+            rg.velocity = new Vector2(0, upVelocity);
+
+            // 3. Dash: mantenemos la velocidad constante hacia arriba durante la duración
+            float timer = 0;
+            while(timer < attackDuration)
+            {
+                rg.velocity = new Vector2(0, upVelocity); // Fuerza constante hacia arriba
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            // 4. Restauramos gravedad y velocidad
+            rg.gravityScale = originalGravity;
+            rg.velocity = new Vector2(originalVelocity.x, 0); // Opcional: frenar al terminar
         }
         else
         {

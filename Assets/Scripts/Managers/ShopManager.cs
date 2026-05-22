@@ -28,6 +28,7 @@ public class ShopManager : MonoBehaviour
 
     void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         if(Instance == null)
         {
             Instance = this;
@@ -46,10 +47,23 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    public void SetUpShopUI(GameObject canvas, Button[] buttons, TextMeshProUGUI[] prices, Image[] icons, Image[] inks, GameObject[] posters)
+    {
+        this.shopCanvas = canvas;
+        this.bookmarkButtons = buttons;
+        this.priceTexts = prices;
+        this.iconImages = icons;
+        this.inkIcon = inks;
+        this.sellPoster = posters;
+    }
+
     public void GenerateShopItems()
     {
-        shopIsOpen = true;
+        if(MapManager.Instance == null || MapManager.Instance.currentRoomData.roomType != RoomType.Shop)
+            return;
 
+        shopIsOpen = true;
+        shopCanvas.SetActive(true);
         GameManager.Instance.FreezePlayer(true);
 
         for(int i = 0; i < currentShopItems.Length; i++)
