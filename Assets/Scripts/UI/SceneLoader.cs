@@ -6,14 +6,28 @@ using UnityEngine.UI;
 public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance;
-    public CanvasGroup fadeCanvasGroup; // Arrastra aquí el panel negro
+    public CanvasGroup fadeCanvasGroup; 
     public float fadeSpeed = 1f;
 
     void Awake() 
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+        if (Instance == null) 
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else 
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Start()
+    {
+        if (fadeCanvasGroup != null)
+        {
+            StartCoroutine(FadeIn());
+        }
     }
 
     public void LoadSceneWithFade(string sceneName)
@@ -39,5 +53,18 @@ public class SceneLoader : MonoBehaviour
             fadeCanvasGroup.alpha -= Time.deltaTime * fadeSpeed;
             yield return null;
         }
+    }
+
+    private IEnumerator FadeIn()
+    {
+        // Fundido desde negro (Alpha 1 -> 0)
+        while (fadeCanvasGroup.alpha > 0)
+        {
+            fadeCanvasGroup.alpha -= Time.deltaTime * fadeSpeed;
+            yield return null;
+        }
+
+        // Permitimos hacer clic de nuevo al terminar
+        fadeCanvasGroup.blocksRaycasts = false;
     }
 }

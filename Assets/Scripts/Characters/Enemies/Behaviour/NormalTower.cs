@@ -15,8 +15,6 @@ public class NormalTower : EnemyBase
     public Transform pointToCatapulte;
     public float delayAttackTowe = 3f;
     private float cronoAttack;
-    private bool isAttaking;
-
     
     protected override void Start()
     {
@@ -31,18 +29,16 @@ public class NormalTower : EnemyBase
     }
 
     protected override void OnWalk(float distance)
-    {
-        if(!isAttaking)
-        {
-            //1.Move to destination
-            transform.position = Vector3.MoveTowards(transform.position, targetDestination, speedWalk * Time.deltaTime);
+    {        
+        //1.Move to destination
+        transform.position = Vector3.MoveTowards(transform.position, targetDestination, speedWalk * Time.deltaTime);
 
-            if(Vector3.Distance(transform.position, targetDestination) < 0.25f)
-            {
-                targetDestination = (targetDestination == initialPosition.position) ? finalPosition.position : initialPosition.position;
-                Flip();
-            }
+        if(Vector3.Distance(transform.position, targetDestination) < 0.25f)
+        {
+            targetDestination = (targetDestination == initialPosition.position) ? finalPosition.position : initialPosition.position;
+            Flip();
         }
+        
 
         //the attack is integrated with the walk to stop some seconds
         if(distance < distanceDetection)
@@ -64,7 +60,6 @@ public class NormalTower : EnemyBase
 
     private void TriggerAttack()
     {
-        isAttaking = true;
         animator.SetTrigger("attack");
         cronoAttack = 0;
     }
@@ -101,8 +96,4 @@ public class NormalTower : EnemyBase
         }
     }
 
-    public void FinishAttack()
-    {
-        isAttaking = false;
-    }
 }

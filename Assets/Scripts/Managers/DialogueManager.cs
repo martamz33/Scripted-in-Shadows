@@ -156,6 +156,31 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void TriggerFantasyBossDeathDialogue(string knotName)
+    {
+        if(GameManager.Instance != null)
+        {
+            GameManager.Instance.FreezePlayer(true);
+
+            int wins = 0;
+
+            if (knotName == "dead_fallenHero") 
+            {
+                wins = GameManager.Instance.victoriesAgainstBossFantasy;
+            }
+            else if (knotName == "dead_Judge") 
+            {
+                wins = GameManager.Instance.victoriesAgainstBossFinal;
+            }
+            story.variablesState["boss_wins"] = wins;
+        }
+
+        onDialogueFinishedCallback = null;
+        story.ChoosePathString(knotName);
+        dialoguePanel.SetActive(true);
+        StartCoroutine(DisplayDialogue());
+    }
+
     private void ParseTags(List<string> tags)
     {
         foreach(string tag in tags)
@@ -177,6 +202,16 @@ public class DialogueManager : MonoBehaviour
             if(tag.Trim() == "START_RUN")
             {
                 willStartRun = true;
+                continue;
+            }
+
+            if (tag.Trim() == "START_BOSS")
+            {
+                bossBase boss = FindObjectOfType<bossBase>();
+                if (boss != null)
+                {
+                    boss.SendMessage("StartCombat", SendMessageOptions.DontRequireReceiver);
+                }
                 continue;
             }
 
@@ -217,7 +252,13 @@ public class DialogueManager : MonoBehaviour
 
     public void ContinueAfterPowerUpChoice(string powerInkID = null)
     {
-        if(powerInkID != null) story.variablesState["poder_elegido"] = powerInkID;
+        if (story != null && isWaitingForChoice)
+        {
+            if(powerInkID != null) 
+            {
+                story.variablesState["poder_elegido"] = powerInkID;
+            }
+        }
 
         isWaitingForChoice = false;
     }

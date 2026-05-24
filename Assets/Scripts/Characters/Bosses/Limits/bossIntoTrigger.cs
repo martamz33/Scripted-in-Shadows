@@ -22,15 +22,30 @@ public class bossIntoTrigger : MonoBehaviour
         if(other.CompareTag("Player") && !initialSequence)
         {
             initialSequence = true;
-            StartCoroutine(CinematicSequence(other.transform));
+            StartCoroutine(CinematicSequence(other.gameObject));
         }
     }
 
-    private IEnumerator CinematicSequence(Transform playerTransform)
+    private IEnumerator CinematicSequence(GameObject playerObject)
     {
+        Transform playerTransform = playerObject.transform;
         toTouchTheTrigger.Invoke();
 
         GameManager.Instance.FreezePlayer(true);
+
+        Rigidbody2D rb = playerObject.GetComponent<Rigidbody2D>();
+        if(rb != null) rb.velocity = Vector2.zero;
+
+        GhostAttack attackScript = playerObject.GetComponent<GhostAttack>();
+        if(attackScript != null) attackScript.CancelAllAttacks();
+
+        Animator animator = playerObject.GetComponent<Animator>();
+        if(animator != null)
+        {
+            animator.SetFloat("Speed", 0f);
+            
+            animator.Play("Idle"); 
+        }
 
         while (Vector2.Distance(playerTransform.position, pointPlayer.position) > 0.05f)
         {
@@ -39,10 +54,13 @@ public class bossIntoTrigger : MonoBehaviour
                 pointPlayer.position, 
                 velocityMovement * Time.deltaTime
             );
+
+            if(animator != null) animator.SetFloat("Speed", 1f);
             yield return null; 
         }
 
         playerTransform.position = pointPlayer.position;
+        if(animator != null) animator.SetFloat("Speed", 0f);
 
         yield return new WaitForSeconds(3f);
 

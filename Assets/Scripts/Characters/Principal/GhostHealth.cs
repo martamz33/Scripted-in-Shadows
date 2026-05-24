@@ -72,6 +72,12 @@ public class GhostHealth : MonoBehaviour, IDamagable
         {
             fillImage.color = healthGradient.Evaluate(1f);
         }
+
+        if (totalHealth <= 0) 
+        {
+            totalHealth = 50; 
+            actualHealth = totalHealth;
+        }
     }
 
     public void Heal(int amount)
@@ -137,7 +143,7 @@ public class GhostHealth : MonoBehaviour, IDamagable
 
     private void UpdateUI()
     {
-        healthSlider.value =actualHealth;
+        healthSlider.value = actualHealth;
 
         healthText.text = actualHealth.ToString() + "/" + totalHealth.ToString();
 
@@ -182,6 +188,10 @@ public class GhostHealth : MonoBehaviour, IDamagable
 
     private void GoToHall()
     {
+        if(GameManager.Instance != null)
+        {
+            GameManager.Instance.abilitySelected = AbilityType.None;
+        }
         SceneManager.LoadScene("Hall");
     }
 

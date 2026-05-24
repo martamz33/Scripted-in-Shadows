@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class bossBase : MonoBehaviour, IDamagable
@@ -24,6 +25,10 @@ public class bossBase : MonoBehaviour, IDamagable
 
     [Header("Canvas Health")]
     public Slider healthSlider;
+
+    [Header("Death Events")]
+    [Tooltip("Eventos que ocurren al ganar la pelea")]
+    public UnityEvent onBossDefeated;
 
     protected virtual void Start()
     {
@@ -95,6 +100,11 @@ public class bossBase : MonoBehaviour, IDamagable
         return attackTaken;
     }
 
+    protected void StartCombat()
+    {
+        currentState = bossStates.Phase1;
+    }
+
     // --- DAMAGE AND PHASE SYSTEM ---
     public virtual void TakeDamage(int damage)
     {
@@ -103,14 +113,24 @@ public class bossBase : MonoBehaviour, IDamagable
         actualHealth -= damage;
 
         UpdateUI();
+        if (actualHealth <= 0)
+        {
+            StartCoroutine(DeadRoutine());
+        }
     }
 
-    protected void Dead()
+    protected IEnumerator DeadRoutine()
     {
         currentState = bossStates.Dead;
         StopAllCoroutines();
         rb.velocity = Vector2.zero;
         animator.SetTrigger("dead");
+        yield return new WaitForSeconds(2f);
+
+        if(onBossDefeated != null) 
+        {
+            onBossDefeated.Invoke();
+        }
     }
 
     // --- VISUAL FUNCITON ---

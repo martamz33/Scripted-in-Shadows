@@ -168,7 +168,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -183,13 +183,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.57148373, y: 1.6920462}
-      - {x: -28.376873, y: 1.6474922}
-      - {x: -28.356153, y: -7.2609353}
+    - - {x: -0.57148373, y: 1.1949615}
+      - {x: -28.05523, y: 1.4428098}
+      - {x: -28.151472, y: -7.0562534}
       - {x: -14.564522, y: -7.24987}
-      - {x: 17.192158, y: -7.2979617}
+      - {x: 17.104439, y: -7.1517596}
       - {x: 17.094713, y: -6.506897}
-      - {x: 17.186893, y: 1.4617472}
+      - {x: 17.011452, y: 1.1985846}
   m_UseDelaunayMesh: 0
 --- !u!4 &32481253
 Transform:
@@ -763,7 +763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c1875059b5bf149afed60f4c2990ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSONAsset: {fileID: 0}
+  inkJSONAsset: {fileID: 4900000, guid: d0cba01267a0cfd4381a00c48e11da27, type: 3}
   levelCanvases:
   - {fileID: 153932461}
   - {fileID: 1009651504}
@@ -1240,7 +1240,7 @@ GameObject:
   - component: {fileID: 646244383}
   m_Layer: 8
   m_Name: FallenHero
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1355,7 +1355,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.095799, y: 6.78, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1730183630}
@@ -1417,10 +1417,49 @@ MonoBehaviour:
   totalHealth: 0
   isAttacking: 0
   healthSlider: {fileID: 1614062261}
+  onBossDefeated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1614062263}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: dead_fallenHero
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 424778074}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: TriggerFantasyBossDeathDialogue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: dead_fallenHero
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1278928566}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: dead_fallenHero
+          m_BoolArgument: 1
+        m_CallState: 2
   prefabWave: {fileID: 6753140563292672069, guid: 8cc11b3e609a76f449847488fa63229a, type: 3}
   prefabSoulsDown: {fileID: 1050635368921865114, guid: 2fe769ce120ee9749964f4e1929f75b8, type: 3}
   prefabSoulsUp: {fileID: 673767391161922354, guid: d503e10c456ff6d47b38990ec2c45363, type: 3}
-  explosionFloor: {fileID: 0}
+  explosionFloor: {fileID: 8928312969619826209, guid: d4f7fff139af71048943a7208a9c9b86, type: 3}
   pointFloor: {fileID: 874946245}
   pointWall: {fileID: 1545948687}
   velocity: 3
@@ -2130,6 +2169,7 @@ Transform:
   - {fileID: 1346229992}
   - {fileID: 250113016}
   - {fileID: 112937039}
+  - {fileID: 1419765146}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1090513901
@@ -3529,6 +3569,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: puertaFin
       objectReference: {fileID: 0}
+    - target: {fileID: 8973548946541921856, guid: ad620eece12781345b65c49ced28a442, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3549,6 +3593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1346229992}
   - component: {fileID: 1346229993}
+  - component: {fileID: 1346229994}
   m_Layer: 0
   m_Name: colliderParaComenzar
   m_TagString: Untagged
@@ -3603,7 +3648,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.2201622, y: -0.35367036}
+  m_Offset: {x: 1.6275406, y: -0.35367036}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3614,8 +3659,76 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.806389, y: 7.6490006}
+  m_Size: {x: 16.398523, y: 7.6490006}
   m_EdgeRadius: 0
+--- !u!114 &1346229994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346229991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a072d07eacebfcc4bbe4a769281685bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointPlayer: {fileID: 1419765146}
+  velocityMovement: 5
+  toTouchTheTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 250113015}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 112937038}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1614062263}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  toFinishDialogue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 424778074}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: TriggerFantasyBossDeathDialogue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: intro_boss
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1372805531
 GameObject:
   m_ObjectHideFlags: 0
@@ -3829,6 +3942,37 @@ Transform:
   - {fileID: 1134768992}
   - {fileID: 1420516287}
   m_Father: {fileID: 1593042899}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1419765145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1419765146}
+  m_Layer: 0
+  m_Name: pointPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1419765146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419765145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.56, y: -3.33, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1040925279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420516286
 GameObject:
@@ -5890,6 +6034,11 @@ MonoBehaviour:
 --- !u!224 &1614062262 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 958148170361996341, guid: 66d663f80b4108a4ea993537a42fc06f, type: 3}
+  m_PrefabInstance: {fileID: 1614062260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1614062263 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2471813362562559640, guid: 66d663f80b4108a4ea993537a42fc06f, type: 3}
   m_PrefabInstance: {fileID: 1614062260}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1617196942

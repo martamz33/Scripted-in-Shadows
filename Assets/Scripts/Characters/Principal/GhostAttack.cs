@@ -149,7 +149,7 @@ public class GhostAttack : MonoBehaviour
 
             // 4. Restauramos gravedad y velocidad
             rg.gravityScale = originalGravity;
-            rg.velocity = new Vector2(originalVelocity.x, 0); // Opcional: frenar al terminar
+            //rg.velocity = new Vector2(originalVelocity.x, 0); // Opcional: frenar al terminar
         }
         else
         {

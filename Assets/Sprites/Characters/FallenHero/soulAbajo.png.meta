@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 520290358e5cccd4d8a74b3ab7eba5b0
+guid: a4c934eee1e801849a48e91f66f60278
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 857312311372029537
-    second: rose_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,22 +97,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rose_0
+      name: soulAbajo_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
+        x: 11
+        y: 76
+        width: 44
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 16e16e44109c5eb00800000000000000
-      internalID: 857312311372029537
+      spriteID: 6cb8f102607371f478ff42d7c364a246
+      internalID: -1549677921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soulAbajo_1
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 52
+        width: 36
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c58713b7305f2fe4fbb674cd5237a418
+      internalID: -1547375351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soulAbajo_2
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 2
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11f9ebf54f11aca4db79ffd7fdcd1991
+      internalID: 1232083287
       vertices: []
       indices: 
       edges: []
@@ -131,7 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rose_0: 857312311372029537
+      soulAbajo_0: -1549677921
+      soulAbajo_1: -1547375351
+      soulAbajo_2: 1232083287
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

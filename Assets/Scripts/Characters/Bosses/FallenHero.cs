@@ -25,6 +25,7 @@ public class FallenHero : bossBase
     private bool isShacking = false;
 
     private float posYOriginal;
+    private float posXOriginal;
     private int variantActualWave = 0;
 
     protected override void Start()
@@ -32,6 +33,7 @@ public class FallenHero : bossBase
         base.Start();
 
         animator = GetComponent<Animator>();
+        posXOriginal = transform.localPosition.x;
         posYOriginal = transform.localPosition.y;
 
         ConfigureStock(new int[] { 0, 1, 2, 3, 4 });
@@ -44,7 +46,25 @@ public class FallenHero : bossBase
         base.Update();
 
         // --- PROCEDURAL ANIMATION ---
-        if(currentState != bossStates.Dead)
+        if (isAttacking)
+        {
+            transform.localRotation = Quaternion.identity;
+            if(!isShacking)
+            {
+               transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+            }
+
+            else 
+            {
+               Vector2 vibration = Random.insideUnitCircle * intensityShaking;
+               transform.localPosition = new Vector3(
+                    posXOriginal + vibration.x,
+                    posYOriginal + vibration.y,
+                    transform.localPosition.z);
+            }
+            return;
+        }
+        else if(currentState != bossStates.Dead && !isAttacking)
         {
             float velocityX = rb.velocity.x;
             Quaternion objectiveRotation = Quaternion.identity;
@@ -82,11 +102,7 @@ public class FallenHero : bossBase
                 transform.localPosition = new Vector3(transform.localPosition.x, actualY, transform.localPosition.z);
             }
         }
-    }
-
-    public void StartCombat()
-    {
-        currentState = bossStates.Phase1;
+        
     }
 
     protected override IEnumerator PatternsPhase1()
@@ -140,6 +156,9 @@ public class FallenHero : bossBase
         SeeThePlayer();
         animator.SetTrigger("phase1Thrust");
 
+        transform.position += new Vector3(0, 0.1f, 0); 
+        rb.gravityScale = 0;
+
         float dirX = transform.localScale.x > 0 ? 1f : -1f;
         rb.velocity = new Vector2(dirX * 8f, 0f);
         yield return new WaitForSeconds(0.3f);
@@ -153,6 +172,7 @@ public class FallenHero : bossBase
         rb.velocity = new Vector2(dirX * 12f, 0f); // Segunda fase más agresiva
         yield return new WaitForSeconds(0.4f);
         rb.velocity = Vector2.zero;
+        rb.gravityScale = 3f;
 
         yield return new WaitForSeconds(0.8f);
     }
@@ -161,6 +181,8 @@ public class FallenHero : bossBase
     {
         SeeThePlayer();
         animator.SetTrigger("nailSword");
+
+        isShacking = true;
         yield return new WaitForSeconds(3.5f);
 
         isShacking = false;
@@ -209,6 +231,8 @@ public class FallenHero : bossBase
                 }
             }
         }
+
+        isShacking = false;
     }
 
     private IEnumerator FallInChopped()
@@ -231,7 +255,10 @@ public class FallenHero : bossBase
             animator.SetTrigger("fallInChopped");
             rb.velocity = new Vector2(0f, -30f);
 
-            yield return new WaitUntil(() => Mathf.Abs(rb.velocity.y) < 0.1f);
+            yield return new WaitForSeconds(0.5f);
+
+            rb.velocity = Vector2.zero;
+            transform.localPosition = new Vector3(transform.localPosition.x, posYOriginal, transform.localPosition.z);
 
             animator.SetTrigger("impactFloor");
             yield return new WaitForSeconds(0.5f);

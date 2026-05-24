@@ -90,11 +90,6 @@ public class Judge : bossBase
         }
     }
 
-    public void StartCombat()
-    {
-        currentState = bossStates.Phase1;
-    }
-
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
@@ -106,7 +101,7 @@ public class Judge : bossBase
         }
         else if(actualHealth <= 0)
         {
-            Dead();
+            StartCoroutine(DeadRoutine());
         }
     }
 

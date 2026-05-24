@@ -30,15 +30,19 @@ public class Elevator : MonoBehaviour
 
                 if(isUsingElevator)
                 {
+                    // Solo activamos lo necesario para el movimiento
                     gm.isMovementActive = false;
                     gm.isOscilationActive = false;
-                    animator.SetFloat("Speed", 0);
-                    animator.SetBool("onElevator", true);
-
                     rg.velocity = new Vector2(0, dir * elevatorSpeed);
 
-                    if(dir > 0.1f) animator.SetInteger("ElevatorDir", 1);
-                    else if(dir < -0.1f) animator.SetInteger("ElevatorDir", 2);
+                    // Solo activamos el bool una vez al entrar o cambiar
+                    if(!animator.GetBool("onElevator")) 
+                    {
+                        animator.SetBool("onElevator", true);
+                    }
+                    
+                    // Control de dirección
+                    animator.SetInteger("ElevatorDir", dir > 0 ? 1 : 2);
                 }
             }
         }

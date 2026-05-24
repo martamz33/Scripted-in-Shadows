@@ -142,6 +142,9 @@ public class UIManager : MonoBehaviour
             int randomIndex = Random.Range(0, poolTemp.Count);
             PowerUpScriptable obtainPowerUp = poolTemp[randomIndex];
 
+            selected.Add(obtainPowerUp);
+            poolTemp.RemoveAt(randomIndex);
+
             if(obtainPowerUp.powerUpName == FantasyPowerUp.IronSkin || obtainPowerUp.powerUpName == FantasyPowerUp.PaperSkin)
             {
                 FantasyPowerUp counterpartType = (obtainPowerUp.powerUpName == FantasyPowerUp.IronSkin)

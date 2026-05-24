@@ -7,25 +7,38 @@ public class inkItem : MonoBehaviour
     public int inkValue = 2;
     private Rigidbody2D rg;
     private Collider2D col;
-    private bool isCollected = false; // Evita que se procese dos veces
+    private bool isCollected = false; 
 
-    void Awake()
+    void Start()
     {
         rg = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+
+        rg.velocity = Vector2.zero;
+        rg.angularVelocity = 0;
+    }
+    private void FixedUpdate() 
+    {
+        if (!rg.isKinematic && Mathf.Abs(rg.velocity.y) < 0.1f)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f);
+            if (hit.collider != null && hit.collider.CompareTag("Ground"))
+            {
+                rg.isKinematic = true;
+                col.isTrigger = true;
+            }
+        }
     }
 
-    // Usamos Collision para el suelo (físico)
     private void OnCollisionEnter2D(Collision2D other) 
     {
         if(other.gameObject.CompareTag("Ground"))
         {
-            rg.isKinematic = true; // Se queda quieto
-            col.isTrigger = true;  // Ahora es atravesable para recogerlo
+            rg.isKinematic = true; 
+            col.isTrigger = true;  
         }
     }
 
-    // Usamos Trigger para el jugador
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.CompareTag("Player") && !isCollected)

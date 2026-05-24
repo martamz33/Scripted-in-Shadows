@@ -907,7 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c7131b3e4e79f4c9ce6d990bfcd882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Hall
+  sceneToLoad: bossFantasy
 --- !u!4 &369580434
 Transform:
   m_ObjectHideFlags: 0
@@ -2116,6 +2116,10 @@ PrefabInstance:
     - target: {fileID: 924824299402971969, guid: 523f894599a90cd448fddc391017e54c, type: 3}
       propertyPath: m_Name
       value: InkCount
+      objectReference: {fileID: 0}
+    - target: {fileID: 924824299402971969, guid: 523f894599a90cd448fddc391017e54c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3564,7 +3568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   genrePublic: 1
-  abilitySelected: 3
+  abilitySelected: 0
   playerCurrentHealth: 0
   lastRoomWasBoss: 0
   enemyDamageMultiplier: 1

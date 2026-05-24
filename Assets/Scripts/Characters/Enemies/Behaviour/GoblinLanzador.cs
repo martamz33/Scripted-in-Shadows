@@ -57,7 +57,7 @@ public class GoblinLanzador : EnemyBase
     {
         if(distance > distanceDetection)
         {
-            currentState = EnemyState.Attack;
+            isAttacking = false;
             currentState = EnemyState.Walk;
             Flip();
             return;

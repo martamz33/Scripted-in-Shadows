@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 73379019381060869}
   - component: {fileID: 8585424321352167046}
   - component: {fileID: 7827093724645451854}
+  - component: {fileID: 5580569684006302962}
   m_Layer: 0
   m_Name: 'InkDestructibleObject '
   m_TagString: DestructibleObject
@@ -237,6 +238,7 @@ MonoBehaviour:
   vfxSpawn: {fileID: 4146204168019441182, guid: 796e73a6299a43345938869deccd71f5, type: 3}
   maxBlows: 4
   vfxBreak: {fileID: 376806411716481662, guid: cd051eddd9fb7574f891ea95379185cd, type: 3}
+  isGrounded: 0
   crackOverlay: {fileID: 320203844297991725}
   withOneBlow: {fileID: 1004205108, guid: 118ae61b6469d4c40ae5efdb38b1ac0c, type: 3}
   withTowBlows: {fileID: 1093997771, guid: 7784a9465fb8b6f4a99a13262edabc26, type: 3}
@@ -244,3 +246,38 @@ MonoBehaviour:
   typeOfTreasure: 0
   inkPickupPrefab: {fileID: 5984518434707500455, guid: 1590c720a4ab0564cb3e39eae0948bc6, type: 3}
   lifePickupPrefab: {fileID: 2435541122438421622, guid: 45b0670992a7b9e498080ca245acecab, type: 3}
+--- !u!70 &5580569684006302962
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5137094851232542606}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.69, y: 2.18}
+  m_Direction: 0

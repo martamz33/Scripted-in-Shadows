@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 520290358e5cccd4d8a74b3ab7eba5b0
+guid: 32735b94029cf9e4a85a1e5618b0bb73
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 857312311372029537
-    second: rose_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,22 +97,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rose_0
+      name: soulArriba_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
+        x: 31
+        y: 77
+        width: 40
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 16e16e44109c5eb00800000000000000
-      internalID: 857312311372029537
+      spriteID: ec43707b22b4f464aa0dab4d36939a6b
+      internalID: -843531659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soulArriba_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 49
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 743ff2ba5f3fb7f419f8c368d13c1685
+      internalID: -1196051898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soulArriba_2
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 10
+        width: 27
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f38dcda478beba94b9beac6aac2dd035
+      internalID: 1789201529
       vertices: []
       indices: 
       edges: []
@@ -131,7 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rose_0: 857312311372029537
+      soulArriba_0: -843531659
+      soulArriba_1: -1196051898
+      soulArriba_2: 1789201529
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
