@@ -65,32 +65,37 @@ public class MapManager : MonoBehaviour
         }
 
         string sceneToLoad = GetRandomNormalLayout();
+        if (string.IsNullOrEmpty(sceneToLoad)) return;
+
         lastLayoutUsed = sceneToLoad;
 
         if (SceneLoader.Instance != null) {
             SceneLoader.Instance.LoadSceneWithFade(sceneToLoad);
         } else {
-            // Fallback por si el loader no está en la escena
             SceneManager.LoadScene(sceneToLoad);
         }
     }
 
     private string GetRandomNormalLayout()
     {
-        if(normalRoomScenes.Count == 0) return "";
+        if(normalRoomScenes.Count == 0)
+        {
+            Debug.LogError("MapManager: normalRoomScenes está vacía. Añade escenas en el Inspector.");
+            return "";
+        }
 
-        // Create the temporal list without the last room
         List<string> availableLayouts = new List<string>();
         foreach(string layout in normalRoomScenes)
         {
             if(layout != lastLayoutUsed)
-            {
                 availableLayouts.Add(layout);
-            }
         }
 
-        int randomIndex = Random.Range(0, availableLayouts.Count);
-        return availableLayouts[randomIndex];
+        // Si solo hay una escena y coincide con la última, úsala igualmente
+        if(availableLayouts.Count == 0)
+            availableLayouts = new List<string>(normalRoomScenes);
+
+        return availableLayouts[Random.Range(0, availableLayouts.Count)];
     }
 
     public List<RoomData> GetNextRoomOptions()

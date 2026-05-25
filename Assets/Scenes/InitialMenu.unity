@@ -907,7 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c7131b3e4e79f4c9ce6d990bfcd882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: bossFantasy
+  sceneToLoad: Hall
 --- !u!4 &369580434
 Transform:
   m_ObjectHideFlags: 0

@@ -132,10 +132,19 @@ public class DialogueManager : MonoBehaviour
 
                 yield return new WaitUntil(() => !isWaitingForChoice);
 
-                dialoguePanel.SetActive(true);
+                if (story.canContinue) {
+                    dialoguePanel.SetActive(true);
+                    string nextText = story.Continue();
+                    ParseTags(story.currentTags);
+                    dialogueText.text = nextText.Trim();
+                } else {
+                    break;
+                }
             }
             else
             {
+                yield return null;
+                yield return new WaitForSeconds(0.1f);
                 yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
             }
 

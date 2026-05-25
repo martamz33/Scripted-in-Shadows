@@ -26,7 +26,7 @@ public class Goblin : EnemyBase
     {
         base.Start();
         currentState = EnemyState.Walk;
-        targetDestination = finalPosition.position;
+        targetDestination = finalPosition != null ? finalPosition.position : transform.position;
     }
 
     protected override void Update()
@@ -42,11 +42,13 @@ public class Goblin : EnemyBase
             return;
         }
 
-        //1.Move to destination
-        transform.position = Vector3.MoveTowards(transform.position, targetDestination, speedWalk * Time.deltaTime);
+        //1.Move to destination (horizontal only, let physics handle Y)
+        float newX = Mathf.MoveTowards(rg.position.x, targetDestination.x, speedWalk * Time.deltaTime);
+        rg.MovePosition(new Vector2(newX, rg.position.y));
 
-        if(Vector3.Distance(transform.position, targetDestination) < 0.25f)
+        if(Mathf.Abs(rg.position.x - targetDestination.x) < 0.25f)
         {
+            if(initialPosition == null || finalPosition == null) return;
             targetDestination = (targetDestination == initialPosition.position) ? finalPosition.position : initialPosition.position;
             Flip();
         }
@@ -65,8 +67,8 @@ public class Goblin : EnemyBase
 
         if(distance > attackRange && !isAttaking)
         {
-            Vector3 targetPos = new Vector3(player.position.x, transform.position.y, transform.position.z);
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, chaseSpeed * Time.deltaTime);
+            float newX = Mathf.MoveTowards(rg.position.x, player.position.x, chaseSpeed * Time.deltaTime);
+            rg.MovePosition(new Vector2(newX, rg.position.y));
         }
         else if(distance <= attackRange && !isAttaking && Time.time >= lastAttackTime + attackCooldown)
         {

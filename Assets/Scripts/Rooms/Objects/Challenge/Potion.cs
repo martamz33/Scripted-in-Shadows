@@ -53,16 +53,10 @@ public class Potion : MonoBehaviour
 
             // 4. CAMBIO AQUÍ: Desactivamos el objeto en lugar de destruirlo de golpe
             // O, si quieres destruir, espera a que la partícula termine:
-            ps.transform.parent = null;
-            damageArea.transform.parent = null;
-            ps.Play();
+           float destroyTime = (ps != null) ? ps.main.duration : 2f;
             
             // 2. Destruimos el objeto de la poción inmediatamente
-            Destroy(gameObject);
-            
-            // 3. Destruimos las partículas cuando terminen
-            Destroy(ps.gameObject, ps.main.duration);
-            Destroy(damageArea.gameObject, ps.main.duration);
+            Destroy(gameObject, destroyTime);
         }
     }
 }

@@ -37,34 +37,47 @@ public class SceneLoader : MonoBehaviour
 
     private IEnumerator FadeAndLoad(string sceneName)
     {
+        fadeCanvasGroup.blocksRaycasts = true;
         // 1. Fundido a negro (Alpha 0 -> 1)
         while (fadeCanvasGroup.alpha < 1)
         {
-            fadeCanvasGroup.alpha += Time.deltaTime * fadeSpeed;
+            fadeCanvasGroup.alpha += Time.unscaledDeltaTime * fadeSpeed;
             yield return null;
         }
+        fadeCanvasGroup.alpha = 1;
 
         // 2. Cargar la escena
-        SceneManager.LoadScene(sceneName);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!operation.isDone)
+        {
+            yield return null;
+        }
 
         // 3. Fundido desde negro (Alpha 1 -> 0)
         while (fadeCanvasGroup.alpha > 0)
         {
-            fadeCanvasGroup.alpha -= Time.deltaTime * fadeSpeed;
+            fadeCanvasGroup.alpha -= Time.unscaledDeltaTime * fadeSpeed;
             yield return null;
         }
+
+        fadeCanvasGroup.alpha = 0;
+        fadeCanvasGroup.blocksRaycasts = false;
     }
 
     private IEnumerator FadeIn()
     {
+        fadeCanvasGroup.blocksRaycasts = true;
+        fadeCanvasGroup.alpha = 1;
         // Fundido desde negro (Alpha 1 -> 0)
         while (fadeCanvasGroup.alpha > 0)
         {
-            fadeCanvasGroup.alpha -= Time.deltaTime * fadeSpeed;
+            fadeCanvasGroup.alpha -= Time.unscaledDeltaTime * fadeSpeed;
             yield return null;
         }
 
         // Permitimos hacer clic de nuevo al terminar
+        fadeCanvasGroup.alpha = 0;
         fadeCanvasGroup.blocksRaycasts = false;
     }
 }

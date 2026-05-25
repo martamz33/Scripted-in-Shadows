@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2908560405294470585}
   - component: {fileID: 7648902570838499970}
   - component: {fileID: 1349909706817811018}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: borroteSuelo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

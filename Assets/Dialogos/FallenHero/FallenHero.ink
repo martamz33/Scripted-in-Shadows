@@ -1,18 +1,22 @@
 // Variable que recibirá el valor desde el GameManager en Unity
 VAR boss_wins = 0
 
+-> intro_boss
+
 === intro_boss ===
-#canvas:Fantasy #speaker:Fallen Hero #icon:fallenHero_normal
+#canvas:Fantasy #speaker:Fallen_Hero #icon:fallenHero_normal
 No te la llevarás.
 
-#speaker:Fantasma #icon:confundido
+#speaker:Fantasma #icon:fantasma_confundido
 ¿Eh?
 
 # START_BOSS
 -> END
 
+-> dead_fallenHero
+
 === dead_fallenHero ===
-#speaker:Fallen Hero
+#speaker:Fallen_Hero #icon:fallenHero_nostalgic
 {
     - boss_wins == 0:
         Te veo firme en tu causa…

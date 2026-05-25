@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4594058779304168068}
   - component: {fileID: 1515046063339766160}
   - component: {fileID: 2579950062779795646}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: waveFallenHero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
