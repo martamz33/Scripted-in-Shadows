@@ -16,6 +16,7 @@ public class Dwarf : EnemyBase
     public ParticleSystem dustParticles;
 
     private bool isAttacking;
+    private Rigidbody2D rb;
     private Collider2D colDwarf;
     private Collider2D colBall;
 
@@ -23,6 +24,7 @@ public class Dwarf : EnemyBase
     {
         base.Start();
         currentState = EnemyState.Idle;
+        rb = GetComponent<Rigidbody2D>();
         colDwarf = GetComponent<Collider2D>();
         colBall = transform.Find("ColliderBall").GetComponent<Collider2D>();
 
@@ -68,13 +70,18 @@ public class Dwarf : EnemyBase
     {
         isAttacking = true;
 
-        float groundY = transform.position.y;
-        
         animator.SetTrigger("transformToBall");
         yield return new WaitForSeconds(0.5f);
 
         colDwarf.enabled = false;
         colBall.enabled = true;
+
+        // Asegurarnos de que usa físicas dinámicas
+        if(rb != null) 
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.gravityScale = 1f;
+        }
 
         for(int i = 0; i< 3; i++)
         {
@@ -87,24 +94,18 @@ public class Dwarf : EnemyBase
             float timer = 0;
             while(timer < dashDuration)
             {
-                Vector3 nextPosition = transform.position + (attackDir * rollSpeed * Time.deltaTime);
-                
-                RaycastHit2D hit= Physics2D.Raycast(transform.position, Vector2.down, 1.5f, LayerMask.GetMask("ground"));
-
-                if(hit.collider != null)
+                // USAMOS RIGIDBODY EN VEZ DE TRANSFORM (Así chocará con paredes y jugador)
+                if(rb != null)
                 {
-                    nextPosition.y = hit.point.y + 0.5f;
-                }
-                else
-                {
-                    nextPosition.y -= 9.8f * Time.deltaTime;
+                    rb.velocity = new Vector2(attackDir.x * rollSpeed, rb.velocity.y);
                 }
                 
-                transform.position = nextPosition;
-                timer+= Time.deltaTime;
-                groundY = nextPosition.y;
+                timer += Time.deltaTime;
                 yield return null;
             }
+            
+            // Frenar al terminar el dash
+            if(rb != null) rb.velocity = new Vector2(0, rb.velocity.y);
 
             if(dustParticles!=null) dustParticles.Stop();
 
@@ -116,10 +117,9 @@ public class Dwarf : EnemyBase
 
         if(dustParticles!=null) dustParticles.Stop();
 
-        transform.position = new Vector3(transform.position.x, groundY, 0);
-
         colDwarf.enabled = true;
         colBall.enabled = false;
+        
         yield return new WaitForSeconds(coolDownAfterAttack);
 
         isAttacking = false;

@@ -55,6 +55,13 @@ public class ShopManager : MonoBehaviour
         this.iconImages = icons;
         this.inkIcon = inks;
         this.sellPoster = posters;
+
+        for (int i = 0; i < bookmarkButtons.Length; i++)
+        {
+            int index = i; // Capturamos el índice para el evento
+            bookmarkButtons[i].onClick.RemoveAllListeners(); // Limpiamos anteriores
+            bookmarkButtons[i].onClick.AddListener(() => BuyItem(index));
+        }
     }
 
     public void GenerateShopItems()

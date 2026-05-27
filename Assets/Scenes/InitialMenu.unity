@@ -907,7 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c7131b3e4e79f4c9ce6d990bfcd882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Hall
+  sceneToLoad: RetoEnemies1
 --- !u!4 &369580434
 Transform:
   m_ObjectHideFlags: 0
@@ -2936,7 +2936,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopCanvas: {fileID: 0}
-  allBookmarksAvailable: []
+  allBookmarksAvailable:
+  - {fileID: 11400000, guid: ab0e9299b417c0a4bbd97dbe962a3ce1, type: 2}
+  - {fileID: 11400000, guid: f828a3952e12b2f4fbe340b505e69844, type: 2}
+  - {fileID: 11400000, guid: a084ca8a327ec3041958118b3ebc2f1f, type: 2}
+  - {fileID: 11400000, guid: 917fc3ae515ba48438e721007c6ec9d7, type: 2}
   bookmarkButtons: []
   priceTexts: []
   iconImages: []

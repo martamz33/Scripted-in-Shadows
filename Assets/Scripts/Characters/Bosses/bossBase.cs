@@ -15,6 +15,9 @@ public class bossBase : MonoBehaviour, IDamagable
     public int totalHealth;
     public bool isAttacking = false;
 
+    [Header("Weapon Collider")]
+    public Collider2D weaponCollider;
+
     protected Animator animator;
     protected Rigidbody2D rb;
     protected Transform player;
@@ -112,6 +115,8 @@ public class bossBase : MonoBehaviour, IDamagable
 
         actualHealth -= damage;
 
+        if (actualHealth < 0) actualHealth = 0;
+
         UpdateUI();
         if (actualHealth <= 0)
         {
@@ -131,6 +136,16 @@ public class bossBase : MonoBehaviour, IDamagable
         {
             onBossDefeated.Invoke();
         }
+    }
+
+    public void EnableWeaponCollider()
+    {
+        if(weaponCollider != null) weaponCollider.enabled = true;
+    }
+
+    public void DisableWeaponCollider()
+    {
+        if(weaponCollider != null) weaponCollider.enabled = false;
     }
 
     // --- VISUAL FUNCITON ---

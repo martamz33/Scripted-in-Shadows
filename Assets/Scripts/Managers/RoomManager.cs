@@ -78,7 +78,6 @@ public class RoomManager : MonoBehaviour
                 );
                 
                 // Generamos la tienda
-                ShopManager.Instance.GenerateShopItems();
             }
         }
     }
