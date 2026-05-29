@@ -194,8 +194,13 @@ MonoBehaviour:
   PrefabInk: {fileID: 2239419005122594232, guid: 27b13c9f469c9be4d9fdf69208e961a5, type: 3}
   quantityOfInk: 2
   forceOfExplosion: 5
+  healthPrefab: {fileID: 2435541122438421622, guid: 45b0670992a7b9e498080ca245acecab, type: 3}
+  healthDropChance: 0.2
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.15
   currentState: 0
   isFlying: 1
+  isLogicActive: 1
   amplitude: 0.5
   velocity: 2
   prefabMagic: {fileID: 7679343401965871653, guid: 4daff8f8b7525cc40ab831864e66e592, type: 3}

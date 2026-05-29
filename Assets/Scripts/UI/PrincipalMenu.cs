@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class PrincipalMenu : MonoBehaviour
 {
     public string sceneToLoad;
+    public GameObject statsPanel;
+    public GameObject optionsPanel; 
+
     // Function to New Game
     public void NewGame()
     {
@@ -23,5 +26,39 @@ public class PrincipalMenu : MonoBehaviour
         Debug.Log("Going out the game");
 
         Application.Quit();
+    }
+
+    public void OpenStatsPanel()
+    {
+        statsPanel.SetActive(true);
+    }
+
+    public void OpenOptions()
+    {
+        if(optionsPanel != null)
+        {
+            optionsPanel.SetActive(true);
+        }
+    }
+
+    public void CloseOptions()
+    {
+        if(optionsPanel != null)
+        {
+            optionsPanel.SetActive(false);
+        }
+    }
+
+    public void ReturnToMainMenu()
+    {
+        if(statsPanel.activeSelf)
+        {
+            statsPanel.SetActive(false);
+        }
+        
+        if(optionsPanel.activeSelf)
+        {
+            optionsPanel.SetActive(false);
+        }
     }
 }

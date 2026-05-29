@@ -41,6 +41,8 @@ public abstract class EnemyBase : MonoBehaviour
     protected Animator animator;
     protected Transform player;
     protected Rigidbody2D rg;    
+
+    public bool isLogicActive = true;
     
     // Variables internas para el parpadeo
     protected SpriteRenderer[] spriteRenderers;
@@ -72,7 +74,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(player == null) return;
+        if(!isLogicActive ||player == null) return;
 
         float distance = Vector3.Distance(transform.position, player.position);
         HandleStateMachine(distance);
@@ -94,6 +96,8 @@ public abstract class EnemyBase : MonoBehaviour
     protected abstract void OnAttack(float distance);
     protected virtual void OnFly(float distance) {}
     protected virtual void OnTeleport(float distance) {}
+
+    public virtual void SetPatrolPoints(Transform initial, Transform final) {}
     
     public virtual void TakeDamage(int damage)
     {

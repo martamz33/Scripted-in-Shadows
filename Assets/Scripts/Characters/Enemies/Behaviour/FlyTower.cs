@@ -37,6 +37,13 @@ public class FlyTower : EnemyBase
         sprite = GetComponent<SpriteRenderer>();
     }
 
+    public override void SetPatrolPoints(Transform initial, Transform final)
+    {
+        initialPoint = initial;
+        finalPoint = final;
+        patrolTarget = initial;
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -63,6 +70,12 @@ public class FlyTower : EnemyBase
 
     protected override void OnAttack(float distance)
     {
+        if(distance < 0.6f)
+        {
+            explode();
+            return;
+        }
+
         Vector3 direction = (player.position - transform.position).normalized;
         transform.position += direction * chaseSpeed * Time.deltaTime;
 

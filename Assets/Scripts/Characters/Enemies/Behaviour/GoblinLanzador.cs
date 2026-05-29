@@ -27,7 +27,15 @@ public class GoblinLanzador : EnemyBase
     {
         base.Start();
         currentState = EnemyState.Walk;
-        targetDestination = finalPosition.position;
+        targetDestination = finalPosition != null ? finalPosition.position : transform.position;
+        cronoAttack = cooldownAttack;
+    }
+
+    public override void SetPatrolPoints(Transform initial, Transform final)
+    {
+        initialPosition = initial;
+        finalPosition = final;
+        targetDestination = final.position;
     }
 
     protected override void Update()
@@ -66,6 +74,7 @@ public class GoblinLanzador : EnemyBase
         if(!isAttacking)
         {
             LookAtThePlayer();
+            cronoAttack += Time.deltaTime;
 
             float waitTime = (currentShots >= shotBurst) ? cooldownAttack : timeBetweenShots;
 

@@ -28,8 +28,16 @@ public class troll : EnemyBase
         base.Start();
         currentState = EnemyState.Walk;
         targetDestination = finalPosition != null ? finalPosition.position : transform.position;
+        lastAttackTime = -attackCooldown;
 
         if(weaponCol != null) weaponCol.enabled = false;
+    }
+
+    public override void SetPatrolPoints(Transform initial, Transform final)
+    {
+        initialPosition = initial;
+        finalPosition = final;
+        targetDestination = final.position;
     }
 
     protected override void Update()

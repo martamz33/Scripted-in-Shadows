@@ -9,6 +9,7 @@ public class Dwarf : EnemyBase
     public float dashDuration = 0.5f;
     public float waitBetweenDashes = 0.3f;
     public float coolDownAfterAttack = 2f;
+    public LayerMask groundLayer;
 
     public bool IsAttacking => isAttacking;
 
@@ -73,7 +74,6 @@ public class Dwarf : EnemyBase
         animator.SetTrigger("transformToBall");
         yield return new WaitForSeconds(0.5f);
 
-        colDwarf.enabled = false;
         colBall.enabled = true;
 
         // Asegurarnos de que usa físicas dinámicas
@@ -85,21 +85,14 @@ public class Dwarf : EnemyBase
 
         for(int i = 0; i< 3; i++)
         {
-            Vector3 targetDirection = (player.position - transform.position);
-            Vector3 attackDir = new Vector3(targetDirection.x, 0, 0).normalized;
-            Flip(attackDir.x);
-
-            if(dustParticles !=null) dustParticles.Play();
+            Vector3 targetDirection = (player.position - transform.position).normalized;
+            float dirX = targetDirection.x > 0 ? 1 : -1;
+            Flip(dirX);
 
             float timer = 0;
             while(timer < dashDuration)
             {
-                // USAMOS RIGIDBODY EN VEZ DE TRANSFORM (Así chocará con paredes y jugador)
-                if(rb != null)
-                {
-                    rb.velocity = new Vector2(attackDir.x * rollSpeed, rb.velocity.y);
-                }
-                
+                rb.velocity = new Vector2(dirX * rollSpeed, rb.velocity.y);
                 timer += Time.deltaTime;
                 yield return null;
             }
@@ -117,7 +110,6 @@ public class Dwarf : EnemyBase
 
         if(dustParticles!=null) dustParticles.Stop();
 
-        colDwarf.enabled = true;
         colBall.enabled = false;
         
         yield return new WaitForSeconds(coolDownAfterAttack);

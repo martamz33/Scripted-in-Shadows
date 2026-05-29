@@ -53,6 +53,7 @@ public class ArenaManager : MonoBehaviour
     private bool isSpawning = false;
 
     private List<GameObject> activeEnemies = new List<GameObject>();
+    private Dictionary<Transform, int> spawnPointCounters = new Dictionary<Transform, int>();
 
     void Update()
     {
@@ -60,7 +61,7 @@ public class ArenaManager : MonoBehaviour
         {
             activeEnemies.RemoveAll(enemy => enemy == null);
 
-            if (activeEnemies.Count == 0)
+            if (activeEnemies.Count == 0 && currentWaveIndex < waves.Length)
             {
                 StartNextWave();
             }
@@ -101,9 +102,18 @@ public class ArenaManager : MonoBehaviour
 
             if (compatibleZone != null)
             {
-                // 1. AUMENTAMOS el desvío a 2 metros para que no nazcan fusionados y se apilen
-                Vector3 randomOffset = new Vector3(Random.Range(-2f, 2f), 0, 0);
-                Vector3 finalSpawnPos = compatibleZone.spawnPoint.position + randomOffset;
+                // Spawn dentro de la zona de patrulla para no entrar en paredes
+                Vector3 finalSpawnPos;
+                if(compatibleZone.patrolPointA != null && compatibleZone.patrolPointB != null)
+                {
+                    float minX = Mathf.Min(compatibleZone.patrolPointA.position.x, compatibleZone.patrolPointB.position.x);
+                    float maxX = Mathf.Max(compatibleZone.patrolPointA.position.x, compatibleZone.patrolPointB.position.x);
+                    finalSpawnPos = new Vector3(Random.Range(minX, maxX), compatibleZone.spawnPoint.position.y, 0);
+                }
+                else
+                {
+                    finalSpawnPos = compatibleZone.spawnPoint.position + new Vector3(Random.Range(-0.5f, 0.5f), 0, 0);
+                }
 
                 // 2. Instanciar VFX
                 if(chosenEnemyInfo.individualSpawnVFX != null)
@@ -135,6 +145,7 @@ public class ArenaManager : MonoBehaviour
                     }
                 }
 
+                IgnoreEnemyCollisions(spawnedEnemy);
                 activeEnemies.Add(spawnedEnemy);
             }
             else
@@ -162,7 +173,7 @@ public class ArenaManager : MonoBehaviour
             yield break; 
         }
 
-        if (enemyScript != null) enemyScript.enabled = false;
+        if (enemyScript != null) enemyScript.isLogicActive = false;
 
         Collider2D enemyCollider = enemy.GetComponentInChildren<Collider2D>();
         foreach(var col in enemy.GetComponentsInChildren<Collider2D>())
@@ -195,17 +206,36 @@ public class ArenaManager : MonoBehaviour
         {
             if (rb != null)
             {
-                rb.velocity = Vector2.zero; 
-                rb.bodyType = RigidbodyType2D.Dynamic; 
-                rb.gravityScale = 1f; 
-                rb.constraints = RigidbodyConstraints2D.FreezeRotation; 
-
-                enemy.layer = LayerMask.NameToLayer("Ignore Raycast");
+                rb.velocity = Vector2.zero;
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                rb.gravityScale = 1f;
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
-            
-            if (enemyScript != null) enemyScript.enabled = true; 
-            
+
             TryAssignPatrol(enemy, az);
+            if (enemyScript != null)
+            {
+                if(enemyScript.currentState == EnemyState.Walk)
+                {
+                    enemyScript.currentState = EnemyState.Attack;
+                    // En arena las puertas están cerradas, el jugador no escapa:
+                    // detección infinita para que no vuelvan a Walk por estar lejos
+                    enemyScript.distanceDetection = 9999f;
+                }
+                enemyScript.isLogicActive = true;
+            }
+        }
+    }
+
+    private void IgnoreEnemyCollisions(GameObject newEnemy)
+    {
+        Collider2D[] newCols = newEnemy.GetComponentsInChildren<Collider2D>();
+        foreach(GameObject existing in activeEnemies)
+        {
+            if(existing == null) continue;
+            foreach(Collider2D nc in newCols)
+                foreach(Collider2D ec in existing.GetComponentsInChildren<Collider2D>())
+                    Physics2D.IgnoreCollision(nc, ec, true);
         }
     }
 
@@ -233,40 +263,7 @@ public class ArenaManager : MonoBehaviour
     {
         if(az.patrolPointA == null || az.patrolPointB == null) return;
 
-        troll t = element.GetComponent<troll>();
-        if(t != null)
-        {
-            t.initialPosition = az.patrolPointA;
-            t.finalPosition = az.patrolPointB;
-        }
-
-        Goblin g = element.GetComponent<Goblin>();
-        if(g!= null)
-        {
-            g.initialPosition = az.patrolPointA;
-            g.finalPosition = az.patrolPointB;
-        }
-
-        GoblinLanzador gl = element.GetComponent<GoblinLanzador>();
-        if(gl!= null)
-        {
-            gl.initialPosition = az.patrolPointA;
-            gl.finalPosition = az.patrolPointB;
-        }
-
-        FlyTower ft = element.GetComponent<FlyTower>();
-        if(ft!= null)
-        {
-            ft.initialPoint = az.patrolPointA;
-            ft.finalPoint = az.patrolPointB;
-        }
-
-        NormalTower nt = element.GetComponent<NormalTower>();
-        if(nt!= null)
-        {
-            nt.initialPosition = az.patrolPointA;
-            nt.finalPosition = az.patrolPointB;
-        }
+        element.GetComponent<EnemyBase>()?.SetPatrolPoints(az.patrolPointA, az.patrolPointB);
     }
 
     private void FinishArena()

@@ -10,6 +10,7 @@ public class laserOrb : MonoBehaviour
     public float maxDistance = 8f;
     public float prepareTime = 0.5f;
     public float laserDuration = 0.3f;
+    public float lineWidth = 0.05f;
     public LayerMask hitLayers;
 
     [Header("VFX")]
@@ -60,6 +61,8 @@ public class laserOrb : MonoBehaviour
         hasFired = true;
 
         lineRenderer.enabled = true;
+        lineRenderer.startWidth = lineWidth;
+        lineRenderer.endWidth = lineWidth;
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, pointToCreateLaser.position);
 

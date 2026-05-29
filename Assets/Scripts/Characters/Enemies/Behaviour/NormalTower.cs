@@ -23,6 +23,13 @@ public class NormalTower : EnemyBase
         currentState = EnemyState.Walk;
     }
 
+    public override void SetPatrolPoints(Transform initial, Transform final)
+    {
+        initialPosition = initial;
+        finalPosition = final;
+        targetDestination = final.position;
+    }
+
     protected override void Update()
     {
         base.Update();

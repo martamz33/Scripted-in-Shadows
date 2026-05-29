@@ -5020,6 +5020,7 @@ MonoBehaviour:
   flashDuration: 0.15
   currentState: 0
   isFlying: 1
+  isLogicActive: 1
   initialPoint: {fileID: 0}
   finalPoint: {fileID: 0}
   patrolSpeed: 4
@@ -5027,7 +5028,7 @@ MonoBehaviour:
   detectionRange: 7
   explosionRadious: 3
   explosionEffect: {fileID: 2607625297571034221, guid: 7038feddb658d2842bf6badfeecd0384, type: 3}
-  particlesSystemEffect: {fileID: 0}
+  particlesSystemEffect: {fileID: 6789032502888645561}
   towerType: 0
   rotationSpeed: 5
   rotationOffset: -90

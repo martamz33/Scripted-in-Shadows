@@ -26,7 +26,15 @@ public class Goblin : EnemyBase
     {
         base.Start();
         currentState = EnemyState.Walk;
-        targetDestination = finalPosition != null ? finalPosition.position : transform.position;
+        targetDestination = (finalPosition != null) ? finalPosition.position : transform.position;
+        lastAttackTime = -attackCooldown;
+    }
+
+    public override void SetPatrolPoints(Transform initial, Transform final)
+    {
+        initialPosition = initial;
+        finalPosition = final;
+        targetDestination = final.position;
     }
 
     protected override void Update()
@@ -56,16 +64,17 @@ public class Goblin : EnemyBase
     
     protected override void OnAttack(float distance)
     {
-        if(distance > distanceDetection && !isAttaking)
+        if(distance > distanceDetection  && !isAttaking)
         {
             currentState = EnemyState.Walk;
+            targetDestination = (initialPosition != null) ? initialPosition.position : transform.position;
             Flip();
             return;
         }
 
         LookAtThePlayer();
 
-        if(distance > attackRange && !isAttaking)
+        if(distance > attackRange)
         {
             float newX = Mathf.MoveTowards(rg.position.x, player.position.x, chaseSpeed * Time.deltaTime);
             rg.MovePosition(new Vector2(newX, rg.position.y));

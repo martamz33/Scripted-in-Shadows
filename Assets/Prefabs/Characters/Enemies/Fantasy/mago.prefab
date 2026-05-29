@@ -204,8 +204,13 @@ MonoBehaviour:
   PrefabInk: {fileID: 2239419005122594232, guid: 27b13c9f469c9be4d9fdf69208e961a5, type: 3}
   quantityOfInk: 2
   forceOfExplosion: 5
+  healthPrefab: {fileID: 2435541122438421622, guid: 45b0670992a7b9e498080ca245acecab, type: 3}
+  healthDropChance: 0.2
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.15
   currentState: 0
   isFlying: 0
+  isLogicActive: 1
   orbPrefabExplosion: {fileID: 8773433076595909540, guid: 2901a73f2e4b84f45b2abab86834b8c0, type: 3}
   orbPrefabLaser: {fileID: 4336402804140843159, guid: 6bf27e6d388e835459987ed779fa9952, type: 3}
   pointToCreateOrb: {fileID: 5516730289588952776}

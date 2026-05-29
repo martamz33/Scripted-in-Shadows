@@ -20,10 +20,10 @@ public class DaggerGoblin : MonoBehaviour
 
         if(player!=null)
         {
-            float dirX = (player.transform.position.x > transform.position.x) ? 1f : -1f;
+            bool lookRight = player.transform.position.x > transform.position.x;
 
-            targetDirection = new Vector3(dirX, 0, 0);
-            float angle =(dirX > 180) ? 0 : 180;
+            targetDirection = lookRight ? Vector3.right : Vector3.left;
+            float angle = lookRight ? 0 : 180;
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
         else
