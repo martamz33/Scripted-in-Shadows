@@ -1,0 +1,1 @@
+﻿{"inkVersion":21,"root":[[["done",{"#f":5,"#n":"g-0"}],null],"done",{"intro_judgement":["#","^canvas:Judgement","/#",["ev",{"VAR?":"boss_wins"},0,"==","/ev",{"->":".^.b","c":true},{"b":["\n",{"->":".^.^.^.4"},null]}],"nop","\n",{"#f":1}],"global decl":["ev",0,{"VAR=":"boss_wins"},"/ev","end",null],"#f":1}],"listDefs":{}}

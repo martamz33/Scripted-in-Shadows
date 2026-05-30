@@ -9,6 +9,7 @@ public class projectileBoss : MonoBehaviour
     public modeMovementProjectileBoss modeMovement = modeMovementProjectileBoss.Lineal;
 
     public float velocity = 10f;
+    public float directionX = 1f;
     public int baseDamage = 10;
     public int finalDamage;
     public float timeOfLife;
@@ -35,9 +36,7 @@ public class projectileBoss : MonoBehaviour
         if(modeMovement == modeMovementProjectileBoss.Lineal)
         {
             rg.gravityScale = 0f;
-
-            float direccionX = Mathf.Sign(transform.localScale.x);
-            rg.velocity = new Vector2(direccionX * velocity, 0f);
+            rg.velocity = new Vector2(directionX * velocity, 0f);
         }
         else if(modeMovement == modeMovementProjectileBoss.Physics_Gravity)
         {
@@ -61,6 +60,9 @@ public class projectileBoss : MonoBehaviour
     {
         if(collideObject.CompareTag("Player"))
         {
+            GhostHealth health = collideObject.GetComponent<GhostHealth>();
+            if(health != null) health.TakeDamage(finalDamage);
+
             if(destroyWhenCollidesWithPlayer)
                 DestroyProjectile();
         }

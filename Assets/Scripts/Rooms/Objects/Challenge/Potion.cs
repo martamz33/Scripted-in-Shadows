@@ -48,15 +48,23 @@ public class Potion : MonoBehaviour
             if(mainCollider != null) mainCollider.enabled = false;
 
             // 3. Activar VFX y Daño
-            if(ps != null) ps.Play();
+            if(ps != null) 
+            {
+                ps.gameObject.SetActive(true); // Asegúrate de que esté activo
+                ps.Play();
+            }
             if(damageArea != null) damageArea.enabled = true;
 
             // 4. CAMBIO AQUÍ: Desactivamos el objeto en lugar de destruirlo de golpe
             // O, si quieres destruir, espera a que la partícula termine:
-           float destroyTime = (ps != null) ? ps.main.duration : 2f;
-            
-            // 2. Destruimos el objeto de la poción inmediatamente
-            Destroy(gameObject, destroyTime);
+           StartCoroutine(DestroyAfterEffect());
         }
+    }
+
+    private IEnumerator DestroyAfterEffect()
+    {
+        float duration = (ps != null) ? ps.main.duration : 2f;
+        yield return new WaitForSeconds(duration);
+        Destroy(gameObject);
     }
 }

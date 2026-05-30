@@ -162,9 +162,10 @@ MonoBehaviour:
   maxDistance: 8
   prepareTime: 0.5
   laserDuration: 0.3
+  lineWidth: 0.05
   hitLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2048
   impactEffects: {fileID: 2669454228298537614, guid: 07c6b06f9aa8f1647b5d12d6123183c5, type: 3}
 --- !u!120 &3079550927510940023
 LineRenderer:

@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - DestructibleObject
   - CameraLimits
+  - Boss
   layers:
   - Default
   - TransparentFX

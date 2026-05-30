@@ -75,7 +75,14 @@ public class Judge : bossBase
     {
         base.Update();
 
-        if(!isAttacking)
+        if(!isAttacking && currentState != bossStates.Waiting && player != null)
+        {
+            // 1. Movimiento suave hacia el jugador (solo eje X)
+            float speed = 2f; // Ajusta esta velocidad
+            Vector3 targetPos = new Vector3(player.position.x, transform.position.y, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        }
+        else if(!isAttacking)
         {
             float nuevoY = Mathf.Sin(Time.time * floatVelocity) * floatHeight;
         
@@ -327,15 +334,28 @@ public class Judge : bossBase
 
     public void Event_InstantiateThoughHammerL()
     {
-        Instantiate(prefabLittleHammer, ThroughPoint.position, Quaternion.identity);
+        GameObject hammer = Instantiate(prefabLittleHammer, ThroughPoint.position, Quaternion.identity);
+        projectileBoss proj = hammer.GetComponent<projectileBoss>();
+        if(proj != null) proj.directionX = Mathf.Sign(transform.localScale.x);
     }
 
     public void Event_InstantiateThoughHammerB()
     {
         GameObject bigHammer = Instantiate(prefabBigHammer, ThroughPoint.position, Quaternion.identity);
+    
+        // Calcular dirección real hacia el jugador
+        Vector2 direction = (player.position - ThroughPoint.position).normalized;
+        
+        // Aplicar fuerza en esa dirección
+        Rigidbody2D rbHammer = bigHammer.GetComponent<Rigidbody2D>();
+        if(rbHammer != null)
+        {
+            rbHammer.AddForce(direction * 10f, ForceMode2D.Impulse);
             
-        float directionX = transform.localScale.x > 0 ? 1f :-1f;
-        bigHammer.GetComponent<Rigidbody2D>().AddForce(new Vector2(directionX* 10f, 5f), ForceMode2D.Impulse);
+            // Opcional: rotar el martillo para que mire al jugador
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            bigHammer.transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
 
     // --- COROUTINES PHASE 2 ---

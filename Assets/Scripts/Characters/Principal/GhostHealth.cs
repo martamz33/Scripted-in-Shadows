@@ -46,6 +46,7 @@ public class GhostHealth : MonoBehaviour, IDamagable
 
         animator = GetComponent<Animator>();
         animator.SetBool("isAlive", true);
+        isInvulnerable = false;
         actualHealth = totalHealth;
         if (SceneManager.GetActiveScene().name == "Hall") 
         {
@@ -138,34 +139,28 @@ public class GhostHealth : MonoBehaviour, IDamagable
 
     private void UpdateMaxHealthUI()
     {
-        healthSlider.maxValue = totalHealth;
+        if(healthSlider != null) healthSlider.maxValue = totalHealth;
     }
 
     private void UpdateUI()
     {
-        healthSlider.value = actualHealth;
-
-        healthText.text = actualHealth.ToString() + "/" + totalHealth.ToString();
+        if(healthSlider != null) healthSlider.value = actualHealth;
+        if(healthText != null) healthText.text = actualHealth.ToString() + "/" + totalHealth.ToString();
 
         float percentageHealh = (float)actualHealth / totalHealth;
 
-        fillImage.color = healthGradient.Evaluate(percentageHealh);
-        
-        if(percentageHealh  > 0.75f)
+        if(fillImage != null) fillImage.color = healthGradient.Evaluate(percentageHealh);
+
+        if(healthPortrait != null)
         {
-            healthPortrait.sprite = ghostImage100;
-        }
-        else if(percentageHealh  > 0.5f)
-        {
-            healthPortrait.sprite = ghostImage75;
-        }
-        else if(percentageHealh  > 0.25f)
-        {
-            healthPortrait.sprite = ghostImage50;
-        }
-        else
-        {
-            healthPortrait.sprite = ghostImage25;
+            if(percentageHealh > 0.75f)
+                healthPortrait.sprite = ghostImage100;
+            else if(percentageHealh > 0.5f)
+                healthPortrait.sprite = ghostImage75;
+            else if(percentageHealh > 0.25f)
+                healthPortrait.sprite = ghostImage50;
+            else
+                healthPortrait.sprite = ghostImage25;
         }
     }
 

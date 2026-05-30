@@ -39,8 +39,11 @@ public class bossBase : MonoBehaviour, IDamagable
         totalHealth = Mathf.RoundToInt(baseHealth * healthMult); 
         actualHealth = totalHealth;
 
-        healthSlider.maxValue = totalHealth;
-        healthSlider.value = totalHealth;
+        if(healthSlider != null)
+        {
+            healthSlider.maxValue = totalHealth;
+            healthSlider.value = totalHealth;
+        }
 
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -61,7 +64,8 @@ public class bossBase : MonoBehaviour, IDamagable
     
     private void UpdateUI()
     {
-        healthSlider.value = actualHealth;
+        if(healthSlider != null)
+            healthSlider.value = actualHealth;
     }
 
     // --- VIRTUAL FUNCTION TO FILL IN BY CHILDS
@@ -103,7 +107,7 @@ public class bossBase : MonoBehaviour, IDamagable
         return attackTaken;
     }
 
-    protected void StartCombat()
+    public void StartCombat()
     {
         currentState = bossStates.Phase1;
     }
@@ -154,8 +158,8 @@ public class bossBase : MonoBehaviour, IDamagable
         if (player == null) return;
 
         if (player.position.x > transform.position.x)
-        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-    else
-        transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
 }

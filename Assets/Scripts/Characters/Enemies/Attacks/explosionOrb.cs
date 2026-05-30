@@ -43,13 +43,18 @@ public class explosionOrb : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.CompareTag("Player"))
-        {
-            Debug.Log("Ha chocado");
-            other.GetComponent<GhostHealth>().TakeDamage(damage);
-        }
+        GhostHealth health = other.GetComponent<GhostHealth>();
 
-        Exploit();
+        if(health != null)
+        {
+            Debug.Log("Ha chocado con el cuerpo del jugador");
+            health.TakeDamage(damage);
+            Exploit();
+        }
+        else if(other.CompareTag("Ground") || other.CompareTag("Ground"))
+        {
+            Exploit();
+        }
     }
 
     private void Exploit()

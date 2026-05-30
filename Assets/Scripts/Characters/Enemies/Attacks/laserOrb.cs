@@ -11,13 +11,16 @@ public class laserOrb : MonoBehaviour
     public float prepareTime = 0.5f;
     public float laserDuration = 0.3f;
     public float lineWidth = 0.05f;
+    
+    [Tooltip("Capas que detienen el láser (incluye la capa del jugador y del suelo)")]
     public LayerMask hitLayers;
+    [Tooltip("Capa específica del suelo para detener el láser visualmente")]
+    public LayerMask groundLayer;
 
     [Header("VFX")]
     public GameObject impactEffects;
 
     private LineRenderer lineRenderer;
-    private Vector3 targetDirection;
     private bool hasFired = false;
     
     void Start()
@@ -28,9 +31,8 @@ public class laserOrb : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            targetDirection = (player.transform.position - transform.position).normalized;
-            
-            // Rotamos el orbe para que mire al jugador (estético)
+            // Apuntar al jugador inicialmente
+            Vector3 targetDirection = (player.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
@@ -46,6 +48,7 @@ public class laserOrb : MonoBehaviour
 
         yield return new WaitForSeconds(laserDuration);
 
+        // Limpieza tras el disparo
         if(impactEffects != null)
         {
             GameObject dead = Instantiate(impactEffects, transform.position, Quaternion.identity);
@@ -66,25 +69,40 @@ public class laserOrb : MonoBehaviour
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, pointToCreateLaser.position);
 
-        // USAR transform.right (o .up dependiendo de hacia dónde mire tu sprite)
-        // Esto disparará en la dirección real a la que apunta el orbe
-        RaycastHit2D hit = Physics2D.Raycast(pointToCreateLaser.position, transform.right, maxDistance, hitLayers);
+        // Lanzamos un rayo que atraviesa todos los colliders en el camino
+        RaycastHit2D[] hits = Physics2D.RaycastAll(pointToCreateLaser.position, transform.right, maxDistance, hitLayers);
 
-        if(hit.collider != null)
+        bool hitSomething = false;
+        Vector3 endPoint = pointToCreateLaser.position + (transform.right * maxDistance);
+
+        foreach (RaycastHit2D hit in hits)
         {
-            lineRenderer.SetPosition(1, hit.point);
-            if(hit.collider.CompareTag("Player"))
+            // 1. Intentar encontrar al jugador (buscando el componente en el objeto o sus padres)
+            GhostHealth health = hit.collider.GetComponentInParent<GhostHealth>();
+            
+            if (health != null && hit.collider.CompareTag("Player"))
             {
-                hit.collider.GetComponent<GhostHealth>()?.TakeDamage(damage);
+                health.TakeDamage(damage);
+                endPoint = hit.point;
+                hitSomething = true;
+                break; // Jugador golpeado, dejamos de atravesar
             }
-            if(impactEffects != null)
+            
+            // 2. Si golpeamos suelo/pared, detener el láser visualmente
+            if (((1 << hit.collider.gameObject.layer) & groundLayer) != 0)
             {
-                Instantiate(impactEffects, hit.point, Quaternion.identity);
+                endPoint = hit.point;
+                hitSomething = true;
+                break;
             }
         }
-        else
+
+        // Finalizar el dibujado
+        lineRenderer.SetPosition(1, endPoint);
+
+        if(hitSomething && impactEffects != null)
         {
-            lineRenderer.SetPosition(1, pointToCreateLaser.position + (transform.right * maxDistance));
+            Instantiate(impactEffects, endPoint, Quaternion.identity);
         }
     }
 }

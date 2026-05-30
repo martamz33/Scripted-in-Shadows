@@ -18,6 +18,7 @@ public class troll : EnemyBase
     [Header("Dash Settings")]
     public float speedDash = 8f;
     public float dashDuration = 0.2f;
+    public float attackAnimDuration = 0.6f;
 
     //private arguments
     private bool isAttaking;
@@ -70,15 +71,25 @@ public class troll : EnemyBase
         if(distance > distanceDetection && !isAttaking)
         {
             currentState = EnemyState.Walk;
+            targetDestination = (initialPosition != null) ? initialPosition.position : transform.position;
             Flip();
             return;
         }
 
-        if(!isAttaking) LookAtThePlayer();
-
-        if(!isAttaking && Time.time >= lastAttackTime + attackCooldown)
+        if(!isAttaking)
         {
-            StartCoroutine(performDashAttack());
+            LookAtThePlayer();
+            
+            if(distance > 2.0f) 
+            {
+                Vector2 direction = (player.position - transform.position).normalized;
+                rg.MovePosition(rg.position + direction * speedWalk * Time.deltaTime);
+            }
+
+            if(Time.time >= lastAttackTime + attackCooldown)
+            {
+                StartCoroutine(performDashAttack());
+            }
         }
     }
 
@@ -92,14 +103,16 @@ public class troll : EnemyBase
         float timer = 0;
         while(timer < dashDuration)
         {
-            // En lugar de modificar transform.position directamente:
             Vector2 newPos = rg.position + (Vector2)dashDir * speedDash * Time.deltaTime;
-            rg.MovePosition(newPos); 
+            rg.MovePosition(newPos);
 
             timer += Time.deltaTime;
             yield return null;
         }
+
         animator.SetTrigger("attack");
+        yield return new WaitForSeconds(attackAnimDuration);
+        FinishAttack();
     }
 
     private void FinishAttack()
@@ -107,6 +120,7 @@ public class troll : EnemyBase
         isAttaking = false;
         lastAttackTime = Time.time;
         CloseWeaponCollider();
+        LookAtThePlayer();
     }
 
     //utilities

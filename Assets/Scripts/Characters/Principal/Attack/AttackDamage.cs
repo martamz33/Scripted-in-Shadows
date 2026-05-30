@@ -57,25 +57,20 @@ public class AttackDamage : MonoBehaviour
         transform.localPosition = basePosition + new Vector3(0, y, 0);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Enemy"))
+        if(other.CompareTag("Enemy") || other.CompareTag("Boss"))
         {
-            EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
-
-            if(enemy != null)
-            {
-                enemy.TakeDamage(currentDamage);
-            }
+            IDamagable damagable = other.GetComponent<IDamagable>();
+            if(damagable != null)
+                damagable.TakeDamage(currentDamage);
         }
 
         if(other.gameObject.CompareTag("DestructibleObject"))
         {
             DestructibleObject objectDestructible = other.gameObject.GetComponent<DestructibleObject>();
             if(objectDestructible != null)
-            {
                 objectDestructible.RecibeBlow();
-            }
         }
     }
 }

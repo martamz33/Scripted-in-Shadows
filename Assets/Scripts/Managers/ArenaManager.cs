@@ -48,6 +48,10 @@ public class ArenaManager : MonoBehaviour
     [Tooltip("Se ejecuta cuando se elimina la última oleada (ej: abrir puertas, dar recompensa)")]
     public UnityEvent onArenaFinish;
 
+    [Header("Reward Settings")]
+    public GameObject healthPrefab; 
+    public Transform rewardSpawnPoint;
+
     private int currentWaveIndex = 0;
     private bool arenaStarted = false;
     private bool isSpawning = false;
@@ -269,6 +273,11 @@ public class ArenaManager : MonoBehaviour
     private void FinishArena()
     {
         arenaStarted = false;
+
+        if (healthPrefab != null && rewardSpawnPoint != null)
+        {
+            Instantiate(healthPrefab, rewardSpawnPoint.position, Quaternion.identity);
+        }
 
         onArenaFinish?.Invoke();
         Debug.Log("Arena completada.");

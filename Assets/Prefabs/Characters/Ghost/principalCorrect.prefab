@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15a6377892e87b4da08bc24e9e0f33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 12
+  dashSpeed: 15
   dashDuration: 0.2
   dashDelay: 2
   maxDashes: 1

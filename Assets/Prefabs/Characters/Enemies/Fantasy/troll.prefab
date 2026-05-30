@@ -218,6 +218,7 @@ MonoBehaviour:
   weaponCol: {fileID: 4988988326518276609}
   speedDash: 8
   dashDuration: 0.2
+  attackAnimDuration: 0.6
 --- !u!1 &7081125753231902347
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +230,7 @@ GameObject:
   - component: {fileID: 2337757425366491663}
   - component: {fileID: 4988988326518276609}
   - component: {fileID: 6843933742517115886}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WeaponTroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}

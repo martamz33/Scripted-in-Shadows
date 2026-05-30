@@ -4803,8 +4803,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1227215645
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -5014,7 +5014,7 @@ MonoBehaviour:
   PrefabInk: {fileID: 5984518434707500455, guid: 1590c720a4ab0564cb3e39eae0948bc6, type: 3}
   quantityOfInk: 2
   forceOfExplosion: 5
-  healthPrefab: {fileID: 0}
+  healthPrefab: {fileID: 2435541122438421622, guid: 45b0670992a7b9e498080ca245acecab, type: 3}
   healthDropChance: 0.2
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.15

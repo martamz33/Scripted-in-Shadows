@@ -119,9 +119,10 @@ public class FlyTower : EnemyBase
         }
 
         Collider2D hit = Physics2D.OverlapCircle(transform.position, explosionRadious, LayerMask.GetMask("Player"));
-        if(hit !=null)
+        GhostHealth health = hit?.GetComponent<GhostHealth>();
+        if(health != null)
         {
-            hit.GetComponent<GhostHealth>().TakeDamage(damage);
+            health.TakeDamage(damage);
         }
 
         Death();
