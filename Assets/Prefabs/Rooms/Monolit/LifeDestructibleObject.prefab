@@ -238,6 +238,7 @@ MonoBehaviour:
   vfxSpawn: {fileID: 4146204168019441182, guid: 796e73a6299a43345938869deccd71f5, type: 3}
   maxBlows: 4
   vfxBreak: {fileID: 8455058180685866072, guid: d4e1ca56c91f1ef48b99e2bbc9ba0a4c, type: 3}
+  isGrounded: 0
   crackOverlay: {fileID: 968209985119460835}
   withOneBlow: {fileID: 1004205108, guid: 118ae61b6469d4c40ae5efdb38b1ac0c, type: 3}
   withTowBlows: {fileID: 1093997771, guid: 7784a9465fb8b6f4a99a13262edabc26, type: 3}
@@ -245,6 +246,8 @@ MonoBehaviour:
   typeOfTreasure: 1
   inkPickupPrefab: {fileID: 5984518434707500455, guid: 1590c720a4ab0564cb3e39eae0948bc6, type: 3}
   lifePickupPrefab: {fileID: 2435541122438421622, guid: 45b0670992a7b9e498080ca245acecab, type: 3}
+  hitSound: {fileID: 8300000, guid: 522e78a2b41cb5844a85f4d5227a0f8e, type: 3}
+  breakSound: {fileID: 8300000, guid: 4f0fdb0cac2d708469cfe4790b524175, type: 3}
 --- !u!70 &-1014346486285621168
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

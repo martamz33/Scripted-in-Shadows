@@ -17,6 +17,15 @@ public class NPCBehaviour : Interactuable
     {
         if (isDialogueActive) return;
 
+        if (hasInteracted)
+        {
+            isDialogueActive = true;
+            DialogueManager.instance.ShowSingleLine(savedText, savedName, savedIcon, () => {
+                isDialogueActive = false;
+            });
+            return;
+        }
+
         isDialogueActive = true;
         
         DialogueManager.instance.StartExternalDialogue(inkJSONAsset, OnDialogueFinished);
@@ -24,6 +33,7 @@ public class NPCBehaviour : Interactuable
 
     public void OnDialogueFinished()
     {
+        SaveLastDialogue();
         isDialogueActive = false;
 
         GameManager.Instance.FreezePlayer(false);

@@ -191,3 +191,4 @@ MonoBehaviour:
   speed: 5
   lifeTime: 4
   prefabImpactParticles: {fileID: 2669454228298537614, guid: 07c6b06f9aa8f1647b5d12d6123183c5, type: 3}
+  explosionSound: {fileID: 8300000, guid: fb89a664bba61d54eb68870802c76de5, type: 3}

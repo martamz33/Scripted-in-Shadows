@@ -138,6 +138,7 @@ MonoBehaviour:
   launchForce: 7.5
   upwardArc: 1.5
   prefabImpactParticles: {fileID: 7099677121899028008, guid: 5c2000029a7d5c0459a73e7964ca6a63, type: 3}
+  explosionSound: {fileID: 8300000, guid: 2d4440bd643c5fd42b8259fab6ae85d2, type: 3}
 --- !u!50 &5811586818044042768
 Rigidbody2D:
   serializedVersion: 4

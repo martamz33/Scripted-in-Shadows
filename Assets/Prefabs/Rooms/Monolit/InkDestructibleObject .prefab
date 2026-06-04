@@ -246,6 +246,8 @@ MonoBehaviour:
   typeOfTreasure: 0
   inkPickupPrefab: {fileID: 5984518434707500455, guid: 1590c720a4ab0564cb3e39eae0948bc6, type: 3}
   lifePickupPrefab: {fileID: 2435541122438421622, guid: 45b0670992a7b9e498080ca245acecab, type: 3}
+  hitSound: {fileID: 8300000, guid: 522e78a2b41cb5844a85f4d5227a0f8e, type: 3}
+  breakSound: {fileID: 8300000, guid: 4f0fdb0cac2d708469cfe4790b524175, type: 3}
 --- !u!70 &5580569684006302962
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

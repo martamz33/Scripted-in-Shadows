@@ -17,8 +17,9 @@ public class laserOrb : MonoBehaviour
     [Tooltip("Capa específica del suelo para detener el láser visualmente")]
     public LayerMask groundLayer;
 
-    [Header("VFX")]
+    [Header("VFX & Audio")] // Actualizado el header
     public GameObject impactEffects;
+    public AudioClip laserSound;
 
     private LineRenderer lineRenderer;
     private bool hasFired = false;
@@ -62,6 +63,11 @@ public class laserOrb : MonoBehaviour
     {
         if(hasFired) return;
         hasFired = true;
+
+        if (laserSound != null)
+        {
+            AudioSource.PlayClipAtPoint(laserSound, transform.position);
+        }
 
         lineRenderer.enabled = true;
         lineRenderer.startWidth = lineWidth;

@@ -20,6 +20,10 @@ public class troll : EnemyBase
     public float dashDuration = 0.2f;
     public float attackAnimDuration = 0.6f;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip dashSound;
+
     //private arguments
     private bool isAttaking;
     private float lastAttackTime;
@@ -32,6 +36,11 @@ public class troll : EnemyBase
         lastAttackTime = -attackCooldown;
 
         if(weaponCol != null) weaponCol.enabled = false;
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     public override void SetPatrolPoints(Transform initial, Transform final)
@@ -99,6 +108,12 @@ public class troll : EnemyBase
         isAttaking = true;
         OpenWeaponCollider();
         Vector3 dashDir = (player.position.x > transform.position.x) ? Vector3.right : Vector3.left;
+
+        if (dashSound != null && audioSource != null)
+        {
+            audioSource.pitch = 1f + Random.Range(-0.1f, 0.1f);
+            audioSource.PlayOneShot(dashSound);
+        }
 
         float timer = 0;
         while(timer < dashDuration)

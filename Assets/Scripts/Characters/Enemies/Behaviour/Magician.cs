@@ -16,6 +16,10 @@ public class Magician : EnemyBase
     public float teleportRadius = 8f;
     public float teleportCooldown = 5f;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip createSound;
+
     private Vector3 anchorPoint;
     private bool isBusy;
     private float lastAttackTime;
@@ -30,6 +34,11 @@ public class Magician : EnemyBase
         anchorPoint = transform.position;
         col = GetComponent<Collider2D>();
         sprite = GetComponent<SpriteRenderer>();
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     protected override void Update()
@@ -97,6 +106,12 @@ public class Magician : EnemyBase
     private void createOrb()
     {
         if(pointToCreateOrb == null) return;
+
+        if(audioSource != null && createSound != null)
+        {
+            audioSource.pitch = 1f + Random.Range(-0.1f, 0.1f);
+            audioSource.PlayOneShot(createSound);
+        }
 
         GameObject prefabToSpawn = (Random.value > 0.5) ? orbPrefabExplosion : orbPrefabLaser;
 

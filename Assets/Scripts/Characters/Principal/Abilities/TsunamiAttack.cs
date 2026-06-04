@@ -14,11 +14,32 @@ public class TsunamiAttack : MonoBehaviour
     public float rayDistance = 5f;
     public float yOffset = 0f;
 
+    [Header("Audio Settings")]
+    [Tooltip("Sonido continuo del agua arrasando")]
+    public AudioClip tsunamiSound;
+    [Tooltip("Sonido al impactar contra un enemigo (Opcional)")]
+    public AudioClip hitSound; 
+    
+    private AudioSource audioSource;
+
     private float fixedY;
     private bool heightSet = false;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = 0f; // Aseguramos que sea 2D para que se escuche bien
+        }
+
+        if (tsunamiSound != null)
+        {
+            audioSource.clip = tsunamiSound;
+            audioSource.loop = true; // Lo ponemos en bucle por si el audio es corto
+            audioSource.Play();
+        }
         RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.up, Vector2.down, rayDistance, groundLayer);
 
         if (hit.collider != null)
@@ -55,6 +76,12 @@ public class TsunamiAttack : MonoBehaviour
             if(enemy != null)
             {
                 enemy.TakeDamage(damage);
+
+                if (hitSound != null)
+                {
+                    // Usamos PlayClipAtPoint para que el golpe suene entero aunque la ola siga adelante
+                    AudioSource.PlayClipAtPoint(hitSound, transform.position);
+                }
             }
         }
     }

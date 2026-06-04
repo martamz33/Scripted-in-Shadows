@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthInt: 7
+  pickupSound: {fileID: 8300000, guid: e901dfd4915919b4cb1e00a7c729c4ef, type: 3}
 --- !u!50 &111770243040652603
 Rigidbody2D:
   serializedVersion: 4

@@ -18,6 +18,10 @@ public class GoblinLanzador : EnemyBase
     public float cooldownAttack = 5f;
     public float timeBetweenShots = 1f;
     public int shotBurst = 3;
+
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip throwSound;
     
     private float cronoAttack = 0f;
     private bool isAttacking = false;
@@ -29,6 +33,11 @@ public class GoblinLanzador : EnemyBase
         currentState = EnemyState.Walk;
         targetDestination = finalPosition != null ? finalPosition.position : transform.position;
         cronoAttack = cooldownAttack;
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     public override void SetPatrolPoints(Transform initial, Transform final)
@@ -107,6 +116,12 @@ public class GoblinLanzador : EnemyBase
 
     private void throwDagger()
     {
+        if (throwSound != null && audioSource != null)
+        {
+            audioSource.pitch = 1f + Random.Range(-0.1f, 0.1f);
+            audioSource.PlayOneShot(throwSound);
+        }
+        
         if(prefabDagger!=null)
         {
             GameObject Dagger = Instantiate(prefabDagger, pointToCreateDagger.position, Quaternion.identity);

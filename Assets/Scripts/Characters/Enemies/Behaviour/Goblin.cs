@@ -19,6 +19,11 @@ public class Goblin : EnemyBase
     public Collider2D weaponCol;
     public bool IsAttacking => isAttaking;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    [Tooltip("Sonido al dar el golpe (hacer daño)")]
+    public AudioClip attackSound;
+
     private bool isAttaking;
     private float lastAttackTime;
     
@@ -28,6 +33,11 @@ public class Goblin : EnemyBase
         currentState = EnemyState.Walk;
         targetDestination = (finalPosition != null) ? finalPosition.position : transform.position;
         lastAttackTime = -attackCooldown;
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     public override void SetPatrolPoints(Transform initial, Transform final)
@@ -107,6 +117,13 @@ public class Goblin : EnemyBase
     public void OpenWeaponCollider()
     {
         if(weaponCol != null) weaponCol.enabled = true;
+
+        if (attackSound != null && audioSource != null)
+        {
+            // Variamos ligeramente el tono para que no suene repetitivo si pega muchas veces
+            audioSource.pitch = 1f + Random.Range(-0.1f, 0.1f);
+            audioSource.PlayOneShot(attackSound);
+        }
     }
 
     public void CloseWeaponCollider()

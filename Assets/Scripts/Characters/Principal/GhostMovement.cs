@@ -24,6 +24,13 @@ public class GhostMovement : MonoBehaviour
     [Header("Float Settings")]
     public float floatDelay = 2f;
 
+    [Header("Audio Settings")]
+    [Tooltip("AudioSource para el sonido en bucle del movimiento")]
+    public AudioSource movementAudioSource; 
+    [Tooltip("AudioSource general para efectos (salto)")]
+    public AudioSource sfxAudioSource;
+    public AudioClip jumpSound;
+
     [Header("Others")]
     public bool isMovementActive = true;
     public bool isOscilationActive = true;
@@ -59,7 +66,15 @@ public class GhostMovement : MonoBehaviour
 
     void Update()
     {
-        if(!isMovementActive) return; //if is not active don't do anything
+        if(!isMovementActive) 
+        {
+            // Si el movimiento se desactiva (ej. por un diálogo), apagamos el sonido por seguridad
+            if (movementAudioSource != null && movementAudioSource.isPlaying)
+            {
+                movementAudioSource.Stop();
+            }
+            return; 
+        }
         
         isGrounded = isNearGround();
         animator.SetBool("isGrounded", isGrounded);
@@ -98,6 +113,25 @@ public class GhostMovement : MonoBehaviour
 
         //Absolute value to initiate or not the float aniamtion
         animator.SetFloat("Speed", Mathf.Abs(currentVelocityX));
+
+        if (movementAudioSource != null)
+        {
+            // If ismoving
+            if (Mathf.Abs(moveInput) > 0.01f)
+            {
+                if (!movementAudioSource.isPlaying)
+                {
+                    movementAudioSource.Play();
+                }
+            }
+            else // If not
+            {
+                if (movementAudioSource.isPlaying)
+                {
+                    movementAudioSource.Stop();
+                }
+            }
+        }
 
         //Flip
         if(moveInput > 0)
@@ -139,6 +173,11 @@ public class GhostMovement : MonoBehaviour
             jumpCount++;
             canFloat = false; //stop the float
             timerToFloat = 0f; //restart the timer
+
+            if (sfxAudioSource != null && jumpSound != null)
+            {
+                sfxAudioSource.PlayOneShot(jumpSound);
+            }
 
             animator.SetTrigger("Jump");
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class trollAttack : MonoBehaviour
 {
+    public AudioClip hitSound;
     private Collider2D col;
     private troll Troll;
     private bool wasAttacking = false;
@@ -29,6 +30,10 @@ public class trollAttack : MonoBehaviour
         if(other.gameObject.CompareTag("Player") && Troll.IsAttacking)
         {
             other.gameObject.GetComponent<GhostHealth>().TakeDamage(Troll.damage);
+            if (hitSound != null)
+            {
+                AudioSource.PlayClipAtPoint(hitSound, transform.position);
+            }
             col.enabled = false;
         }
     }

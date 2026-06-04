@@ -11,6 +11,7 @@ public class towerAttack : MonoBehaviour
 
     [Header("Effects")]
     public GameObject prefabImpactParticles;
+    public AudioClip explosionSound;
 
     private Rigidbody2D rg;
     
@@ -58,6 +59,11 @@ public class towerAttack : MonoBehaviour
 
     private void ExploitRock()
     {
+        if (explosionSound != null)
+        {
+            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+        }
+        
         if(prefabImpactParticles !=null)
         {
             GameObject particles = Instantiate(prefabImpactParticles, transform.position, Quaternion.identity);

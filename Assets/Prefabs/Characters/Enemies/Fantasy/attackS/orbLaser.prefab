@@ -166,7 +166,11 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 2048
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   impactEffects: {fileID: 2669454228298537614, guid: 07c6b06f9aa8f1647b5d12d6123183c5, type: 3}
+  laserSound: {fileID: 8300000, guid: 87897453af97f194bb9c7e4860d574b2, type: 3}
 --- !u!120 &3079550927510940023
 LineRenderer:
   serializedVersion: 2

@@ -10,6 +10,7 @@ public struct ConfigAttack
     public Transform startAttackPoint;
     public Transform finalAttackPoint;
     public int baseDamage;
+    public AudioClip attackSound;
 }
 
 public class GhostAttack : MonoBehaviour
@@ -24,6 +25,9 @@ public class GhostAttack : MonoBehaviour
     [Header("Queue Setting")]
     public int maxQueueSize = 3;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+
     private Rigidbody2D rg;
     private GhostMovement gm;
     private Animator animator;
@@ -36,6 +40,11 @@ public class GhostAttack : MonoBehaviour
         rg = GetComponent<Rigidbody2D>();
         gm = GetComponent<GhostMovement>();
         animator = GetComponent<Animator>();
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     void Update()
@@ -183,7 +192,14 @@ public class GhostAttack : MonoBehaviour
             if(scripDamage != null)
             {
                 scripDamage.SetUp(finalDamage, configFound.finalAttackPoint);
-            }            
+            }  
+
+            if (configFound.attackSound != null && audioSource != null)
+            {
+                // Modify a little the tone
+                audioSource.pitch = 1f + Random.Range(-0.1f, 0.1f);
+                audioSource.PlayOneShot(configFound.attackSound);
+            }          
         }      
     }
 

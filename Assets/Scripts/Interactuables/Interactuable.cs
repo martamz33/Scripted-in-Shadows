@@ -7,6 +7,11 @@ public abstract class Interactuable : MonoBehaviour
     public GameObject iconInteractuable;
     protected bool playerIsNear = false;
 
+    protected bool hasInteracted = false;
+    protected string savedText = "";
+    protected string savedName = "";
+    protected string savedIcon = "";
+
     protected virtual void Update()
     {
         if(playerIsNear && Input.GetKeyDown(KeyCode.E))
@@ -34,5 +39,13 @@ public abstract class Interactuable : MonoBehaviour
             playerIsNear = false;
             if(iconInteractuable != null) iconInteractuable.SetActive(false);
         }
+    }
+
+    public virtual void SaveLastDialogue()
+    {
+        hasInteracted = true;
+        savedText = DialogueManager.instance.lastDisplayedText;
+        savedName = DialogueManager.instance.lastDisplayedName;
+        savedIcon = DialogueManager.instance.lastDisplayedIcon;
     }
 }

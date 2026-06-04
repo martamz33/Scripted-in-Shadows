@@ -601,16 +601,16 @@ MonoBehaviour:
   toFinishDialogue:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8883911585662923954}
-        m_TargetAssemblyTypeName: bossBase, Assembly-CSharp
-        m_MethodName: StartCombat
-        m_Mode: 1
+      - m_Target: {fileID: 1805428995}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: TriggerDialogue
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: intro_judgement
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &391406231 stripped
@@ -29401,7 +29401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c1875059b5bf149afed60f4c2990ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSONAsset: {fileID: 0}
+  inkJSONAsset: {fileID: 4900000, guid: 3b19f0b7c063e7b499f270a6afc686d1, type: 3}
   levelCanvases:
   - {fileID: 153932461}
   - {fileID: 1009651504}
@@ -29459,13 +29459,13 @@ MonoBehaviour:
     iconSprite: {fileID: -1600130405, guid: 898e2dfa420c356489aca3bff1ddc240, type: 3}
   - iconName: fallenHero_sad
     iconSprite: {fileID: -1287349412, guid: ae02fd97aaae5294a924544cc7ab3d9a, type: 3}
-  - iconName: judge_normal
+  - iconName: juez_normal
     iconSprite: {fileID: -1941704119, guid: bf250f10b04cfdc46a7d34d9c721caf8, type: 3}
-  - iconName: judge_pride
+  - iconName: juez_pride
     iconSprite: {fileID: -1600657038, guid: 441799457e07dbf4786d675d7dcf3cca, type: 3}
-  - iconName: judge_serious
+  - iconName: juez_serious
     iconSprite: {fileID: 1365505273, guid: 539d39adce39d7e468eacae56b783485, type: 3}
-  - iconName: judge_castigo
+  - iconName: juez_castigo
     iconSprite: {fileID: 655716948, guid: 48ef7aea43ea3ee46b673a8901835ead, type: 3}
 --- !u!1 &1848315269
 GameObject:
@@ -33987,14 +33987,22 @@ PrefabInstance:
       objectReference: {fileID: 8883911585662923955}
     - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
       propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
       propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
+      propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
       propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1805428995}
+    - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
+      propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 686877260}
     - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
@@ -34002,11 +34010,23 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
+      propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
       propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
+      propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
       propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
+      propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
@@ -34014,7 +34034,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
+      propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
+      propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: post_pelea_ganada
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
       propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
+      propertyPath: onBossDefeated.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8172196557380273176, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
@@ -34062,17 +34094,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
---- !u!114 &8883911585662923954 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6633420386839779759, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}
-  m_PrefabInstance: {fileID: 8883911585662923953}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c6bef64f9766e48b8b8dac435315e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &8883911585662923955 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 750138266658395820, guid: 29ce185b21ddfdb4ba7edc158edbc7de, type: 3}

@@ -11,6 +11,7 @@ public class DaggerGoblin : MonoBehaviour
 
     [Header("Effects")]
     public GameObject prefabImpactParticles;
+    public AudioClip impactSound;
 
     private Vector3 targetDirection;
 
@@ -50,6 +51,11 @@ public class DaggerGoblin : MonoBehaviour
 
     private void Exploit()
     {
+        if (impactSound != null)
+        {
+            AudioSource.PlayClipAtPoint(impactSound, transform.position);
+        }
+        
         if(prefabImpactParticles != null)
         {
             GameObject particles = Instantiate(prefabImpactParticles, transform.position, Quaternion.identity);

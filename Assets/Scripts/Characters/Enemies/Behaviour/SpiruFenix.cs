@@ -15,10 +15,19 @@ public class SpiruFenix : EnemyBase
     public float timeBetweenAttacks = 3f;
     private float cronoAttack;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip createSound;
+
     protected override void Start()
     {
         base.Start();
         initialPosition = transform.position;
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     protected override void Update()
@@ -62,6 +71,12 @@ public class SpiruFenix : EnemyBase
 
     private void LaunchMagic()
     {
+        if(audioSource != null && createSound != null)
+        {
+            audioSource.pitch = 1f + Random.Range(-0.1f, 0.1f);
+            audioSource.PlayOneShot(createSound);
+        }
+        
         if(prefabMagic != null && pointToCreateMagic !=null)
         {
             if(animator!=null) animator.SetTrigger("Attack");

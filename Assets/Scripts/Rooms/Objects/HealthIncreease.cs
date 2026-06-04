@@ -5,6 +5,9 @@ using UnityEngine;
 public class HealthIncreease : MonoBehaviour
 {
     public int healthInt = 7;
+    
+    [Header("Audio")]
+    public AudioClip pickupSound;    
     private Collider2D col;
 
     private void Start()
@@ -42,6 +45,11 @@ public class HealthIncreease : MonoBehaviour
             if(health != null)
             {
                 health.Heal(healthInt);
+
+                if (pickupSound != null)
+                {
+                    AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+                }
             }
             Destroy(gameObject);
         }

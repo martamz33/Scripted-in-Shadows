@@ -33,6 +33,12 @@ public class DestructibleObject : MonoBehaviour
     [Tooltip("Prefab del objeto físico de VIDA que caerá al suelo")]
     public GameObject lifePickupPrefab;
 
+    [Header("Audio Settings")]
+    [Tooltip("Sonido al recibir un golpe")]
+    public AudioClip hitSound;
+    [Tooltip("Sonido al destruirse (opcional)")]
+    public AudioClip breakSound;
+
     private Rigidbody2D rb;
 
     void Start()
@@ -69,11 +75,16 @@ public class DestructibleObject : MonoBehaviour
         actualBlows --;
         ActualiseAspect();
 
+        if (hitSound != null)
+        {
+            AudioSource.PlayClipAtPoint(hitSound, transform.position);
+        }
+
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.velocity = Vector2.zero;
         rb.AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
 
-        if(actualBlows == 0)
+        if(actualBlows <= 0)
         {
             Break();
         }
@@ -92,7 +103,7 @@ public class DestructibleObject : MonoBehaviour
                 crackOverlay.sprite = withTowBlows;
             }
 
-            else if (actualBlows == 1 && withTowBlows != null)
+            else if (actualBlows == 1 && withThreeBlows != null)
             {
                 crackOverlay.sprite = withThreeBlows;
             }
@@ -102,6 +113,11 @@ public class DestructibleObject : MonoBehaviour
     private void Break()
     {
         DeliverTreasure();
+
+        if (breakSound != null)
+        {
+            AudioSource.PlayClipAtPoint(breakSound, transform.position);
+        }
 
         if (vfxBreak != null)
         {

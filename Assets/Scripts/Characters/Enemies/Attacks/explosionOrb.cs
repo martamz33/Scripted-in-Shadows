@@ -11,6 +11,7 @@ public class explosionOrb : MonoBehaviour
 
     [Header("VFX")]
     public GameObject prefabImpactParticles;
+    public AudioClip explosionSound;
 
     private Vector3 targetDirection;
     private Animator animator;
@@ -59,6 +60,11 @@ public class explosionOrb : MonoBehaviour
 
     private void Exploit()
     {
+        if (explosionSound != null)
+        {
+            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+        }
+        
         if(prefabImpactParticles != null)
         {
             GameObject particles = Instantiate(prefabImpactParticles, transform.position, Quaternion.identity);

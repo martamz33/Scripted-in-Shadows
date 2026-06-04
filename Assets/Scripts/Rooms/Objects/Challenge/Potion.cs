@@ -13,6 +13,12 @@ public class Potion : MonoBehaviour
     public float amplitude = 20f;
     public float swingSpeed = 5f;
 
+    [Header("Audio")]
+    [Tooltip("El AudioSource que reproduce el sonido de moverse/líquido en bucle")]
+    public AudioSource swingAudioSource; 
+    [Tooltip("Sonido de la poción rompiéndose")]
+    public AudioClip breakSound;
+
     private bool isOnTheFloor;
     private Rigidbody2D rg;
     private Collider2D mainCollider; // NUEVO: Para guardar el collider físico
@@ -21,6 +27,11 @@ public class Potion : MonoBehaviour
     {
         rg = GetComponent<Rigidbody2D>();
         mainCollider = GetComponent<Collider2D>(); // Buscamos el collider sólido de la poción
+
+        if (swingAudioSource != null && !swingAudioSource.isPlaying)
+        {
+            swingAudioSource.Play();
+        }
     }
 
     void Update()
@@ -37,6 +48,16 @@ public class Potion : MonoBehaviour
         if(col.gameObject.CompareTag("Ground") && !isOnTheFloor)
         {
             isOnTheFloor = true;
+
+            if (swingAudioSource != null)
+            {
+                swingAudioSource.Stop();
+            }
+
+            if (breakSound != null)
+            {
+                AudioSource.PlayClipAtPoint(breakSound, transform.position);
+            }
 
             // 1. Detener físicas
             rg.velocity = Vector2.zero;

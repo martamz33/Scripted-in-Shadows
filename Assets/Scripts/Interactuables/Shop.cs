@@ -19,6 +19,16 @@ public class Shop : Interactuable
     {
         if (isDialogueActive) return;
 
+        if (hasInteracted)
+        {
+            isDialogueActive = true;
+            DialogueManager.instance.ShowSingleLine(savedText, savedName, savedIcon, () => {
+                isDialogueActive = false;
+                OpenShopUI();
+            });
+            return;
+        }
+
         isDialogueActive = true;
         
         DialogueManager.instance.StartExternalDialogue(inkJSONAsset, OnDialogueFinished);
@@ -26,12 +36,17 @@ public class Shop : Interactuable
 
     public void OnDialogueFinished()
     {
+        SaveLastDialogue();
         isDialogueActive = false;
 
         GameManager.Instance.FreezePlayer(false);
 
-        ShopManager.Instance.shopCanvas.SetActive(true);
+        OpenShopUI();
+    }
 
+    private void OpenShopUI()
+    {
+        ShopManager.Instance.shopCanvas.SetActive(true);
         if (ShopManager.Instance != null)
         {
             ShopManager.Instance.GenerateShopItems();

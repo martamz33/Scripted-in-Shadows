@@ -5,6 +5,9 @@ using UnityEngine;
 public class inkItem : MonoBehaviour
 {
     public int inkValue = 2;
+
+    [Header("Audio")]
+    public AudioClip pickupSound;
     private Rigidbody2D rg;
     private Collider2D col;
     private bool isCollected = false; 
@@ -45,6 +48,10 @@ public class inkItem : MonoBehaviour
         {
             isCollected = true;
             InkManager.instance.AddInk(inkValue);
+            if (pickupSound != null)
+            {
+                AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+            }
             Destroy(gameObject);
         }
     }

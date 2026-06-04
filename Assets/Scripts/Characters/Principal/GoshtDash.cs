@@ -15,6 +15,10 @@ public class GoshtDash : MonoBehaviour
     public int maxDashes = 1;
     public int currentDashes;
 
+    [Header("Audio Settings")]
+    public AudioClip dashSound;
+    public AudioSource audioSource;
+
     private Rigidbody2D rb;
     private GhostMovement gm;
     private Animator animator;
@@ -28,6 +32,11 @@ public class GoshtDash : MonoBehaviour
         gm = GetComponent<GhostMovement>();
         animator = GetComponent<Animator>();
         ghostAttack = GetComponent<GhostAttack>();
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
         currentDashes = maxDashes;
     }
@@ -60,6 +69,11 @@ public class GoshtDash : MonoBehaviour
         isDashing = true;
         currentDashes --;
         rechargeTimer = 0f;
+
+        if (dashSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(dashSound);
+        }
 
         //initialise the animation
         animator.SetTrigger("Dash");

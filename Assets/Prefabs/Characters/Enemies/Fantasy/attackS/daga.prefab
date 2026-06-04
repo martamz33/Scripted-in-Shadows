@@ -4980,3 +4980,4 @@ MonoBehaviour:
   speed: 5
   lifeTime: 4
   prefabImpactParticles: {fileID: 5453847765079196297, guid: 4bcb024c8a3442b43a9e0b9ad1c6d5d2, type: 3}
+  impactSound: {fileID: 8300000, guid: 06ddc5a7d5e72c742bd0e5c700392612, type: 3}

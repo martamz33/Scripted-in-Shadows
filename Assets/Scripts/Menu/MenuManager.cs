@@ -19,6 +19,9 @@ public class MenuManager : MonoBehaviour
         isActivated = false;
 
         if(optionsPanel != null) optionsPanel.SetActive(false);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -62,6 +65,9 @@ public class MenuManager : MonoBehaviour
             menus[index].SetActive(true);
             isActivated = true;
 
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
             //Pause the time
             Time.timeScale = 0f;
         }
@@ -76,6 +82,9 @@ public class MenuManager : MonoBehaviour
 
         if (optionsPanel != null) optionsPanel.SetActive(false);
         isActivated = false;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         Time.timeScale = 1f;
     }
@@ -98,6 +107,9 @@ public class MenuManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        
         Time.timeScale = 1f; 
         
         if (SceneLoader.Instance != null) {

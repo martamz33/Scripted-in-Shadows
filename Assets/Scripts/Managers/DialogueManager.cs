@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     {
         public string iconName;
         public Sprite iconSprite;
+        public AudioClip voiceSound;
     }
 
     [Header("Configuration")]
@@ -31,6 +32,13 @@ public class DialogueManager : MonoBehaviour
     public Image portraitImage;
     public List<Portrait> availablePortraits;
 
+    [Header("Voice & Typewriter Settings")]
+    public AudioSource audioSource;
+    public float typingSpeed = 0.04f; 
+    [Range(0f, 0.5f)]
+    public float pitchVariation = 0.05f; 
+    private AudioClip currentVoiceClip;
+
     //dictionary to know which dialogues are alredy been used
     private HashSet<string> completedDialogues = new HashSet<string>();
     private bool isWaitingForChoice;
@@ -39,6 +47,12 @@ public class DialogueManager : MonoBehaviour
     // To know if the variable has to start 
     private bool willStartRun = false;
     private string menuToOpen;
+
+    public string lastDisplayedText { get; private set; } = "";
+    public string lastDisplayedName { get; private set; } = "";
+    public string lastDisplayedIcon { get; private set; } = "";
+    private string currentIconName = "";
+
 
     void Awake()
     {
@@ -49,7 +63,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
     
-    public void TriggerDialogue(string knotName)
+    public void TriggerDialogue(string knotName, System.Action onFinish = null)
     {
         if(completedDialogues.Contains(knotName))
         {
@@ -62,7 +76,7 @@ public class DialogueManager : MonoBehaviour
             GameManager.Instance.FreezePlayer(true);
         }
 
-        onDialogueFinishedCallback = null;
+        onDialogueFinishedCallback = onFinish;
 
         story.ChoosePathString(knotName);
 
@@ -95,11 +109,10 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(DisplayDialogue());
     }
 
-    private IEnumerator  DisplayDialogue()
+    private IEnumerator DisplayDialogue()
     {
         while(story.canContinue)
         {
-            Debug.Log("HA entrado en displayDialogue");
             string text = story.Continue();
 
             text = text.Trim();
@@ -117,6 +130,10 @@ public class DialogueManager : MonoBehaviour
             }
             
             dialogueText.text = text;
+
+            lastDisplayedText = text;
+            lastDisplayedName = nameText != null ? nameText.text : "";
+            lastDisplayedIcon = currentIconName;
 
             if(isWaitingForChoice)
             {
@@ -137,12 +154,23 @@ public class DialogueManager : MonoBehaviour
                     string nextText = story.Continue();
                     ParseTags(story.currentTags);
                     dialogueText.text = nextText.Trim();
+
+                    yield return StartCoroutine(TypeLine(nextText.Trim()));
+
+                    if(!string.IsNullOrWhiteSpace(nextText))
+                    {
+                        lastDisplayedText = dialogueText.text;
+                        lastDisplayedName = nameText != null ? nameText.text : "";
+                        lastDisplayedIcon = currentIconName;
+                    }
                 } else {
                     break;
                 }
             }
             else
             {
+                yield return StartCoroutine(TypeLine(text));
+
                 yield return null;
                 yield return new WaitForSeconds(0.1f);
                 yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -163,6 +191,107 @@ public class DialogueManager : MonoBehaviour
             willStartRun = false;
             MapManager.Instance.StartFirstRandomRoom();
         }
+    }
+
+    private IEnumerator TypeLine(string text)
+    {
+        yield return null; // Esperamos un frame inicial
+
+        if (string.IsNullOrEmpty(text)) text = "...";
+        if (dialogueText != null) dialogueText.text = "";
+        
+        bool isAddingRichTextTag = false;
+        bool isSkipping = false;
+
+        foreach(char c in text.ToCharArray())
+        {
+            if (isSkipping) break;
+
+            if (c == '<' || isAddingRichTextTag) 
+            {
+                isAddingRichTextTag = true;
+                if (dialogueText != null) dialogueText.text += c;
+                if (c == '>') isAddingRichTextTag = false;
+            }
+            else 
+            {
+                if (dialogueText != null) dialogueText.text += c;
+
+                if (currentVoiceClip != null && audioSource != null && c != ' ') 
+                {
+                    audioSource.pitch = 1f + Random.Range(-pitchVariation, pitchVariation);
+                    audioSource.PlayOneShot(currentVoiceClip);
+                }
+
+                // ARREGLO DEL ESPACIO: Esperamos leyendo el teclado cada frame
+                float timer = 0f;
+                while(timer < typingSpeed)
+                {
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        isSkipping = true;
+                        break;
+                    }
+                    timer += Time.unscaledDeltaTime;
+                    yield return null;
+                }
+            }
+        }
+
+        // Si salta, mostramos todo y cortamos el audio
+        if (isSkipping)
+        {
+            if (dialogueText != null) dialogueText.text = text;
+            if (audioSource != null) audioSource.Stop();
+            yield return null;
+        }
+    }
+
+    public void ShowSingleLine(string text, string speakerName, string iconName, System.Action onFinish = null)
+    {
+        if (string.IsNullOrEmpty(text)) 
+        {
+            text = "...";
+        }
+
+        if (GameManager.Instance != null) GameManager.Instance.FreezePlayer(true);
+        
+        dialoguePanel.SetActive(true);
+        if (nameText != null) nameText.text = speakerName;
+        if (dialogueText != null) dialogueText.text = text;
+
+        bool iconFound = false;
+        foreach (Portrait p in availablePortraits)
+        {
+            if (p.iconName == iconName)
+            {
+                portraitImage.sprite = p.iconSprite;
+                portraitImage.gameObject.SetActive(true);
+                currentVoiceClip = p.voiceSound;
+                iconFound = true;
+                break;
+            }
+        }
+        if (!iconFound) 
+        {
+            portraitImage.gameObject.SetActive(false);
+            currentVoiceClip = null;
+        }
+        StartCoroutine(WaitToCloseSingleLine(text, onFinish));
+    }
+
+    private IEnumerator WaitToCloseSingleLine(string text, System.Action onFinish)
+    {
+        yield return StartCoroutine(TypeLine(text));
+
+        yield return null;
+        yield return new WaitForSeconds(0.1f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+
+        dialoguePanel.SetActive(false);
+        if (GameManager.Instance != null) GameManager.Instance.FreezePlayer(false);
+        
+        onFinish?.Invoke();
     }
 
     public void TriggerFantasyBossDeathDialogue(string knotName)
@@ -245,12 +374,14 @@ public class DialogueManager : MonoBehaviour
                     if(nameText!= null) nameText.text = value;
                     break;
                 case "icon":
+                currentIconName = value;
                     foreach (Portrait p in availablePortraits)
                     {
                         if (p.iconName == value)
                         {
                             portraitImage.sprite = p.iconSprite;
                             portraitImage.gameObject.SetActive(true); 
+                            currentVoiceClip = p.voiceSound;
                             break;
                         }
                     }
