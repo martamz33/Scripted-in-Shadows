@@ -74,7 +74,11 @@ public class Potion : MonoBehaviour
                 ps.gameObject.SetActive(true); // Asegúrate de que esté activo
                 ps.Play();
             }
-            if(damageArea != null) damageArea.enabled = true;
+            if(damageArea != null) 
+            {
+                damageArea.gameObject.SetActive(true); // Enciende el GameObject que estaba en gris
+                damageArea.enabled = true;             // Asegura que el collider esté encendido
+            }
 
             // 4. CAMBIO AQUÍ: Desactivamos el objeto en lugar de destruirlo de golpe
             // O, si quieres destruir, espera a que la partícula termine:

@@ -51,6 +51,15 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("HasSavedRun", 0) == 1)
+        {
+            roomsCleared = PlayerPrefs.GetInt("RoomsCleared", 0);
+            currentBossIndex = PlayerPrefs.GetInt("CurrentBossIndex", 0);
+        }
+    }
+
     public void StartFirstRandomRoom()
     {
         roomsCleared = 0;
@@ -238,7 +247,7 @@ public class MapManager : MonoBehaviour
             } else {
                 // Fallback por si el loader no está en la escena
                 SceneManager.LoadScene(sceneToLoad);
-}
+            }
         }
         else 
         {

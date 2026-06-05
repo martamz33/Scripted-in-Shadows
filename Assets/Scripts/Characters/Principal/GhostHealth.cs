@@ -12,6 +12,9 @@ public class GhostHealth : MonoBehaviour, IDamagable
     public int actualHealth;
     public bool isInvulnerable = false;
 
+    public float deathAnimationDuration = 1.5f; 
+    private bool isDead = false;
+
     //powerup variables
     public bool canHeal = true;
     public float multiplier = 1f;
@@ -35,6 +38,11 @@ public class GhostHealth : MonoBehaviour, IDamagable
     public float knockbackForceY = 3f;
     public float knockbackDuration = 0.2f;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource; // El mismo de los SFX
+    public AudioClip deathSound;
+    public AudioClip damageSound;
+
     private Animator animator;
     private SpriteRenderer sprite;
     private Rigidbody2D rg;
@@ -43,8 +51,13 @@ public class GhostHealth : MonoBehaviour, IDamagable
     {
         sprite = GetComponent<SpriteRenderer>();
         rg = GetComponent<Rigidbody2D>();
-
         animator = GetComponent<Animator>();
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         animator.SetBool("isAlive", true);
         isInvulnerable = false;
         actualHealth = totalHealth;
@@ -118,6 +131,13 @@ public class GhostHealth : MonoBehaviour, IDamagable
         }
         else
         {
+            if (damageSound != null && audioSource != null)
+            {
+                // Variamos un poco el tono para que no suene repetitivo si le pegan rápido
+                audioSource.pitch = 1f + Random.Range(-0.1f, 0.1f);
+                audioSource.PlayOneShot(damageSound);
+            }
+            
             StartCoroutine(ApplyKnockback());
         }
     }
@@ -166,8 +186,32 @@ public class GhostHealth : MonoBehaviour, IDamagable
 
     private void Death()
     {
-        animator.SetBool("isAlive", false);
+        if (!isDead)
+        {
+            StartCoroutine(DeathSequence());
+        }
+    }
 
+    private IEnumerator DeathSequence()
+    {
+        isDead = true;
+        isInvulnerable = true;
+
+        if (deathSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(deathSound);
+        }
+
+        // 1. Stop the player
+        if(GameManager.Instance != null) GameManager.Instance.FreezePlayer(true);
+
+        // 2. Activate animations
+        animator.SetTrigger("Death");
+
+        // 3. Wait to finish the animation
+        yield return new WaitForSeconds(deathAnimationDuration);
+
+        // 4. Process logic
         if(InkManager.instance != null)
         {
             InkManager.instance.ResetInk();
@@ -177,8 +221,6 @@ public class GhostHealth : MonoBehaviour, IDamagable
         {
             GameManager.Instance.RecordPlayerDeath();
         }
-
-        GoToHall();
     }
 
     private void GoToHall()

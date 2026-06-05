@@ -78,6 +78,11 @@ public class DialogueManager : MonoBehaviour
 
         onDialogueFinishedCallback = onFinish;
 
+        if (GameManager.Instance != null && story.variablesState.Contains("guide_talk_count"))
+        {
+            story.variablesState["guide_talk_count"] = GameManager.Instance.guideTalkCount;
+        }
+
         story.ChoosePathString(knotName);
 
         dialoguePanel.SetActive(true);
@@ -101,6 +106,11 @@ public class DialogueManager : MonoBehaviour
         onDialogueFinishedCallback = onFinish;
 
         story = new Story(externalInkJSON.text);
+
+        if (GameManager.Instance != null && story.variablesState.Contains("guide_talk_count"))
+        {
+            story.variablesState["guide_talk_count"] = GameManager.Instance.guideTalkCount;
+        }
 
         dialoguePanel.SetActive(true);
 
@@ -182,6 +192,14 @@ public class DialogueManager : MonoBehaviour
         if (!isWaitingForChoice && GameManager.Instance != null) 
         {
             GameManager.Instance.FreezePlayer(false);
+        }
+        
+        if (GameManager.Instance != null && story.variablesState.Contains("guide_talk_count"))
+        {
+            GameManager.Instance.guideTalkCount = (int)story.variablesState["guide_talk_count"];
+
+            PlayerPrefs.SetInt("GuideTalkCount", GameManager.Instance.guideTalkCount);
+            PlayerPrefs.Save();
         }
 
         onDialogueFinishedCallback?.Invoke();

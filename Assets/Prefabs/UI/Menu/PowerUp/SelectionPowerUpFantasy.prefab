@@ -95,6 +95,7 @@ MonoBehaviour:
   iconImage: {fileID: 6914943407782533483}
   nameText: {fileID: 7386100409773741693}
   description: {fileID: 3981259242437355051}
+  clickSound: {fileID: 8300000, guid: 6077ebca9bb242141a88b06ec37a1ca8, type: 3}
 --- !u!114 &8234534282777555414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1518,6 +1519,7 @@ MonoBehaviour:
   iconImage: {fileID: 2400479182262616860}
   nameText: {fileID: 8175957733579350935}
   description: {fileID: 2661399721932908018}
+  clickSound: {fileID: 8300000, guid: 6077ebca9bb242141a88b06ec37a1ca8, type: 3}
 --- !u!114 &7087837223363849021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1669,6 +1671,7 @@ MonoBehaviour:
   iconImage: {fileID: 579933101693444815}
   nameText: {fileID: 6176340953096095111}
   description: {fileID: 8678773368862850273}
+  clickSound: {fileID: 8300000, guid: 6077ebca9bb242141a88b06ec37a1ca8, type: 3}
 --- !u!114 &7644319243561674663
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class MenuManager : MonoBehaviour
     [Header("Extra Panels")]
     public GameObject optionsPanel; 
     public string initialMenuSceneName = "InitialMenu";
+
+    [Header("UI References")]
+    public Slider volumeSlider;
+    public TMP_Dropdown resolutionDropdown;
+
+    private Resolution[] resolutions;
 
     private bool isActivated;
 
@@ -22,6 +29,9 @@ public class MenuManager : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        LoadVolumeSettings();
+        LoadResolutionSettings();
     }
 
     void Update()
@@ -105,10 +115,77 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    private void LoadVolumeSettings()
+    {
+        if (volumeSlider != null)
+        {
+            // Load the save volumne or per default at max (1)
+            float savedVolume = PlayerPrefs.GetFloat("GlobalVolume", 1f);
+            
+            volumeSlider.value = savedVolume;
+            AudioListener.volume = savedVolume;
+
+            // Add a Listener
+            volumeSlider.onValueChanged.AddListener(SetVolume);
+        }
+    }
+
+    public void SetVolume(float volume)
+    {
+        AudioListener.volume = volume; 
+        PlayerPrefs.SetFloat("GlobalVolume", volume); 
+    }
+
+    private void LoadResolutionSettings()
+    {
+        if (resolutionDropdown != null)
+        {
+            resolutions = Screen.resolutions;
+            resolutionDropdown.ClearOptions();
+
+            List<string> options = new List<string>();
+            int currentResolutionIndex = 0;
+
+            for (int i = 0; i < resolutions.Length; i++)
+            {
+                string option = resolutions[i].width + " x " + resolutions[i].height;
+                options.Add(option);
+
+                // Check if it is the real resolution
+                if (resolutions[i].width == Screen.currentResolution.width &&
+                    resolutions[i].height == Screen.currentResolution.height)
+                {
+                    currentResolutionIndex = i;
+                }
+            }
+
+            resolutionDropdown.AddOptions(options);
+
+            // Load the save resolution or the default one
+            int savedResIndex = PlayerPrefs.GetInt("ResolutionIndex", currentResolutionIndex);
+            resolutionDropdown.value = savedResIndex;
+            resolutionDropdown.RefreshShownValue();
+
+            // Authomatic event when change the dropdown
+            resolutionDropdown.onValueChanged.AddListener(SetResolution);
+        }
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution res = resolutions[resolutionIndex];
+        Screen.SetResolution(res.width, res.height, true); 
+        
+        PlayerPrefs.SetInt("ResolutionIndex", resolutionIndex);
+    }
+
     public void ReturnToMainMenu()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SaveRunState();
+        }
         
         Time.timeScale = 1f; 
         

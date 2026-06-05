@@ -11,6 +11,9 @@ public class ButtonPowerUpFantasy : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI description;
 
+    [Header("Audio Settings")]
+    public AudioClip clickSound;
+
     private PowerUpScriptable currentPowerUp;
     private UIManager manager;
 
@@ -26,6 +29,18 @@ public class ButtonPowerUpFantasy : MonoBehaviour
 
     public void OnClick()
     {
+        if (clickSound != null)
+        {
+            GameObject audioTemp = new GameObject("TempPowerUpClick");
+            AudioSource aSource = audioTemp.AddComponent<AudioSource>();
+            aSource.clip = clickSound;
+            aSource.spatialBlend = 0f; // 0 = 2D puro, ideal para UI
+            aSource.volume = 1f;
+            
+            aSource.Play();
+            Destroy(audioTemp, clickSound.length);
+        }
+        
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         currentPowerUp.ApplyEffect(player);
 

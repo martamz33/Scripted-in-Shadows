@@ -24,6 +24,11 @@ public class InkManager : MonoBehaviour
 
     void Start()
     {
+        if (PlayerPrefs.GetInt("HasSavedRun", 0) == 1)
+        {
+            totalInk = PlayerPrefs.GetInt("SavedInk", 0);
+        }
+        
         if(inkText != null)
         {
             UpdateUI();

@@ -12,6 +12,9 @@ public class ButtonAbility : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [Header("UI Elements")]
     public Image iconImage;
 
+    [Header("Audio Settings")]
+    public AudioClip clickSound;
+
     public void SetupAbility(ConfigAbility config, UIManager manager)
     {
         myConfig = config;
@@ -41,6 +44,18 @@ public class ButtonAbility : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnClick()
     {
+        if (clickSound != null)
+        {
+            GameObject audioTemp = new GameObject("TempUIClick");
+            AudioSource aSource = audioTemp.AddComponent<AudioSource>();
+            aSource.clip = clickSound;
+            aSource.spatialBlend = 0f; // 0 = 2D puro, ideal para UI
+            aSource.volume = 1f;
+            
+            aSource.Play();
+            Destroy(audioTemp, clickSound.length);
+        }
+        
         if(GameManager.Instance != null)
         {
             GameManager.Instance.abilitySelected = myConfig.abilityType;

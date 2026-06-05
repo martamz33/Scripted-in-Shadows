@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +35,9 @@ public class GameManager : MonoBehaviour
     public int victoriesAgainstBossFantasy;
     public int victoriesAgainstBossFinal;
 
+    [Header("Dialogue Variables")]
+    public int guideTalkCount = 0;
+
     // Variables to know if exclusive power up are active
     [HideInInspector] public bool hasIronSkin;
     [HideInInspector] public bool hasPaperSkin;
@@ -51,6 +55,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             LoadGameStats();
+            LoadRunState();
         } 
         else 
         {
@@ -252,14 +257,70 @@ public class GameManager : MonoBehaviour
 
     public void ResetAllGameStats()
     {
-        PlayerPrefs.DeleteKey("TotalDeaths");
-        PlayerPrefs.DeleteKey("DeathsBeforeBoss");
-        PlayerPrefs.DeleteKey("Deaths_Boss_Fantasy");
-        PlayerPrefs.DeleteKey("Deaths_Boss_Final");
-        
-        PlayerPrefs.DeleteKey("Victories_Boss_Fantasy"); 
-        PlayerPrefs.DeleteKey("Victories_Boss_Final");  
+        PlayerPrefs.DeleteAll(); 
         
         LoadGameStats(); 
+    }
+
+    // Function to the save system
+    private void OnApplicationQuit() 
+    {
+        SaveRunState();
+    }
+    
+    public void SaveRunState()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        PlayerPrefs.SetInt("HasSavedRun", 1);
+        PlayerPrefs.SetString("SavedScene", currentScene);
+        PlayerPrefs.SetInt("SavedHealth", playerCurrentHealth);
+        PlayerPrefs.SetInt("SavedAbility", (int)abilitySelected);
+
+        PlayerPrefs.SetInt("HasIronSkin", hasIronSkin ? 1 : 0);
+        PlayerPrefs.SetInt("HasPaperSkin", hasPaperSkin ? 1 : 0);
+
+        if (InkManager.instance != null)
+        {
+            PlayerPrefs.SetInt("SavedInk", InkManager.instance.totalInk);
+        }
+
+        if (MapManager.Instance != null)
+        {
+            PlayerPrefs.SetInt("RoomsCleared", MapManager.Instance.roomsCleared);
+            PlayerPrefs.SetInt("CurrentBossIndex", MapManager.Instance.currentBossIndex);
+        }
+
+        PlayerPrefs.Save();
+    }
+
+    public void LoadRunState()
+    {
+        if (PlayerPrefs.GetInt("HasSavedRun", 0) == 1)
+        {
+            playerCurrentHealth = PlayerPrefs.GetInt("SavedHealth", 50);
+            abilitySelected = (AbilityType)PlayerPrefs.GetInt("SavedAbility", 0);
+
+            hasIronSkin = PlayerPrefs.GetInt("HasIronSkin", 0) == 1;
+            hasPaperSkin = PlayerPrefs.GetInt("HasPaperSkin", 0) == 1;
+        }
+    }
+
+    public void ClearRunState()
+    {
+        PlayerPrefs.SetInt("HasSavedRun", 0);
+        PlayerPrefs.DeleteKey("SavedScene");
+        PlayerPrefs.DeleteKey("SavedHealth");
+        PlayerPrefs.DeleteKey("SavedAbility");
+        PlayerPrefs.DeleteKey("HasIronSkin");
+        PlayerPrefs.DeleteKey("HasPaperSkin");
+        PlayerPrefs.DeleteKey("SavedInk");
+        PlayerPrefs.DeleteKey("RoomsCleared");
+        PlayerPrefs.DeleteKey("CurrentBossIndex");
+        PlayerPrefs.Save();
+        
+        hasIronSkin = false;
+        hasPaperSkin = false;
+        abilitySelected = AbilityType.None;
     }
 }

@@ -3968,6 +3968,142 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &119452397
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 702304167491280584, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1569029522}
+    - target: {fileID: 702304167491280584, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseOptions
+      objectReference: {fileID: 0}
+    - target: {fileID: 702304167491280584, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153011958527973238, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_Name
+      value: Optiones
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525309409284274400, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+--- !u!1 &119452398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5153011958527973238, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+  m_PrefabInstance: {fileID: 119452397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &119452399 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3352634551025075892, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+  m_PrefabInstance: {fileID: 119452397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &119452400 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1342570602460045817, guid: 48a82db0c06ddbe45b4ee2f539aca489, type: 3}
+  m_PrefabInstance: {fileID: 119452397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &123515103
 GameObject:
   m_ObjectHideFlags: 0
@@ -9537,6 +9673,134 @@ Transform:
   - {fileID: 1129608198}
   - {fileID: 546482533}
   m_Father: {fileID: 1334000776}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &383759355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 383759357}
+  - component: {fileID: 383759356}
+  m_Layer: 0
+  m_Name: musicAmbience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &383759356
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383759355}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 57484a0faeaac4540b7872699b13d8a1, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &383759357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383759355}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 56.835903, y: -49.981907, z: -0.01181281}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &389016356
 GameObject:
@@ -234520,60 +234784,91 @@ MonoBehaviour:
   availablePortraits:
   - iconName: tolkien_normal
     iconSprite: {fileID: -1892268878, guid: 618edb1d7fea3bd46ad6c0b14d10881f, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: tolkien_misterioso
     iconSprite: {fileID: -1791998806, guid: f1d0822235cbd054994d39b546dc2699, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: tolkien_risa
     iconSprite: {fileID: -1061520201, guid: 5d683e7361fcbb94bb10051df4b6d919, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: tolkien_nostalgia
     iconSprite: {fileID: -433904203, guid: 836895cf9c1bac44fa247ac550225e19, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: fantasma_normal
     iconSprite: {fileID: 1688263485, guid: a4d582e055fd17b46aaf49cb561ad96b, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: fantasma_normal2
     iconSprite: {fileID: 313644894, guid: 56ff803686618594c934fdf7233c914f, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: fantasma_feliz
     iconSprite: {fileID: -525423653, guid: 2c1a92ab5653dd148b581ef8ca24c470, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: fantasma_cansado
     iconSprite: {fileID: 1813235813, guid: ffc45eaeef550cd4ca5b3013cf605098, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: fantasma_confundido
     iconSprite: {fileID: -266150627, guid: 3956ebc133219c34db1f6c2d950b967b, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: fantasma_enojado
     iconSprite: {fileID: -1805484431, guid: c49862c161da2d34d86f86c8f39228ea, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: fantasma_timido
     iconSprite: {fileID: -1763354760, guid: 41cc8ef69bfbfd248a0b46f6984db1b7, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: fantasma_mindBlowing
     iconSprite: {fileID: -1093335278, guid: c4ae939ae8ec9dc4fb8e81650176800b, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: fantasma_pensativo
     iconSprite: {fileID: 1880498125, guid: 06cf3ef3efcc4d94383dce03d5146450, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: librarian_normal
     iconSprite: {fileID: -1662110209, guid: b7210b873963baa4eb86cbf0e9e4eeb0, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: librarian_normal
     iconSprite: {fileID: -1662110209, guid: b7210b873963baa4eb86cbf0e9e4eeb0, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: librarian_bromista
     iconSprite: {fileID: -1843802197, guid: 59a2db440069abe489411fd4081da739, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: librarian_ironica
     iconSprite: {fileID: 550702933, guid: 076c843006efe9947b8f3ce4e59158e5, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: librarian_pesada
     iconSprite: {fileID: 1863054836, guid: 35ef5589b017e0a45938479eaca2b87b, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: guide_normal
     iconSprite: {fileID: 594077206, guid: 566c79eadb1e160479f58758ccf3060d, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: guide_sarcastic
     iconSprite: {fileID: -1736457493, guid: 9116580a2d839824686f9988af249b47, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: guide_bored
     iconSprite: {fileID: -1937223222, guid: fe0ed66706e558e44a91041a829e7143, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: fallenHero_normal
     iconSprite: {fileID: -9143011, guid: eb2b276399939dc4eb073b3ead3e89c9, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: fallenHero_nostalgic
     iconSprite: {fileID: -1600130405, guid: 898e2dfa420c356489aca3bff1ddc240, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: fallenHero_sad
     iconSprite: {fileID: -1287349412, guid: ae02fd97aaae5294a924544cc7ab3d9a, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: judge_normal
     iconSprite: {fileID: -1941704119, guid: bf250f10b04cfdc46a7d34d9c721caf8, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: judge_pride
     iconSprite: {fileID: -1600657038, guid: 441799457e07dbf4786d675d7dcf3cca, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: judge_serious
     iconSprite: {fileID: 1365505273, guid: 539d39adce39d7e468eacae56b783485, type: 3}
+    voiceSound: {fileID: 0}
   - iconName: judge_castigo
     iconSprite: {fileID: 655716948, guid: 48ef7aea43ea3ee46b673a8901835ead, type: 3}
+    voiceSound: {fileID: 0}
+  audioSource: {fileID: 0}
+  typingSpeed: 0.04
+  pitchVariation: 0.05
 --- !u!1 &1002492224
 GameObject:
   m_ObjectHideFlags: 0
@@ -246516,6 +246811,18 @@ PrefabInstance:
       propertyPath: inkText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8186458074501095170, guid: a567ad21dbfad2541aeca6ff3781b87d, type: 3}
+      propertyPath: optionsPanel
+      value: 
+      objectReference: {fileID: 119452398}
+    - target: {fileID: 8186458074501095170, guid: a567ad21dbfad2541aeca6ff3781b87d, type: 3}
+      propertyPath: volumeSlider
+      value: 
+      objectReference: {fileID: 119452399}
+    - target: {fileID: 8186458074501095170, guid: a567ad21dbfad2541aeca6ff3781b87d, type: 3}
+      propertyPath: resolutionDropdown
+      value: 
+      objectReference: {fileID: 119452400}
     - target: {fileID: 8186458074501095170, guid: a567ad21dbfad2541aeca6ff3781b87d, type: 3}
       propertyPath: menus.Array.data[0]
       value: 
@@ -275525,3 +275832,5 @@ SceneRoots:
   - {fileID: 1991393308}
   - {fileID: 1620307325}
   - {fileID: 896847628}
+  - {fileID: 383759357}
+  - {fileID: 119452397}
